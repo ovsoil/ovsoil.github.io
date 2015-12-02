@@ -8,7 +8,7 @@ subtitle: 学习，记录，分享
 description: ovsoil's blog | C | C++ | mac
 author: Huaxin Yu
 email: hxyumail@126.com
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -65,7 +65,8 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 #theme: landscape
-theme: modernist
+#theme: modernist
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
@@ -73,3 +74,23 @@ deploy:
   type: git
   repository: git@github.com:ovsoil/ovsoil.github.io.git
   branch: master
+
+
+# Add
+
+avatar: /images/avatar.png
+since: 2014
+duoshuo_shortname: ovsoil
+disqus_shortname: ovsoil
+
+# Social links
+social:
+github: https://github.com/ovsoil
+douban: http://douban.com/people/ovsoil
+zhihu: http://www.zhihu.com/people/ovsoil
+
+# title, chinese available
+links_title: Links
+# links
+links:
+MacTalk: http://macshuo.com/
