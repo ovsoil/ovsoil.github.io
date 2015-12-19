@@ -1,12 +1,14 @@
 ---
 layout: post
-title: "ogre 源码学习之二"
-date: 2015-03-19 13:14:34 +0800
+title: "ogre 源码学习之二(几个基本类的实现)"
+date: 2015-03-19 22:14:34
 comments: true
 categories: 
 ---
 
-## 几个基本类的实现
+几个基本类的实现：
+* MemoryAllocator
+* 
 
 ### MemoryAllocator
 

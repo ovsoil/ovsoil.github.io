@@ -6,11 +6,7 @@ comments: true
 categories: 
 ---
 
-##基础
 
-<!--more-->
-
-###简介
 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。
 
 查询和更新指令构成了 SQL 的 DML 部分：
@@ -29,6 +25,9 @@ SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。
 * DROP TABLE - 删除表
 * CREATE INDEX - 创建索引（搜索键）
 * DROP INDEX - 删除索引
+
+<!--more-->
+
 
 ###语句
 

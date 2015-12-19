@@ -6,7 +6,6 @@ comments: true
 categories: 
 ---
 
-## Git基本使用
 
 Git是Linus用C实现的一个分布式版本控制工具，与Perforce、SVN和CVS这类集中式的版本控制工具不同。
 

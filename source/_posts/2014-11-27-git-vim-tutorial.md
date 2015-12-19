@@ -5,7 +5,9 @@ description: 在Git流行的时代，VIM的生态环境也有了长足的进步�
 category: 
 ---
 
-最近整理了VIM的配置，换上插件管理的神器-----[Vundle][2]，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。**对VIM有基础的同学，可直接跳至插件管理部分。**
+最近整理了VIM的配置，换上插件管理的神器-----[Vundle][2]，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。
+
+<!--more-->
 
 ##VIM的模式
 第一次使用VIM，会觉得无所适从，他并不像记事本，你敲什么键就显示什么，理解VIM的需要明白他的两种模式：
@@ -261,3 +263,5 @@ VIM在一开始会觉得非常不习惯，一定要坚持下去，收获的会�
 [18]:  https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb
 [vimrc]: https://github.com/beiyuu/vimfiles/blob/master/_vimrc
 [p-vim]: http://book.douban.com/subject/10599776/
+
+

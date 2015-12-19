@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.ovsoil.com
+url: http://ovsoil.com
 root: /
 permalink: archive/:year-:month-:day/:title/
 permalink_defaults:
@@ -61,6 +61,17 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+index_generator:
+per_page: 20
+
+archive_generator:
+per_page: 50
+yearly: true
+monthly: true
+
+tag_generator:
+per_page: 10
+
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
@@ -76,21 +87,54 @@ deploy:
   branch: master
 
 
-# Add
+# =============================================================================
+# NexT Theme configuration
+# =============================================================================
 
-avatar: /images/avatar.png
-since: 2014
+# 多说帐号
 duoshuo_shortname: ovsoil
 disqus_shortname: ovsoil
 
+# JiaThis 分享服务
+# jiathis: true
+# 多说 分享服务（必须启用多说）
+# duoshuo_share:
+
 # Social links
 social:
-github: https://github.com/ovsoil
-douban: http://douban.com/people/ovsoil
-zhihu: http://www.zhihu.com/people/ovsoil
+  GitHub: https://github.com/ovsoil
+  Douban: http://douban.com/people/ovsoil
+  Zhihu: http://www.zhihu.com/people/ovsoil
 
-# title, chinese available
-links_title: Links
-# links
-links:
-MacTalk: http://macshuo.com/
+# Creative Commons 4.0 International License.
+# http://creativecommons.org/
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+# creative_commons: by-nc-sa
+
+# Google 站长工具验证，请选择 `HTML Meta` 验证方式
+# See: https://www.google.com/webmasters/
+# google_site_verification: VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0
+
+
+# Google 分析 ID
+# google_analytics:
+
+
+# 百度统计 ID，此 ID 是百度统计提供脚本中 hm.js? 后面那串字符，非百度统计帐号
+# baidu_analytics: 50c15455e37f70aea674ff4a663eef27
+
+# 站点起始时间
+since: 2014
+
+# 头像
+avatar: /images/avatar.png
+
+# hexo sitemap网站地图
+sitemap:
+  path: sitemap.xml
+
+baidusitemap:
+  path: baidusitemap.xml
+
+# swiftype
+swiftype_key: m_6sWvoVshvo82x7djMX

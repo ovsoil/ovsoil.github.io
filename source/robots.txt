@@ -1,0 +1,14 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+
+Sitemap: http://ovsoil.com/sitemap.xml
+Sitemap: http://ovsoil.com/baidusitemap.xm

@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "ogre 源码学习之四"
-date: 2015-03-19 13:31:56 +0800
+title: "ogre 源码学习之四(场景管理与渲染队列)"
+date: 2015-03-22 21:31:56
 comments: true
 categories: 
 ---
 
-## 场景管理与渲染队列
 
 从图中我们可以看出render queue是Renderable的集合，这是必然的，因为场景树和渲染队列其实都是对Renderable进行分类，只是分类的标准不同，场景树主要是从空间结构对Renderable进行分类，而渲染队列则是对Renderable从material以及blend(渲染属性)上进行分类。
+<!--more-->
 
 我们现看一下RenderPriorityGroup的定义：
 
@@ -60,3 +60,5 @@ RenderPriorityGroup对Renderable从material上进行了分类，具有相同的M
 
     ...
     }
+
+

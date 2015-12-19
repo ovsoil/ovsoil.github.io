@@ -11,6 +11,8 @@ category:
 - 英文版：[《The Art of Readable Code》][RCEN]
 - 中文版：[编写可读代码的艺术][RCCN]
 
+<!--more-->
+
 ##代码为什么要易于理解
 
 > "Code should be written to minimize the time it would take for someone else to understand it."
@@ -1330,3 +1332,5 @@ category:
 
 [ovsoil]:    http://blog.ovsoil.com  "OVSOIL"
 <!-- create time: 2014-07-21 15:11:24  -->
+
+

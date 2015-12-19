@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C++中的static
-date: 2015-01-18 00:17:10 +0800
+date: 2015-01-18 00:17:10
 comments: true
 categories: 
 ---

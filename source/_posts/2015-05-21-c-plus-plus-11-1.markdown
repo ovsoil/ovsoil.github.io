@@ -6,7 +6,10 @@ comments: true
 categories: 
 ---
 
-## C++11 FAQ 摘录
+
+C++11 FAQ 摘录
+
+<!--more-->
 
 ### “attribute"
 
@@ -138,3 +141,5 @@ constexpr的主要功能则是让更多的运算可以在编译期完成，并�
 I/O流错误，定义在: enum class io_errc { stream = 1 }
 异步通信错误，定义在: enum class future_errc { broken_promise, future_already_retrieved, promise_already_satisfied }
 其中的某些枚举类还定义了操作符重载，比如“==”等。
+
+

@@ -7,7 +7,6 @@ categories:
 ---
 
 
-## 简介
 libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
 libevent 有几个显著的亮点：
 
@@ -215,3 +214,5 @@ evbuffer.c和buffer.c：libevent对缓冲区的封装；
 compat/sys下的两个源文件：queue.h是libevent基本数据结构的实现，包括链表，双向链表，队列等；_libevent_time.h：一些用于时间操作的结构体定义、函数和宏定义；
 11. 实用网络库
 http和evdns：是基于libevent实现的http服务器和异步dns查询库；
+
+

@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "python learning 1"
-date: 2015-03-23 09:48:31 +0800
+date: 2015-03-23 22:48:31
 comments: true
 categories: 
 ---
 
-##python 基础
+python 基础
 
 <!--more-->
 

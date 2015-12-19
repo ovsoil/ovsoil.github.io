@@ -6,9 +6,15 @@ comments: true
 categories: 
 ---
 
-## GNU toolchain
 
-##这里记录整个GNU toolchain
+GNU toolchain:
+
+* gcc
+* gdb
+* autoconfig
+* Makefile
+
+<!--more-->
 
 ##gcc
 ##gdb
@@ -269,3 +275,5 @@ $(+D) -- 所有依赖的目录部分，文件名部分(可存在重复文件）
 $(+F)  
 
 [ovsoil]:    http://blog.ovsoil.com  "OVSOIL"
+
+

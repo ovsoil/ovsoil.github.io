@@ -1,13 +1,15 @@
 ---
 layout: post
-title: "ogre 源码学习 之一"
-date: 2015-03-17 00:17:10 +0800
+title: "ogre 源码学习之一(SampleBrower)"
+date: 2015-03-17 22:17:10
 comments: true
 categories: 
 ---
 
 
-## SampleBrower
+SampleBrower
+
+<!--more-->
 
 		#if OGRE_PLATFORM != OGRE_PLATFORM_NACL
 				virtual void go(Sample* initialSample = 0)
@@ -44,3 +46,5 @@ categories:
 		#endif
 				}
 		#endif
+
+

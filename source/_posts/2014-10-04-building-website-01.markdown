@@ -6,8 +6,12 @@ comments: true
 categories: 
 ---
 
-##基础
 
+* A记录
+* CNAME
+* TTL
+* 域名
+* DNS
 
 <!--more-->
 

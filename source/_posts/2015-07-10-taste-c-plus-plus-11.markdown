@@ -6,29 +6,28 @@ comments: true
 categories: 
 ---
 
-## 引言 
+
 在C++11新标准中，语言本身和标准库都增加了很多新内容。这段时间接触了一些，这里总结一下，只涉及一些皮毛。
 
 <!--more-->
 
-### auto
+### `auto`
 
 在C++11之前，auto关键字用来指定存储期。在新标准中，它的功能变为类型推断。auto现在成了一个类型的占位符，通知编译器去根据初始化代码推断所声明变量的真实类型。
-终于不需要再声明哪些很长的typedef了。
+*终于不需要再声明哪些很长的typedef了* =。=
 但需要注意的是，auto不能用来声明函数的返回值。但如果函数有一个尾随的返回类型时，auto是可以出现在函数声明中返回值位置。这种情况下，auto并不是告诉编译器去推断返回类型，而是指引编译器去函数的末端寻找返回值类型。在下面这个例子中，函数的返回值类型就是operator+操作符作用在T1、T2类型变量上的返回值类型。
 
 ```cpp
     template <typename T1, typename T2>
-    auto compose(T1 t1, T2 t2) -> decltype(t1 + t2)
-    {
-    return t1+t2;
+    auto compose(T1 t1, T2 t2) -> decltype(t1 + t2){
+        return t1+t2;
     }
     auto v = compose(2, 3.14); 
 ```
 
-### nullptr
+### `nullptr`
 
-以前都是用0来表示空指针的，但由于0可以被隐式类型转换为整形，这就会存在一些问题。C++11中关键字nullptr是std::nullptr_t类型的值，用来指代空指针。nullptr和任何指针类型（包括智能指针）的空值之间可以发生隐式类型转换，同样也可以隐式转换为bool型（取值为false）。但是不存在到整形的隐式类型转换。
+以前都是用0来表示空指针的，但由于0可以被隐式类型转换为整形，这就会存在一些问题。C++11中关键字`nullptr`是`std::nullptr_t`类型的值，用来指代空指针。`nullptr`和任何指针类型（包括智能指针）的空值之间可以发生隐式类型转换，同样也可以隐式转换为`bool`型（取值为`false`）。但是不存在到整形的隐式类型转换。
 
 ```cpp
     void foo(int* p) {}
@@ -36,9 +35,7 @@ categories:
      
     int* p1 = NULL;
     int* p2 = nullptr;   
-    if(p1 == p2)
-    {
-    }
+    if(p1 == p2){}
      
     foo(nullptr);
     bar(nullptr);
@@ -65,7 +62,7 @@ categories:
     auto end = &arr[0]+sizeof(arr)/sizeof(arr[0]);
     auto pos = std::find_if(begin, end, is_odd);
     if(pos != end)
-    std::cout << *pos << std::endl;
+        std::cout << *pos << std::endl;
 ```
 如果使用非成员的begin()和end()来实现，就会是以下这样的：
 
@@ -76,7 +73,7 @@ categories:
     auto is_odd = [](int n) {return n%2==1;};
     auto pos = std::find_if(std::begin(arr), std::end(arr), is_odd);
     if(pos != std::end(arr))
-    std::cout << *pos << std::endl;
+        std::cout << *pos << std::endl;
 ```
 
 这基本上和使用std::vecto的代码是完全一样的。这就意味着我们可以写一个泛型函数处理所有支持begin()和end()的类型。
@@ -85,24 +82,24 @@ categories:
     template <typename Iterator>
     void bar(Iterator begin, Iterator end)
     {
-    std::for_each(begin, end, [](int n) {std::cout << n << std::endl;});
+        std::for_each(begin, end, [](int n) {std::cout << n << std::endl;});
      
     auto is_odd = [](int n) {return n%2==1;};
     auto pos = std::find_if(begin, end, is_odd);
     if(pos != end)
-    std::cout << *pos << std::endl;
+        std::cout << *pos << std::endl;
     }
      
     template <typename C>
     void foo(C c)
     {
-    bar(std::begin(c), std::end(c));
+        bar(std::begin(c), std::end(c));
     }
      
     template <typename T, size_t N>
     void foo(T(&arr)[N])
     {
-    bar(std::begin(arr), std::end(arr));
+        bar(std::begin(arr), std::end(arr));
     }
      
     int arr[] = {1,2,3};
@@ -117,7 +114,7 @@ categories:
 
 ### Range-based for loops ("foreach"用法）
 
-C++11再遍历容器时支持"foreach"用法，它可以遍历C类型数组、初始化列表以及任何重载了begin(),end()的类型。
+C++11在遍历容器时支持"`foreach`"用法，它可以遍历C类型数组、初始化列表以及任何重载了`begin()`,`end()`的类型。
 ```cpp
     std::map<std::string, std::vector<int>> map;
     std::vector<int> v;
@@ -149,7 +146,6 @@ C++没有一个强制的机制来标识虚函数会在派生类里被改写。�
 ```cpp
     #include <iostream>
     using namespace std;
-
     class A
     {
     public:
@@ -539,3 +535,5 @@ public:
 结论
 
 关于C++11还有很多要说的。本文只是各种入门介绍中的一个。本文展示了一系列C++开发者应当使用的核心语言特性与标准库函数。然而我建议你能更加深入地学习，至少也要再看看本文所介绍的特性中的部分。
+
+

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "octopress 博客搭建"
-date: 2015-03-17 09:39:33 +0800
+date: 2015-03-17 09:39:33
 comments: true
 categories:
 ---
