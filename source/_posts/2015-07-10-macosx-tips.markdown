@@ -54,7 +54,13 @@ Android手机数据传输：Android File Transfer
 3. brew
 
 - Home Brew：Mac下最好用的包管理工具
-- brew-cask：用来装GUI程序的包管理工具，直接用brew安装
+- brew-cask：用来装GUI程序的包管理工具
+```bash
+$ brew tap caskroom/cask  // 添加 Github 上的 caskroom/cask 库
+$ brew install brew-cask  // 安装 brew-cask
+$ brew cask install google-chrome // 安装 Google 浏览器
+$ brew update && brew upgrade brew-cask && brew cleanup // 更新
+```
 - LaunchRocket： 图形化的Service管理工具，可以直接用brew-cask命令安装
 
         brew tap jimbojsb/launchrocket
