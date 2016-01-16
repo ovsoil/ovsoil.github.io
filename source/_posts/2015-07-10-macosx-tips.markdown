@@ -22,6 +22,7 @@ categories: MacOS
 设置方法：选择`System Preferences` > `Keyboard`，在`Keyboard`标签页中点击`Modifier Keys...`按钮，在弹出的窗口中，把`Caps Lock (⇪) Key`:对应的选项改成`⌃ Control`。
 
 
+
 ## 快捷键
 一般来说，尽量使用键盘，手基本不离开键盘，少使用鼠标和触摸板，可以大大提高效率。
 
@@ -30,8 +31,34 @@ MacBook的快捷键有详细的官方文档：
 [Mac keyboard shortcuts for accessibility features](https://support.apple.com/kb/HT204434)
 
 下面记几个有用的：
-1. cmd+shift+3 为全屏截图。cmd+shift+4 为区域截图，再单击空格键就成窗口截图了。
-2. 
+
+1. `cmd+shift+3` 为全屏截图。`cmd+shift+4` 为区域截图，而且此时单击空格键会截取当前窗口。
+
+
+
+## 常用软件
+
+解压缩：the Unarchiver（App Store直接安装）
+视频播放器：MPlayer X, VLC, mpv
+MarkDown编辑器：Mou
+终端：iTerm2
+Android手机数据传输：Android File Transfer
+
+## 基本开发环境
+
+1. 首先是Xcode的Command Line Tools，安装：`xcode-select --install`。安装之后就可以使用Mac下的c语言编译器clang、C++编译器clang++，调试器lldb了。
+
+2. Oh-My-Zsh
+    `wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh`
+
+3. brew
+
+- Home Brew：Mac下最好用的包管理工具
+- brew-cask：用来装GUI程序的包管理工具，直接用brew安装
+- LaunchRocket： 图形化的Service管理工具，可以直接用brew-cask命令安装
+
+        brew tap jimbojsb/launchrocket
+        brew cask install launchrocket
 
 
 ## 精简磁盘空间
@@ -59,6 +86,12 @@ MacBook的快捷键有详细的官方文档：
 
 1. 重置 Launchpad 上图标位置
 `defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock`
+
+2. 在Finder中经常会想要获取当前目录的路径，或者在终端中进入当前目录，下面几种方法可能有用。
+
+- `cmd+option+p`可以在窗口下方显示路径栏；
+- `defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES`可以使Finder的标题显示完整路径；
+- 另外在最新的OSX EI Capitan(10.11)中，`cmd+option+c` 会复制当前文件夹路径。
 
 ## 参考文章
 
