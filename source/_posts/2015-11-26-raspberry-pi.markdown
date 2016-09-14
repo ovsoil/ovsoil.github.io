@@ -129,9 +129,54 @@ Windows 10用微软账户登录时，无法连接samba服务器，换本地用�
 “secpol.msc”打开管理工具，展开“本地策略”；
     然后，单击“安全选项”。 双击“网络安全：LAN Manager 身份验证级别”；
     最后，单击列表中：发送LM和NTLMv2，如果已协商，则使用NTLMv2协议。
+
+### 其它应用
+#### 摄像头
+* vlc视频流输出
     
+    raspivid -o - -t 0 -w 640 -h 360 -fps 25|cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:8090}' :demux=h264 &> /dev/null 
+    
+* motion 做视频流服务器[](http://www.freebuf.com/news/special/61378.html)
+* mjpg-stream 做视频流服务器[](http://blog.csdn.net/blueslime/article/details/12429411) 
     
 ### 备份
+
+dosfstools：fat32分区格式化工具
+dump：dump & restore 备份工具
+parted & kpartx：虚拟磁盘工具
+
+```bash
+sudo apt-get install dosfstools dump parted kpartx
+```
+
+备份脚本
+
+```bash
+    #!/bin/sh
+    sudo dd if=/dev/zero of=raspberrypi.img bs=1MB count=3000   # 新建备份镜像
+    sudo parted raspberrypi.img --script -- mklabel msdos
+    sudo parted raspberrypi.img --script -- mkpart primary fat32 8192s 122879s
+    sudo parted raspberrypi.img --script -- mkpart primary ext4 122880s -1
+
+    loopdevice=`sudo losetup -f --show raspberrypi.img`
+    device=`sudo kpartx -va $loopdevice | sed -E 's/.*(loop[0-9])p.*/\1/g' | head -1`
+    device="/dev/mapper/${device}"
+    partBoot="${device}p1"
+    partRoot="${device}p2"
+    sudo mkfs.vfat $partBoot
+    sudo mkfs.ext4 $partRoot
+    sudo mount -t vfat $partBoot /media
+    sudo cp -rfp /boot/* /media/
+    sudo umount /media
+    sudo mount -t ext4 $partRoot /media/
+    cd /media
+    sudo dump -0uaf - / | sudo restore -rf -
+    cd
+    sudo umount /media
+    sudo kpartx -d $loopdevice
+    sudo losetup -d $loopdevice
+```
+
 
 
 

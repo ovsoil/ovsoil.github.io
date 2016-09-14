@@ -91,12 +91,16 @@ deploy:
 # NexT Theme configuration
 # =============================================================================
 
+search:
+    path: search.xml
+    field: post
+
 # 多说帐号
 duoshuo_shortname: ovsoil
 disqus_shortname: ovsoil
 
 # JiaThis 分享服务
-# jiathis: true
+jiathis: true
 # 多说 分享服务（必须启用多说）
 # duoshuo_share:
 
@@ -113,15 +117,14 @@ social:
 
 # Google 站长工具验证，请选择 `HTML Meta` 验证方式
 # See: https://www.google.com/webmasters/
-# google_site_verification: VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0
-
+google_site_verification: Ho3y2u8XJbV5_QCBggyuPnHnkg-EzDLf0Mcn5Gyh-rA
 
 # Google 分析 ID
 # google_analytics:
 
 
 # 百度统计 ID，此 ID 是百度统计提供脚本中 hm.js? 后面那串字符，非百度统计帐号
-# baidu_analytics: 50c15455e37f70aea674ff4a663eef27
+baidu_analytics: ba7e277d4cbdab5cd1747d9ab622668f
 
 # 站点起始时间
 since: 2014
