@@ -4,6 +4,7 @@ title: Markdown 语法说明（转）
 date: 2015-01-01 09:08
 comments: true
 categories: 
+    - transform
 ---
 
 **NOTE:** This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to [Markdown: Syntax][eng-doc].
