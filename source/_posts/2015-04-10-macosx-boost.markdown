@@ -109,9 +109,17 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 6. emacs(spacemacs)
 
 7. tools
+
+*  ag
+
+* fzf
     ```bash
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     ```
+    *use*
+    ctrl+t
+    **<tab>
+    processid: kill -9 <tab>
 
 #### language
 
