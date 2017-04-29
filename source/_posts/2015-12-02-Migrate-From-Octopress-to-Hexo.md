@@ -6,13 +6,11 @@ tags:
 ---
 
 
-
-
 hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序
 
 **Hexo is Better than Octopress**：
-* 速度快
-* 简单
+
+* Simple and Quick
 
 	   hexo n #写文章
 	   hexo g #生成
@@ -35,4 +33,3 @@ Node和Git都安装好后
     new_post_name: :year-:month-:day-:title.md
 
 其它类型blog迁移可以参考[Hexo中文Wiki](http://wiki.jikexueyuan.com/project/hexo-document/migration.html)
-

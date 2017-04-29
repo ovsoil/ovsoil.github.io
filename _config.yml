@@ -141,3 +141,24 @@ baidusitemap:
 
 # swiftype
 swiftype_key: m_6sWvoVshvo82x7djMX
+
+org:
+    emacs: '/Applications/Emacs.app/Contents/MacOS/Emacs'  
+    common: |
+            #+OPTIONS: toc:nil num:nil
+              <script>
+                function editAtGithub(isRaw){
+                  var url_parts = document.location.pathname.split('/');
+                  var postname = url_parts[url_parts.length - 2];
+                  if(url_parts.length == 3){ // is a page(wiki about etc)
+                    postname = postname + '/index.org';
+                  }else{
+                    postname = '_posts/' + postname + '.org';
+                  }
+                  var url = 'https://github.com/CodeFalling/codefalling.com/tree/source/source/' + postname;
+                  if(isRaw)
+                    url = 'https://raw.githubusercontent.com/CodeFalling/codefalling.com/source/source/' + postname;
+                  window.open(url);
+                }
+              </script>
+            #+BIND: org-html-postamble \"<div style='font-size: 14px;padding: 5px;line-height: 20px;border: 1px solid;'><a href='javascript: editAtGithub();'>Edit Me at Github</a> - <a href='javascript: editAtGithub(true)'>Org Source</a> - Last Updated %C.</br>Render by <a href='https://github.com/CodeFalling/hexo-renderer-org'>hexo-renderer-org</a> with %c</div>\"

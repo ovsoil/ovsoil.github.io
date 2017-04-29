@@ -1,12 +1,19 @@
-layout: post title: memcached的网络框架 date: 2016-04-14 09:41:30 categories:
+---
+layout: post
+title: memcached的网络框架
+date: 2016-04-14 09:41:30
+categories:
+tags:
+---
 
-# tags:
-
-简单的分析一下memcached是如何处理大量并发的连接的。
+## memcached并发
 
 memcached是个单进程多线程的程序。memcached底层是用的libevent来管理事件的，下面我们就来看看这个libevent的经典应用是如何运转的。其实一开始memcached是个正宗的单线程程序，使用了异步技术后基本能把cpu和网卡的性能发挥到极限了，随着多核cpu的普及，引入多线程也是顺势而为。
 
 memcached的源码结构非常简单，其中线程相关的代码基本都在Thread.c中。简单的说，memcached的众多线程就是个Master-Worker的模型，其中主线程负责接收连接，然后将连接分给各个worker线程，在各个worker线程中完成命令的接收，处理和返回结果。
+
+
+<!-- more -->
 
 ## memcached连接处理
 

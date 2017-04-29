@@ -1,16 +1,16 @@
 layout: post
-title: express setup development environment
+title: Express Setup Development Environment
 date: 2016-09-15 00:14:36
 categories:
 tags:
 ---
 
+I tried install ubuntu in VirtualBox on my notebook. It's not smooth enough as a productivity tool. So I turn to use ArchLinux, a lightweight Linux release. Here I write down my notes on how to Setup Archlinux development environment in VirtualBox.
 
+<!--more-->
 ## Archlinux
 
 ### Install Arch Linux as VirtualBox Guest OS
-
-When I was an intern at Sandia National Laboratories I was introduced to the concept of using virtual machines to sandbox my projects. I have found this to be very helpful for many software experiments and development environments. I even use virtual machines to run my day-to-day Linux install. Here I give my notes on how to use Virtual Box to run an Arch Linux guest install on Mac OS X. Once a base install is complete it’s easy to make snapshots and spin up and destroy clones from the base install as needed.
 
 #### Create New Virtual Machine
 
@@ -20,7 +20,6 @@ When I was an intern at Sandia National Laboratories I was introduced to the con
 
 - Load the Arch Linux ISO as a CD/DVD image and select the “Boot Arch” option when the live CD boots.
 
-<!--more-->
 
 #### Install and System configuration
 
@@ -102,52 +101,5 @@ The following isn’t really intended to be executed as a script.
     ```
 
 #### develop environment
-
-
-## Ubuntu
-
-### Install and system configuration
-
-#### Install
-
-#### change apt sourcelist
-    ```
-    deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
-    deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
-    deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
-    deb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
-    deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
-    deb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
-    deb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
-    deb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
-    deb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
-    deb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
-    ```
-    ```bash
-    sudo apt-get update
-    sudo apt-get upgrade
-    ```
-
-### develop
-    ```bash
-    sudo apt-get install build-essential libssl-dev
-    sudo apt-get install vim emacs git
-    # java
-    sudo add-apt-repository ppa:webupd8team/java
-    sudo apt update
-    sudo apt install oracle-java8-installer
-    # python
-    sudo apt-get install virtualenvwrapper
-    # nodejs
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
-    # npm
-    sudo apt-get install npm
-    # use cnpm instead of npm
-    npm install -g cnpm --registry=https://registry.npm.taobao.org
-
-    ```
-
-
-## Mac OS
 
 

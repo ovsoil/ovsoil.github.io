@@ -10,18 +10,27 @@ categories:
 
 <!--more-->
 
-### Terminal篇
-
-
-
-vim中连续jkhl
-
-defaults write -g ApplePressAndHoldEnabled -bool false
-
-
 ### 日常应用篇
 
 ### 开发环境篇
+
+* screen: 特别是 ssh 到登录远程时用以管理会话
+* curl: 网络请求, 相关的还有 traceroute, dig 等
+* find: 文件查找
+* grep/zgrep/zcat: 查看日志的时候用
+* awk: 这个本身就很强大了, 具体编程语法不用太掌握但可以了解一些基本的用法, 比如之前用到过给一个log文件, 能够取里面的参数拼接update 的sql(文件里有相应 update 的值和 where 条件值)
+* sed: 文本替换, 还有 tr, 注意 sed 的语法 Mac 和 一般 Linux 还有些不一样( 比如原文替换的时候 mac 里需要用参数 -i ""), 比如之前迁移 wordpress 到 jekyll 上的时候需要将一些链接整体替换成新的路径.
+* cut: 按列取数据, awk 也可以
+* sort: 这个就不多说了
+* uniq: 一般和 sort 一块用, 只能去重相邻的行
+* diff: 比较文件, 类似的还有 comm (输出3列, 分别是: 只在文件1, 只在文件2 和两个文件都在的行)
+* paste: 两个文件按列拼接
+* od: 以16/8/2进制查看文件
+* wc: 统计文件字节数/字数/行数
+* openssl sha1/aes-256-ecb/des/base64 等等: 比如当前我们开发用的 MVC 框架play framework用来加密 session 的算法, 可以方便算出 encoded 的 sessionid 进行 debug.
+* md5/base64: 常见的 md5, base64 编码
+* sips: scriptable image processing system 比如批量处理图片大小, 压缩等等
+
 
 ####  Basic
 搭建开发环境首先要安装的就是Xcode的Command Line Tools:`xcode-select --install`。安装之后就可以使用Mac下的c语言编译器clang、C++编译器clang++，调试器lldb了。

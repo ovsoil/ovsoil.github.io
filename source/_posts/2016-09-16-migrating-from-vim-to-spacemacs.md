@@ -1,18 +1,16 @@
 layout: post
-title: migrating from vim to spacemacs
+title: Migrating From Vim to Spacemacs
 date: 2016-09-16 14:52:38
 categories:
 tags:
-    - emacs
-    - spacemacs
+- emacs
+- spacemacs
 ---
 
-# 从 Vim 迁移到 spacemacs
 转：[https://www.oschina.net/translate/migrating-from-vim](https://www.oschina.net/translate/migrating-from-vim)
 
-### 哲学
 
-很多 vim 都有的误解是，Spacemacs 是 vim 的 Emacs 克隆。Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。
+Spacemacs 不是 vim 的 Emacs 克隆, Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。
 
 <!--more-->
 ## 基本介绍
@@ -31,7 +29,7 @@ Emacs 中的 minor-mode 就像是激活一项功能。例如：aggressive-indent
 
 Spacemacs 具有层的概念。层类似于 vim 中的插件。它们提供可以在 Spacemacs 中使用的新功能。但是层通常是由数个相互整合良好的包组成。例如，python 层包括自动补齐支持，文档查找，测试和其它由不同的包提供的功能。这使你不需要考虑安装什么包，只需要考虑你想要什么功能。关于层的更多内容可以参考[自定义](https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#customization)章节和[官方文档](https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#configuration-layers)。同时还有一个关于编写层的更深入的[指南](https://github.com/syl20bnr/spacemacs/blob/master/doc/LAYERS.org)。
 
-#### 微状态  
+#### 微状态
 
 Spacemacs 提供一个称为微状态的特殊功能。微状态允许相似的命令连续执行，不需要重复按键。微状态通常由使用如下模式的键位绑定触发：<Leader> <group>这里的 group 是微状态从属的目录。当处于一个微状态时，你将会在窗口的底部看到说明文档。要退出微状态，按 q 键。
 
@@ -51,11 +49,12 @@ Spacemacs 在一个延迟之后使用 [which-key](https://github.com/justbur/ema
 
 注意：你可以使用: 运行 Emacs 交互命令，但是不能使用 SPC : 运行外部命令。
 
-### 缓冲区和窗口管理  
+### 缓冲区和窗口管理
 
 #### 缓冲区
 
 在 Emacs 和 vim 中缓冲区本质上是相同的。缓冲区的快捷键都具有 SPC b 前缀。
+
 <table border="1">
 <tbody>
 <tr>
@@ -106,59 +105,32 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 窗口就像 vim 中的分割。它们在一次编辑多个文件时相当有用。所有的快捷键都有 SPC w 前缀。
 
 <table border="1">
-
 <tbody>
-
 <tr>
-
 <th> 快捷键</th>
-
 <th> 功能</th>
-
 </tr>
-
 <tr>
-
 <td>    SPC w v 或 :vsplit</td>
-
 <td>    在右侧打开一个垂直分割。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC w s 或 :split</td>
-
 <td>    在下部打开一个水平分割。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC w h/j/k/l</td>
-
 <td>    在窗口间导航。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC w H/J/K/L</td>
-
 <td>    移动当前窗口。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC w .</td>
-
 <td>    窗口微状态。</td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 ### 文件
@@ -166,59 +138,32 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 Spacemacs 中所有文件命令都有 SPC f 前缀。
 
 <table border="1">
-
 <tbody>
-
 <tr>
-
 <th> 快捷键</th>
-
 <th> 功能</th>
-
 </tr>
-
 <tr>
-
 <td>    SPC f f</td>
-
 <td>    打开一个缓冲区搜索当前目录中的文件。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC f r</td>
-
 <td>    打开一个缓冲区在最近打开的文件中搜索。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC f s 或 :w</td>
-
 <td>    保存当前文件。</td>
-
 </tr>
-
 <tr>
-
 <td>    :x</td>
-
 <td>    保存当前文件并退出。</td>
-
 </tr>
-
 <tr>
-
 <td>    :e <file></td>
-
 <td>    打开<file></td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 ### 帮助系统
@@ -226,51 +171,28 @@ Spacemacs 中所有文件命令都有 SPC f 前缀。
 Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 SPC <f1> 允许用户搜索文档。
 
 <table border="1">
-
 <tbody>
-
 <tr>
-
 <th> 快捷键</th>
-
 <th> 功能</th>
-
 </tr>
-
 <tr>
-
 <td>    SPC h d f</td>
-
 <td>    对一个功能提示并显示其文档。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC h d k</td>
-
 <td>    对一个快捷键提示并显示其绑定的内容。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC h d v</td>
-
 <td>    对一个变量提示并显示其文档和当前值。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC <f1></td>
-
 <td>    搜索一个命令，功能，变量或接口，并显示其文档</td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 不论何时，你遇到怪异的行为或想知道是什么东西做的，这些功能是你应该首先查阅的。
@@ -280,35 +202,20 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 有几种方式可以探索 Spacemacs 的功能。一个是阅读 Github 上的[源代码](https://github.com/syl20bnr/spacemacs)。你可以开始了解 Emacs Lisp，并能知道 Spacemacs 是怎样工作的。你还能通过如下快捷键来探索：
 
 <table border="1">
-
 <tbody>
-
 <tr>
-
 <th> 快捷键</th>
-
 <th> 功能</th>
-
 </tr>
-
 <tr>
-
 <td>    SPC f e h</td>
-
 <td>    列出所有层并允许你浏览层上的文件。</td>
-
 </tr>
-
 <tr>
-
 <td>    SPC ?</td>
-
 <td>    列出所有快捷键。</td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 ### 自定义
@@ -322,38 +229,22 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 Dotspacemacs/layers 函数仅用于启用和禁用层和包。Dotspacemacs/init  函数是在启动过程中，在其他东西运行前运行，并且包含  Spacemacs  设置。 除非你需要更改默认 Spacemacs 设置，否则你不用动这个函数。Dotspacemacs/user-init 函数也是在其他程序运行前运行，并包含用户特定配置。Dotspacemacs/user-config 函数是你用到最多的函数。 在这里，你可以定义任何用户配置。
 
 <table>
-
 <tbody>
-
 <tr>
-
-<th>快捷键  
+<th>快捷键
 </th>
-
 <th>                功能</th>
-
 </tr>
-
 <tr>
-
 <td>                SPC f e d</td>
-
 <td>                打开你的 .spacemacs</td>
-
 </tr>
-
 <tr>
-
 <td>                SPC f e D</td>
-
-<td>                使用<span style="font-size:12px;line-height:18px;background-color:#F6F6F6;">diff 通过</span>默认模版手动更新你的 .spacemacs   
-
+<td>                使用<span style="font-size:12px;line-height:18px;background-color:#F6F6F6;">diff 通过</span>默认模版手动更新你的 .spacemacs 
 </td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 ### Emacs Lisp
@@ -447,7 +338,7 @@ in the filetypes list."
 
 你可以通过删除分号来取消注释这些建议的层，开箱即用。要添加一个层，就把它的名字添加到列表中并重启 Emacs 或按 SPC f e R。使用 SPC f e h 来显示所有的层和他们的文档。
 
-### 创建一个层  
+### 创建一个层
 
 为了将配置分组或当配置与你的 .spacemacs 文件之间不匹配时，你可以创建一个配置层。Spacemacs 提供了一个内建命令用于生成层的样板文件：SPC :configuration-layer/create-layer。这条命令将会生成一个如下的文件夹：
 
@@ -498,7 +389,7 @@ Packages.el 文件包含你可以在 <layer-name>-packages 变量中安装的包
 有没有想过 Spacemacs 如何可以在仅仅几秒钟之内加载超过 100 个包呢？如此低的加载时间必须需要某种难以理解的黑魔法吧。还好这不是真的，多亏有了 [use-package](https://github.com/jwiegley/use-package)。它是一个可以轻松实现对包进行延迟加载和配置的包。以下是它的基础用法：
 
 ```lisp
-;; Basic form of use-package declaration. The :defer t tells use-package to
+;; Basic form of use-package declaration. The :defer t tells use-package to
 ;; try to lazy load the package.
 (use-package package-name
   :defer t)

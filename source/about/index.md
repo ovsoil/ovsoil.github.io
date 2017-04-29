@@ -5,7 +5,7 @@ comments: false
 ---
 
 ## Name
-余华欣（Yu Huaxin）
+Yu Huaxin
 
 ## Contact
 Email: hxyumail@126.com
