@@ -368,8 +368,3 @@ Google的高亮插件使用也比较方便，只需要在`<pre>`的标签上加�
 [17]: http://jekyllbootstrap.com/
 [18]: http://chxt6896.github.com/blog/2012/02/13/blog-jekyll-native.html
 [a-record]: https://help.github.com/articles/my-custom-domain-isn-t-working
-
-[ovsoil]:    http://blog.ovsoil.com  "OVSOIL"
-<!-- create time: 2014-07-05 15:11:24  -->
-
-

@@ -1,5 +1,5 @@
 layout: post
-title: Migrating From Vim to Spacemacs
+title: 尝试 Spacemacs
 date: 2016-09-16 14:52:38
 categories:
 tags:
@@ -7,12 +7,13 @@ tags:
 - spacemacs
 ---
 
-转：[https://www.oschina.net/translate/migrating-from-vim](https://www.oschina.net/translate/migrating-from-vim)
 
-
+之前有接触过emacs，感触最深的就是和Lisp比起来vimscript实在是太蹩脚了。但习惯了vim，考虑到迁移成本还是没有使用emacs。
+最近Spacemacs挺火的，能够有vim几乎所有的编辑体验,这样迁移成本低了很多，有空倒是可以尝试一下，这里转一篇关于从vim迁移到spacemacs的官方文档翻译，写的清晰明了。
+[从Vim迁移到Spacemacs](https://www.oschina.net/translate/migrating-from-vim)
 Spacemacs 不是 vim 的 Emacs 克隆, Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。
-
 <!--more-->
+
 ## 基本介绍
 
 ### 术语
@@ -55,46 +56,16 @@ Spacemacs 在一个延迟之后使用 [which-key](https://github.com/justbur/ema
 
 在 Emacs 和 vim 中缓冲区本质上是相同的。缓冲区的快捷键都具有 SPC b 前缀。
 
-<table border="1">
-<tbody>
-<tr>
-<th> 快捷键</th>
-<th> 功能</th>
-</tr>
-<tr>
-<td>    SPC b b <buffer-name></td>
-<td>   创建一个名为<buffer-name>的缓冲区。</td>
-</tr>
-<tr>
-<td>    SPC b b</td>
-<td>   通过打开缓冲区和最近的文件搜索。</td>
-</tr>
-<tr>
-<td>    SPC b n 或 :bnext</td>
-<td>   切换到下一个缓冲区。(参见[特殊缓冲区](https://github.com/syl20bnr/spacemacs/blob/master/doc/*Special%20buffers))</td>
-</tr>
-<tr>
-<td>    SPC b p 或 :bprevious</td>
-<td>   切换到前一个缓冲区。 (参见[特殊缓冲区](https://github.com/syl20bnr/spacemacs/blob/master/doc/*Special%20buffers))</td>
-</tr>
-<tr>
-<td>    SPC b d 或 :bdelete</td>
-<td>   结束当前缓冲区。</td>
-</tr>
-<tr>
-<td>    SPC b k</td>
-<td>   查找并结束一个缓冲区。</td>
-</tr>
-<tr>
-<td>    SPC b K</td>
-<td>   结束除当前缓冲区的所有其他缓冲区。</td>
-</tr>
-<tr>
-<td>    SPC b .</td>
-<td>   缓冲区微状态。</td>
-</tr>
-</tbody>
-</table>
+| 快捷键                             | 功能                                                                                                              |
+| :-----                             | :-----                                                                                                            |
+| SPC b b<buffer-name></buffer-name> | 创建一个名为<buffer-name>的缓冲区。</buffer-name>                                                                 |
+| SPC b b                            | 通过打开缓冲区和最近的文件搜索。                                                                                  |
+| SPC b n 或 :bnext                  | 切换到下一个缓冲区。(参见[特殊缓冲区](https://github.com/syl20bnr/spacemacs/blob/master/doc/*Special%20buffers))  |
+| SPC b p 或 :bprevious              | 切换到前一个缓冲区。 (参见[特殊缓冲区](https://github.com/syl20bnr/spacemacs/blob/master/doc/*Special%20buffers)) |
+| SPC b d 或 :bdelete                | 结束当前缓冲区。                                                                                                  |
+| SPC b k                            | 查找并结束一个缓冲区。                                                                                            |
+| SPC b K                            | 结束除当前缓冲区的所有其他缓冲区。                                                                                |
+| SPC b .                            | 缓冲区微状态。                                                                                                    |
 
 特殊缓冲区
 
@@ -104,96 +75,36 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 
 窗口就像 vim 中的分割。它们在一次编辑多个文件时相当有用。所有的快捷键都有 SPC w 前缀。
 
-<table border="1">
-<tbody>
-<tr>
-<th> 快捷键</th>
-<th> 功能</th>
-</tr>
-<tr>
-<td>    SPC w v 或 :vsplit</td>
-<td>    在右侧打开一个垂直分割。</td>
-</tr>
-<tr>
-<td>    SPC w s 或 :split</td>
-<td>    在下部打开一个水平分割。</td>
-</tr>
-<tr>
-<td>    SPC w h/j/k/l</td>
-<td>    在窗口间导航。</td>
-</tr>
-<tr>
-<td>    SPC w H/J/K/L</td>
-<td>    移动当前窗口。</td>
-</tr>
-<tr>
-<td>    SPC w .</td>
-<td>    窗口微状态。</td>
-</tr>
-</tbody>
-</table>
+| 快捷键             | 功能                     |
+| :-----             | :-----                   |
+| SPC w v 或 :vsplit | 在右侧打开一个垂直分割。 |
+| SPC w s 或 :split  | 在下部打开一个水平分割。 |
+| SPC w h/j/k/l      | 在窗口间导航。           |
+| SPC w H/J/K/L      | 移动当前窗口。           |
+| SPC w .            | 窗口微状态。             |
 
 ### 文件
 
 Spacemacs 中所有文件命令都有 SPC f 前缀。
 
-<table border="1">
-<tbody>
-<tr>
-<th> 快捷键</th>
-<th> 功能</th>
-</tr>
-<tr>
-<td>    SPC f f</td>
-<td>    打开一个缓冲区搜索当前目录中的文件。</td>
-</tr>
-<tr>
-<td>    SPC f r</td>
-<td>    打开一个缓冲区在最近打开的文件中搜索。</td>
-</tr>
-<tr>
-<td>    SPC f s 或 :w</td>
-<td>    保存当前文件。</td>
-</tr>
-<tr>
-<td>    :x</td>
-<td>    保存当前文件并退出。</td>
-</tr>
-<tr>
-<td>    :e <file></td>
-<td>    打开<file></td>
-</tr>
-</tbody>
-</table>
+|  快捷键       | 功能                                   |
+| :-----        | :-----                                 |
+| SPC f f       | 打开一个缓冲区搜索当前目录中的文件。   |
+| SPC f r       | 打开一个缓冲区在最近打开的文件中搜索。 |
+| SPC f s 或 :w | 保存当前文件。                         |
+| :x            | 保存当前文件并退出。                   |
+| :e            | 打开                                   |
 
 ### 帮助系统
 
 Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 SPC <f1> 允许用户搜索文档。
 
-<table border="1">
-<tbody>
-<tr>
-<th> 快捷键</th>
-<th> 功能</th>
-</tr>
-<tr>
-<td>    SPC h d f</td>
-<td>    对一个功能提示并显示其文档。</td>
-</tr>
-<tr>
-<td>    SPC h d k</td>
-<td>    对一个快捷键提示并显示其绑定的内容。</td>
-</tr>
-<tr>
-<td>    SPC h d v</td>
-<td>    对一个变量提示并显示其文档和当前值。</td>
-</tr>
-<tr>
-<td>    SPC <f1></td>
-<td>    搜索一个命令，功能，变量或接口，并显示其文档</td>
-</tr>
-</tbody>
-</table>
+| 快捷键    | 功能                                         |
+| :-----    | :-----                                       |
+| SPC h d f | 对一个功能提示并显示其文档。                 |
+| SPC h d k | 对一个快捷键提示并显示其绑定的内容。         |
+| SPC h d v | 对一个变量提示并显示其文档和当前值。         |
+| SPC       | 搜索一个命令，功能，变量或接口，并显示其文档 |
 
 不论何时，你遇到怪异的行为或想知道是什么东西做的，这些功能是你应该首先查阅的。
 
@@ -201,22 +112,10 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 
 有几种方式可以探索 Spacemacs 的功能。一个是阅读 Github 上的[源代码](https://github.com/syl20bnr/spacemacs)。你可以开始了解 Emacs Lisp，并能知道 Spacemacs 是怎样工作的。你还能通过如下快捷键来探索：
 
-<table border="1">
-<tbody>
-<tr>
-<th> 快捷键</th>
-<th> 功能</th>
-</tr>
-<tr>
-<td>    SPC f e h</td>
-<td>    列出所有层并允许你浏览层上的文件。</td>
-</tr>
-<tr>
-<td>    SPC ?</td>
-<td>    列出所有快捷键。</td>
-</tr>
-</tbody>
-</table>
+|  快捷键   |  功能                              |
+| :-----    | :-----                             |
+| SPC f e h | 列出所有层并允许你浏览层上的文件。 |
+| SPC ?     | 列出所有快捷键。                   |
 
 ### 自定义
 
@@ -228,24 +127,10 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 
 Dotspacemacs/layers 函数仅用于启用和禁用层和包。Dotspacemacs/init  函数是在启动过程中，在其他东西运行前运行，并且包含  Spacemacs  设置。 除非你需要更改默认 Spacemacs 设置，否则你不用动这个函数。Dotspacemacs/user-init 函数也是在其他程序运行前运行，并包含用户特定配置。Dotspacemacs/user-config 函数是你用到最多的函数。 在这里，你可以定义任何用户配置。
 
-<table>
-<tbody>
-<tr>
-<th>快捷键
-</th>
-<th>                功能</th>
-</tr>
-<tr>
-<td>                SPC f e d</td>
-<td>                打开你的 .spacemacs</td>
-</tr>
-<tr>
-<td>                SPC f e D</td>
-<td>                使用<span style="font-size:12px;line-height:18px;background-color:#F6F6F6;">diff 通过</span>默认模版手动更新你的 .spacemacs 
-</td>
-</tr>
-</tbody>
-</table>
+| 快捷键    | 功能                                 |
+| :-----    | :-----                               |
+| SPC f e d | 打开你的 .spacemacs                  |
+| SPC f e D | 使用默认模版手动更新你的 .spacemacs  |
 
 ### Emacs Lisp
 

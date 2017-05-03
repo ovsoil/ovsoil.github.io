@@ -1,11 +1,13 @@
 layout: post
-title: Express Setup Development Environment
+title: Express Setup Development Environment with Archlinux
 date: 2016-09-15 00:14:36
 categories:
 tags:
 ---
 
-I tried install ubuntu in VirtualBox on my notebook. It's not smooth enough as a productivity tool. So I turn to use ArchLinux, a lightweight Linux release. Here I write down my notes on how to Setup Archlinux development environment in VirtualBox.
+I tried install ubuntu in VirtualBox on my notebook. It's not smooth enough as a productivity environment. So I turn to use ArchLinux. It's a lightweight Linux Distribution which has no unnecessary additions unless you want.
+It's perfect one if your want to setup a linux development environment on old machine.
+Here I write down my notes on how to Setup Archlinux development environment in VirtualBox.
 
 <!--more-->
 ## Archlinux
@@ -102,4 +104,50 @@ The following isn’t really intended to be executed as a script.
 
 #### develop environment
 
+1. taobao npmjs.org repo
+
+* use cnpm
+
+```bash
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+* npm alias
+
+```bash
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
+```
+
+Or alias it in .bashrc or .zshrc
+
+```bash
+$ echo '\n#alias for cnpm\nalias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"' >> ~/.zshrc && source ~/.zshrc
+```
+
+* use
+
+从 registry.npm.taobao.org 安装所有模块. 当安装的时候发现安装的模块还没有同步过来, 淘宝 NPM 会自动在后台进行同步, 并且会让你从官方 NPM registry.npmjs.org 进行安装. 下次你再安装这个模块的时候, 就会直接从 淘宝 NPM 安装了.
+```bash
+$ cnpm install [name]
+```
+
+同步模块
+直接通过 sync 命令马上同步一个模块, 只有 cnpm 命令行才有此功能:
+```bash
+$ cnpm sync connect
+```
+
+当然, 你可以直接通过 web 方式来同步: /sync/connect
+```bash
+$ open https://npm.taobao.org/sync/connect
+```
+
+其它命令
+支持 npm 除了 publish 之外的所有命令, 如:
 
