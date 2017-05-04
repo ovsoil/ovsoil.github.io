@@ -28,7 +28,7 @@ tags:
 * __attribute((aligned (n)))，让所作用的结构成员对齐在n字节自然边界上。如果结构中有成员的长度大于n，则按照最大成员的长度来对齐。
 * __attribute__ ((packed))，取消结构在编译过程中的优化对齐，按照实际占用字节数进行对齐。
 
-![](http://op9wke666.bkt.clouddn.com/aligned.jpeg-original)
+![aligned](http://op9wke666.bkt.clouddn.com/aligned.jpeg-original)
 
 
 参考：
