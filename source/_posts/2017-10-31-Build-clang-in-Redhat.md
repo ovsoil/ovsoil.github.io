@@ -1,5 +1,5 @@
 layout: post
-title: Build and Install clang in Redhat6.8
+title: 在Redhat6.8上编译安装clang
 date: 2017-10-31 14:18:26
 categories:
 tags:
@@ -7,21 +7,27 @@ tags:
 
 
 公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C++11的完整支持。为了使用C++11，clang是一个很好的选择。
-但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。Redhat上编译安装clang是个痛苦的过程，所以我根据安装过程，写了安装脚本，可以很方便的在redhat上编译安装clang
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。
+
+clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others.
 
 <!--more-->
 
-Like almost all compilers, clang is written in a high-level language (in this case C++), so building clang requires a host compiler to do the actual compilation.  On Linux this is almost always gcc, since it is ubiquitous on Linux machines.  
+## How to build
+
+Like almost all compilers, clang is written in a high-level language (in this case C++), so building clang requires a host compiler to do the actual compilation.  On Linux this is almost always gcc, since it is ubiquitous on Linux machines.
 
 There’s a hitch, though – as of version 3.3 some parts of clang are written in C++11, so the compiler used to compile clang needs to support the C++11 standard.
 
-This is a real problem with RedHat, since the system compiler supplied with RedHat 6 (the most recent version that is in wide use), is gcc 4.4.7.  That compiler does not support C++11, and so is not able to compile clang.  So, the first step is getting a C++11-compliant compiler so we can compile clang.  For this example, we’re going to choose gcc 4.8.2, for a variety of reasons1.  The good news is that gcc 4.8.2 is written in C++ 98, so we can build it using the system compiler (gcc 4.4.7).  
+This is a real problem with RedHat, since the system compiler supplied with RedHat 6 (the most recent version that is in wide use), is gcc 4.4.7.  That compiler does not support C++11, and so is not able to compile clang.  So, the first step is getting a C++11-compliant compiler so we can compile clang.  For this example, we’re going to choose gcc 4.8.2, for a variety of reasons[^1].  The good news is that gcc 4.8.2 is written in C++ 98, so we can build it using the system compiler (gcc 4.4.7).
 
+
+## Buid gcc 4.8.2
 
 下面的脚本用于安装gcc 4.8.2。由于没有root权限，这里选择安装到用户目录`~/.local/share/gcc/4.8.2`下，这样我们需要在PATH和LD_LIBRARY_PATH中加入相对应的目录。
 
 ```bash
-#!/bin/bash 
+#!/bin/bash
 set -exv
 
 ## modify the following as needed for your environment
@@ -74,6 +80,7 @@ ${SUDO} rm -rf ${INSTALL_PREFIX}
 ${SUDO} make install
 ```
 
+## Buid clang
 
 下面的脚本利用上面安装的gcc 4.8.2编译安装clang到目录：`~/.local/share/clang/trunk`。同样也需要配置一下PATH和LD_LIBRARY_PATH环境变量。
 
@@ -125,3 +132,7 @@ make -j ${CPUS} ${VERBOSE}
 ${SUDO} rm -rf ${INSTALL_PREFIX}
 ${SUDO} make install
 ```
+
+## Reference
+
+[^1]: One reason is that gcc 4.9.0 can’t compile libc++, the llvm version of the C++ standard library – see http://lists.llvm.org/pipermail/cfe-dev/2014-April/036650.html for more detail.
