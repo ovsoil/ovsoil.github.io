@@ -1,5 +1,5 @@
 layout: post
-title: 尝试 Spacemacs
+title: 从Vim迁移到Spacemacs
 date: 2016-09-16 14:52:38
 categories:
 tags:

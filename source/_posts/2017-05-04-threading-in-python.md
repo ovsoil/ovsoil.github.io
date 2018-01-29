@@ -13,10 +13,8 @@ Python虚拟机使用GIL（Global Interpreter Lock，全局解释器锁）来互
 
 ### 语言层面
 
-在语言层面，Python对多线程提供了很好的支持，Python中多线程相关的模块包括：thread，threading，Queue。可以方便地支持创建线程、互斥锁、信号量、同步等特性。
-
-thread：多线程的底层支持模块，一般不建议使用。
-threading：对thread进行了封装，将一些线程的操作对象化，提供下列类：
+在语言层面，Python对多线程提供了很好的支持，可以方便地支持创建线程、互斥锁、信号量、同步等特性。
+Python中多线程相关的模块包括：`thread`，`threading`，`Queue`。其中`thread`是多线程的底层支持模块，一般不建议使用; `threading`对`thread`进行了封装，将一些线程的操作对象化，提供下列类：
 
 ```
 Thread 线程类
@@ -30,7 +28,7 @@ BoundedSemaphore 与semaphore类似，但不允许超过初始值
 
 ```
 
-Queue：实现了多生产者（Producer）、多消费者（Consumer）的队列，支持锁原语，能够在多个线程之间提供很好的同步支持。提供的类：
+`Queue`：实现了多生产者（Producer）、多消费者（Consumer）的队列，支持锁原语，能够在多个线程之间提供很好的同步支持。提供的类：
 
 ```
 Queue队列
@@ -38,6 +36,8 @@ LifoQueue后入先出（LIFO）队列
 PriorityQueue 优先队列
 
 ```
+
+<!--more-->
 
 其中Thread类是你主要的线程类，可以创建进程实例。该类提供的函数包括：
 
