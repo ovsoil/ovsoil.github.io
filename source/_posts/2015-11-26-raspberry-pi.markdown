@@ -8,7 +8,7 @@ categories:
 
 
 
-![Raspberry-Pi-2](http://op9wke666.bkt.clouddn.com/Raspberry-Pi-2.jpeg-original)
+![Raspberry-Pi-2](http://cdn.ovsoil.cn/Raspberry-Pi-2.jpeg-original)
 
 `Raspberry Pi` 有如下接口：
 
