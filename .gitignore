@@ -18,4 +18,5 @@ bin-release/
 public/
 /resources/_gen/
 
-# Backup Files
+.DS_Store
+content/.DS_Store
