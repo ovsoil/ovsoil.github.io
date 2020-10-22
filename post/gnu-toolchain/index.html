@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>GNU toolchain - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="GNU toolchain:
+ gcc gdb autoconfig Makefile " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/gnu-toolchain/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="GNU toolchain" />
+<meta property="og:description" content="GNU toolchain:
+
+gcc
+gdb
+autoconfig
+Makefile
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/gnu-toolchain/" />
+<meta property="article:published_time" content="2014-07-08T00:00:00+00:00" />
+
+<meta itemprop="name" content="GNU toolchain">
+<meta itemprop="description" content="GNU toolchain:
+
+gcc
+gdb
+autoconfig
+Makefile
+">
+
+<meta itemprop="wordCount" content="3690">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GNU toolchain"/>
+<meta name="twitter:description" content="GNU toolchain:
+
+gcc
+gdb
+autoconfig
+Makefile
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">GNU toolchain</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2014-07-08 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#变量">变量</a></li>
+            <li><a href="#参考文章">参考文章</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>GNU toolchain:</p>
+<ul>
+<li>gcc</li>
+<li>gdb</li>
+<li>autoconfig</li>
+<li>Makefile</li>
+</ul>
+<p>##gcc
+##gdb
+##autoconfig</p>
+<p>##Makefile</p>
+<p>###引言
+GNU的make工作时的执行步骤入下：（想来其它的make也是类似）</p>
+<pre><code>1. 读入所有的Makefile。 
+2. 读入被include的其它Makefile。 
+3. 初始化文件中的变量。 
+4. 推导隐晦规则，并分析所有规则。 
+5. 为所有的目标文件创建依赖关系链。 
+6. 根据依赖关系，决定哪些目标要重新生成。 
+7. 执行生成命令。 
+
+
+targets : prerequisites 
+    command 
+    ... 
+</code></pre>
+<p>或是这样</p>
+<pre><code>targets : prerequisites ; command 
+        command 
+        ... 
+</code></pre>
+<p>一般来说，make会以UNIX的标准Shell，也就是/bin/sh来执行命令。</p>
+<p>###通配符</p>
+<p>make支持三各通配符：“*”，“?”和“[&hellip;]”。这是和Unix的B-Shell是相同的。
+波浪号（“~”）字符在文件名中也有比较特殊的用途。如果是“~/test”，这就表示当前用户的<code>$HOME</code>目录下的test目录。而“~hchen/test”则表示用户hchen的宿主目录下的test目录。（这些都是Unix下的小知识了，make也支持）而在Windows或是MS-DOS下，用户没有宿主目录，那么波浪号所指的目录则根据环境变量“HOME”而定。</p>
+<p>通配符代替了你一系列的文件，如“<em>.c”表示所以后缀为c的文件。一个需要我们注意的是，如果我们的文件名中有通配符，如：“</em>”，那么可以用转义字符“\”，如“*”来表示真实的“*”字符，而不是任意长度的字符串。</p>
+<pre><code>objects = *.o 
+</code></pre>
+<p>上面这个例子，表示了，通符同样可以用在变量中。并不是说[<em>.o]会展开，不！objects的值就是“</em>.o”。Makefile中的变量其实就是C/C++中的宏。如果你要让通配符在变量中展开，也就是让objects的值是所有[.o]的文件名的集合，那么，你可以这样：</p>
+<pre><code>objects := $(wildcard *.o) 
+</code></pre>
+<p>###文件搜索</p>
+<p>一些大的工程中，有大量的源文件，我们通常的做法是把这许多的源文件分类，并存放在不同的目录中。然后把路径告诉make，让make在自动去找。
+Makefile文件中的特殊变量“VPATH”就是完成这个功能的，如果没有指明这个变量，make只会在当前的目录中去找寻依赖文件和目标文件。如果定义了这个变量，那么，make就会在当当前目录找不到的情况下，到所指定的目录中去找寻文件了。</p>
+<pre><code>VPATH = src:../headers 
+</code></pre>
+<p>上面的的定义指定两个目录，“src”和“../headers”，make会按照这个顺序进行搜索。目录由“冒号”分隔。（当然，当前目录永远是最高优先搜索的地方）
+另一个设置文件搜索路径的方法是使用make的“vpath”关键字（注意，它是全小写的），这不是变量，这是一个make的关键字，这和上面提到的那个VPATH变量很类似，但是它更为灵活。它可以指定不同的文件在不同的搜索目录中。这是一个很灵活的功能。它的使用方法有三种：</p>
+<pre><code>1、vpath &lt;pattern&gt;; &lt;directories&gt;; 
+
+为符合模式&lt;pattern&gt;;的文件指定搜索目录&lt;directories&gt;;。 
+
+2、vpath &lt;pattern&gt;; 
+
+清除符合模式&lt;pattern&gt;;的文件的搜索目录。 
+
+3、vpath 
+
+清除所有已被设置好了的文件搜索目录。 
+</code></pre>
+<p>vapth使用方法中的<pattern>;需要包含“%”字符。“%”的意思是匹配零或若干字符，例如，“%.h”表示所有以“.h”结尾的文件。<pattern>;指定了要搜索的文件集，而<directories>;则指定了<pattern>;的文件集的搜索的目录。例如：</p>
+<pre><code>vpath %.h ../headers 
+</code></pre>
+<p>该语句表示，要求make在“../headers”目录下搜索所有以“.h”结尾的文件。（如果某文件在当前目录没有找到的话）</p>
+<p>我们可以连续地使用vpath语句，以指定不同搜索策略。如果连续的vpath语句中出现了相同的<pattern>;，或是被重复了的<pattern>;，那么，make会按照vpath语句的先后顺序来执行搜索。如：</p>
+<pre><code>vpath %.c foo 
+vpath %   blish 
+vpath %.c bar 
+</code></pre>
+<p>其表示“.c”结尾的文件，先在“foo”目录，然后是“blish”，最后是“bar”目录。</p>
+<pre><code>vpath %.c foo:bar 
+vpath %   blish 
+</code></pre>
+<p>而上面的语句则表示“.c”结尾的文件，先在“foo”目录，然后是“bar”目录，最后才是“blish”目录。</p>
+<p>###五、伪目标</p>
+<p>最早先的一个例子中，我们提到过一个“clean”的目标，这是一个“伪目标”，</p>
+<pre><code>clean: 
+        rm *.o temp 
+</code></pre>
+<p>正像我们前面例子中的“clean”一样，即然我们生成了许多文件编译文件，我们也应该提供一个清除它们的“目标”以备完整地重编译而用。 （以“make clean”来使用该目标）</p>
+<p>因为，我们并不生成“clean”这个文件。“伪目标”并不是一个文件，只是一个标签，由于“伪目标”不是文件，所以make无法生成它的依赖关系和决定它是否要执行。我们只有通过显示地指明这个“目标”才能让其生效。当然，“伪目标”的取名不能和文件名重名，不然其就失去了“伪目标”的意义了。</p>
+<p>当然，为了避免和文件重名的这种情况，我们可以使用一个特殊的标记“.PHONY”来显示地指明一个目标是“伪目标”，向make说明，不管是否有这个文件，这个目标就是“伪目标”。</p>
+<pre><code>.PHONY : clean 
+</code></pre>
+<p>只要有这个声明，不管是否有“clean”文件，要运行“clean”这个目标，只有“make clean”这样。于是整个过程可以这样写：</p>
+<pre><code> .PHONY: clean 
+clean: 
+        rm *.o temp 
+</code></pre>
+<p>伪目标一般没有依赖的文件。但是，我们也可以为伪目标指定所依赖的文件。伪目标同样可以作为“默认目标”，只要将其放在第一个。一个示例就是，如果你的Makefile需要一口气生成若干个可执行文件，但你只想简单地敲一个make完事，并且，所有的目标文件都写在一个Makefile中，那么你可以使用“伪目标”这个特性：</p>
+<pre><code>all : prog1 prog2 prog3 
+.PHONY : all 
+
+prog1 : prog1.o utils.o 
+        cc -o prog1 prog1.o utils.o 
+
+prog2 : prog2.o 
+        cc -o prog2 prog2.o 
+
+prog3 : prog3.o sort.o utils.o 
+        cc -o prog3 prog3.o sort.o utils.o 
+</code></pre>
+<p>我们知道，Makefile中的第一个目标会被作为其默认目标。我们声明了一个“all”的伪目标，其依赖于其它三个目标。由于伪目标的特性是，总是被执行的，所以其依赖的那三个目标就总是不如“all”这个目标新。所以，其它三个目标的规则总是会被决议。也就达到了我们一口气生成多个目标的目的。“.PHONY : all”声明了“all”这个目标为“伪目标”。</p>
+<p>随便提一句，从上面的例子我们可以看出，目标也可以成为依赖。所以，伪目标同样也可成为依赖。看下面的例子：</p>
+<pre><code>.PHONY: cleanall cleanobj cleandiff 
+
+cleanall : cleanobj cleandiff 
+        rm program 
+
+cleanobj : 
+        rm *.o 
+
+cleandiff : 
+        rm *.diff 
+</code></pre>
+<p>“make clean”将清除所有要被清除的文件。“cleanobj”和“cleandiff”这两个伪目标有点像“子程序”的意思。我们可以输入“make cleanall”和“make cleanobj”和“make cleandiff”命令来达到清除不同种类文件的目的。</p>
+<p>###命令</p>
+<ul>
+<li>
+<p><code>@</code>: 通常，make会打印要执行的命令，若命令前加<code>@</code>，该命令不会被打印。另外<code>make -s(--slient)</code>禁止命令的显示；<code>make -n(--just-print)</code>: 只显示命令，但不执行。</p>
+</li>
+<li>
+<p><code>;</code>: 后面的命令在前面命令的基础上执行，中间加<code>;</code>，如
+cd dir/;pwd</p>
+</li>
+<li>
+<p><code>-</code>: 忽略命令错误。</p>
+</li>
+<li>
+<p>定义命令包</p>
+<pre><code>  define run-yacc 
+  yacc $(firstword $^) 
+  mv y.tab.c $@ 
+  endef 
+</code></pre>
+</li>
+</ul>
+<p>###嵌套执行make</p>
+<ul>
+<li>执行子目录的Makefile</li>
+</ul>
+<p>在总控Makefile中：</p>
+<pre><code>subsystem:
+    cd subdir &amp;&amp; $(MAKE) 
+</code></pre>
+<p>等价于:</p>
+<pre><code>subsystem: 
+        $(MAKE) -C subdir 
+</code></pre>
+<h3 id="变量">变量</h3>
+<ul>
+<li>
+<p><code>$(),${},$$</code></p>
+</li>
+<li>
+<p><code>:=</code></p>
+</li>
+<li>
+<p><code>?=</code></p>
+</li>
+<li>
+<p><code>+=</code></p>
+</li>
+<li>
+<p>变量值的替换</p>
+<pre><code>  foo := a.o b.o c.o 
+  bar := $(foo:.o=.c)
+
+  foo := a.o b.o c.o 
+  bar := $(foo:%.o=%.c) 
+</code></pre>
+</li>
+<li>
+<p>把变量的值再当成变量</p>
+<pre><code>  x = y 
+  y = z 
+  a := $($(x)) 
+</code></pre>
+</li>
+<li>
+<p><code>override</code>:make命令行参数设置的变量会覆盖Makefile中对该变量的赋值，<code>override</code>关键字强制赋值。</p>
+</li>
+<li>
+<p>环境变量相当于全局变量，另外上层Makefile中定义的变量可以通过<code>export</code>关键字，以系统环境变量的方式传递到下层的Makefile中。</p>
+</li>
+<li>
+<p>目标变量: 在目标冒号后面定义</p>
+</li>
+<li>
+<p>模式变量</p>
+</li>
+<li></li>
+</ul>
+<p>1-5步为第一个阶段，6-7为第二个阶段。第一个阶段中，如果定义的变量被使用了，那么，make会把其展开在使用的位置。但make并不会完全马上展开，make使用的是拖延战术，如果变量出现在依赖关系的规则中，那么仅当这条依赖被决定要使用了，变量才会在其内部展开。</p>
+<p>-p 选项，可以打印出make过程中的数据库， 下面研究一下内置的变量和规则。</p>
+<p>变量可分为3类，
+第一类：环境变量， 比较重要的是PATH, PWD 就不一一列举了。
+第二类：内置变量， 比较重要的是cc, CXX, .INCLUDE_DIRS, .DEFAULT_GOAL等
+第三类：自动变量</p>
+<ul>
+<li>
+<p><code>$@</code>	工作目标的文件名</p>
+</li>
+<li>
+<p><code>$%</code>	档案文件成员结构中的文件名</p>
+</li>
+<li>
+<p><code>$&lt;</code>	第一个必要条件的文件名</p>
+</li>
+<li>
+<p><code>$^</code>	所有必要条件的文件名，用空格隔开</p>
+</li>
+<li>
+<p><code>$+</code>	所有必要条件的文件名，用空格隔开，包括重复的文件名</p>
+</li>
+<li>
+<p><code>$*</code>	工作目标的主文件名</p>
+</li>
+<li>
+<p><code>%D</code> = $(patsubst %/,%,$(dir $%))</p>
+</li>
+<li>
+<p><code>*D</code> = $(patsubst %/,%,$(dir $*))</p>
+</li>
+<li>
+<p><code>+D</code> = $(patsubst %/,%,$(dir $+))</p>
+</li>
+<li>
+<p><code>?D</code> = $(patsubst %/,%,$(dir $?))</p>
+</li>
+<li>
+<p><code>@D</code> = $(patsubst %/,%,$(dir $@))</p>
+</li>
+<li>
+<p><code>^D</code> = $(patsubst %/,%,$(dir $^))</p>
+</li>
+<li>
+<p><code>%F</code> = $(notdir $%)</p>
+</li>
+<li>
+<p><code>*F</code> = $(notdir $*)</p>
+</li>
+<li>
+<p><code>+F</code> = $(notdir $+)</p>
+</li>
+<li>
+<p><code>&lt;F</code> = $(notdir $&lt;)</p>
+</li>
+<li>
+<p><code>?F</code> = $(notdir $?)</p>
+</li>
+<li>
+<p><code>@F</code> = $(notdir $@)</p>
+</li>
+<li>
+<p><code>^F</code> = $(notdir $^)</p>
+</li>
+</ul>
+<h4 id="代表文件4个">代表文件（4个）</h4>
+<pre><code>`$@`  目标文件， 
+`$&lt;`  第一个依赖文件。 
+`$*`  代表&quot;茎&quot;, 例如：文件“dir/a.foo.b”，当目标的模式为“a.%.b ”时,“$* ”的值为“dir/a.foo ” 
+`$%`  当规则的目标文件是一个静态库文件时，代表静态库的一个成员名 代表文件列表(3个） 
+`$^`  所有的依赖文件， 
+`$?`  所有比目标文件更新的依赖文件列表 
+`$+`  类似“$^”，但是它保留了依赖文件中重复出现的文件 
+
+`$(@D)`  目标的目录部分，文件名部分 
+`$(@F)` 
+`$(*D)`  代表&quot;茎&quot;的目录部分,文件名部分 
+`$(*F)` 
+`$(&lt;D)`  第一个依赖文件目录部分，文件名部分 
+`$(&lt;F)` 
+`$(?D)`  被更新的依赖文件目录部分，文件名部分  
+`$(?F)` 
+`$(^D)`  所有依赖文件目录部分，文件名部分 
+`$(^F)` 
+`$(%D)`  库文件成员目录部分，文件名部分 
+`$(%F)` 
+`$(+D)`  所有依赖的目录部分，文件名部分(可存在重复文件） 
+`$(+F)`  
+</code></pre>
+<h3 id="参考文章">参考文章</h3>
+<ul>
+<li><a href="">跟我一起写Makefile</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/readable-code/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">编写可读代码的艺术</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/github-pages/">
+            <span class="next-text nav-default">Github Pages建独立博客</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

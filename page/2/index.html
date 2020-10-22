@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Even - A super concise theme for Hugo</title>
+  <title>Ovsoil&#39;s Blog - Learn，Write，Share</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -27,8 +27,8 @@
 
 
 <link rel="canonical" href="http://localhost:1313/" />
-  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Even - A super concise theme for Hugo" />
-  <link href="http://localhost:1313/index.xml" rel="feed" type="application/rss+xml" title="Even - A super concise theme for Hugo" />
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Ovsoil&#39;s Blog - Learn，Write，Share" />
+  <link href="http://localhost:1313/index.xml" rel="feed" type="application/rss+xml" title="Ovsoil&#39;s Blog - Learn，Write，Share" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,14 +41,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Even - A super concise theme for Hugo" />
+<meta property="og:title" content="Ovsoil&#39;s Blog - Learn，Write，Share" />
 <meta property="og:description" content="Hugo theme even example site." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/" />
 <meta property="og:updated_time" content="2017-08-20T21:38:52+08:00" />
-<meta itemprop="name" content="Even - A super concise theme for Hugo">
+<meta itemprop="name" content="Ovsoil&#39;s Blog - Learn，Write，Share">
 <meta itemprop="description" content="Hugo theme even example site."><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Even - A super concise theme for Hugo"/>
+<meta name="twitter:title" content="Ovsoil&#39;s Blog - Learn，Write，Share"/>
 <meta name="twitter:description" content="Hugo theme even example site."/>
 
 <!--[if lte IE 9]>
@@ -64,7 +64,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/" class="logo">Even</a>
+    <a href="/" class="logo">鱼花生</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -90,7 +90,7 @@
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
-  <a href="/" class="logo">Even</a>
+  <a href="/" class="logo">鱼花生</a>
 </div>
 
 <nav class="site-navbar">
@@ -116,16 +116,19 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/js-flowchart-diagrams/">JS Flowchart Diagrams</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/singleton/">（转）面试中的Singleton</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2015-03-04 </span>
+      <span class="post-time"> 2016-02-19 </span>
       
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <h2 id="usage">Usage</h2>
+      <p>Singleton 经常在面试中谈到，转一篇挺有意思的文章: <a href="http://www.cnblogs.com/loveis715/archive/2012/07/18/2598409.html">面试中的Singleton</a></p>
+<h4 id="引子">引子</h4>
+<p>“请写一个Singleton。”面试官微笑着和我说。
+“这可真简单。”我心里想着，并在白板上写下了下面的Singleton实现：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -139,100 +142,268 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
-e=&gt;end: End:&gt;http://www.google.com
-op1=&gt;operation: My Operation|past
-op2=&gt;operation: Stuff|current
-sub1=&gt;subroutine: My Subroutine|invalid
-cond=&gt;condition: Yes
-or No?|approved:&gt;http://www.google.com
-c2=&gt;condition: Good idea|rejected
-io=&gt;inputoutput: catch something...|request
-
-st-&gt;op1(right)-&gt;cond
-cond(yes, right)-&gt;c2
-cond(no)-&gt;sub1(left)-&gt;op1
-c2(yes)-&gt;io-&gt;e
-c2(no)-&gt;op2-&gt;e
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">class Singleton
+{
+public:
+    static Singleton&amp; Instance()
+    {
+        static Singleton singleton;
+        return singleton;
+    }
+private:
+    Singleton() { };
+};
 </code></pre></td></tr></table>
 </div>
 </div>
     </div>
     <div class="read-more">
-      <a href="/post/js-flowchart-diagrams/" class="read-more-link">Read more...</a>
+      <a href="/post/singleton/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/js-sequence-diagrams/">JS Sequence Diagrams</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/singleton-in-interview/">C&#43;&#43;中线程安全且高效的singleton</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2015-03-04 </span>
+      <span class="post-time"> 2016-02-18 </span>
       
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <h2 id="usage">Usage</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Andrew-&gt;China: Says Hello
-Note right of China: China thinks\nabout it
-China--&gt;Andrew: How are you?
-Andrew-&gt;&gt;China: I am good thanks!
-</code></pre></td></tr></table>
-</div>
-</div>
+      <p>Singleton是一个非常常用的设计模式，几乎所有稍大的程序都会用到它。所以构建一个线程安全，并且高效的singleton很重要。既然要讨论这个主题，我们就先来定义一下我们的需求：</p>
+<ul>
+<li>Lazy initialization。只有在第一次使用的时候才需要初始化出一个singleton对象。这使得程序不需要考虑过多顺序耦合的情况。同时也避免了启动时初始化太多不知道什么时候才会用到的东西。</li>
+<li>线程安全。多个线程有可能同时调用singleton。如果只需要单线程，那实在没什么需要讨论的。</li>
+<li>高效。因为singleton会被反复调用，如果效率低的话浪费太大了。</li>
+<li>通用。适合现有的各种平台，以及未来可能出现的平台。
+有了这些需求，我们就可以开始讨论如何构造这么一个singleton。下面以C++为基础来解析这个问题。</li>
+</ul>
     </div>
     <div class="read-more">
-      <a href="/post/js-sequence-diagrams/" class="read-more-link">Read more...</a>
+      <a href="/post/singleton-in-interview/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/syntax-highlighting/">Syntax Highlighting</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/oh-my-zsh/">解决oh-my-zsh在git目录中变慢的问题</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2011-08-30 </span>
+      <span class="post-time"> 2016-01-20 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      oh-my-zsh是一个很棒的终端配置，有很多有用的插件，比如git插件，可以在git的仓库目录中显示分支信息和当前的状态等，但这会导致进入
+    </div>
+    <div class="read-more">
+      <a href="/post/oh-my-zsh/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/x86-boot/">x86 boot</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2016-01-18 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      CF卡上引导VxWorks的三种方法 方法一. 直接引导： 引导扇区 &raquo; bootrom.sys &raquo; VxWorks 这种方法最快，但要求bootrom.sys保持连续性（可用chkdsk
+    </div>
+    <div class="read-more">
+      <a href="/post/x86-boot/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/learning-x86-compile/">X86 汇编备忘</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2016-01-15 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>x86汇编语言主要有两个语法分支: AT&amp;T和Intel。我们平常接触到的GNU系的工具（包括GCC，OBJDUMP等）都是使用AT&amp;T语法</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">AT&amp;T</th>
+<th align="center">Intel</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">寄存器</td>
+<td align="center">%eax</td>
+<td align="center">eax</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">立即数</td>
+<td align="center">$5</td>
+<td align="center">5</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">指令后缀</td>
+<td align="center">movl</td>
+<td align="center">mov</td>
+<td align="center">操作数长度4</td>
+</tr>
+<tr>
+<td align="center">操作数方向</td>
+<td align="center">movl $5, %eax</td>
+<td align="center">mov eax,5</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">寻址1</td>
+<td align="center">var</td>
+<td align="center">[var]</td>
+<td align="center">寄存器直接寻址</td>
+</tr>
+<tr>
+<td align="center">寻址2</td>
+<td align="center">0x8(%eax)</td>
+<td align="center">[eax + 0x8]</td>
+<td align="center">段+偏移寻址</td>
+</tr>
+<tr>
+<td align="center">寻址3</td>
+<td align="center">%segreg:disp(base,index,scale)</td>
+<td align="center">segreg:[base+index*scale+disp]</td>
+<td align="center">间接寻址</td>
+</tr>
+</tbody>
+</table>
+    </div>
+    <div class="read-more">
+      <a href="/post/learning-x86-compile/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/virual-floppy/">虚拟软盘</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2016-01-08 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      3.5寸1.44M软盘的结构：2面、80道/面、18扇区/道、512字节/扇区。 所以其扇区总数 = 2 * 80 * 18 = 2880；存储容量 = 1474560B 创建虚拟软
+    </div>
+    <div class="read-more">
+      <a href="/post/virual-floppy/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/edk-ii/">EDK II</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2015-12-22 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>These are instructions for setting up EDK II build environment on Ubuntu, and building OVMF images for use with qemu.</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/edk-ii/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/ubuntu/">ubuntu14.04安装后配置</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2015-12-19 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>之前一直使用Archlinux，但安装在Mac OSX的parallels desktop虚拟机中，这种滚动更新的方式经常会带来一些问题，比如Xorg的版本升级太快导致parallels tools不支持。所以准备换一个长期支持版的ubuntu，这个parallels官方的支持应该会及时一些。这里记录一下ubuntu 14.04安装之后的配置。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/ubuntu/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/type-aligned/">字节对齐</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2015-12-10 </span>
       <div class="post-category">
-          <a href="/categories/syntax-highlighting/"> Syntax Highlighting </a>
+          <a href="/categories/coding/"> Coding </a>
           </div>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">helloWorld</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hello, World!&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div>
+      在C/C++中，字节对齐指的是数据在内存中的位置是否对齐，如果一个变量的内存地址正好位于它长度的整数倍，他就被称做自然对齐。比如在32位cp
     </div>
     <div class="read-more">
-      <a href="/post/syntax-highlighting/" class="read-more-link">Read more...</a>
+      <a href="/post/type-aligned/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/migrate-from-octopress-to-hexo/">Migrate From Octopress to Hexo</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2015-12-02 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序</p>
+<p><strong>Hexo is Better than Octopress</strong>：</p>
+<ul>
+<li>
+<p>Simple and Quick</p>
+<p>hexo n #写文章
+hexo g #生成
+hexo d #部署 # 可与hexo g合并为 hexo d -g</p>
+</li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/post/migrate-from-octopress-to-hexo/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
@@ -244,7 +415,10 @@ Andrew-&gt;&gt;China: I am good thanks!
         <i class="iconfont icon-left"></i>
         <span class="prev-text">Prev</span>
       </a>
-    
+    <a class="next" href="/page/3/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
   </nav>
         </div>
         

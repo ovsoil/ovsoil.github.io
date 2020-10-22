@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>逻辑卷管理器(LVM)学习 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/lvm/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="逻辑卷管理器(LVM)学习" />
+<meta property="og:description" content="通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/lvm/" />
+<meta property="article:published_time" content="2015-01-25T00:17:10+00:00" />
+<meta property="article:modified_time" content="2015-01-25T00:17:10+00:00" />
+<meta itemprop="name" content="逻辑卷管理器(LVM)学习">
+<meta itemprop="description" content="通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。">
+<meta itemprop="datePublished" content="2015-01-25T00:17:10&#43;00:00" />
+<meta itemprop="dateModified" content="2015-01-25T00:17:10&#43;00:00" />
+<meta itemprop="wordCount" content="1173">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="逻辑卷管理器(LVM)学习"/>
+<meta name="twitter:description" content="通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">逻辑卷管理器(LVM)学习</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-01-25 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。</p>
+<p>对一般用户来讲，使用最多的是动态调整文件系统大小的功能。这样，你在分区时就不必为如何设置分区的大小而烦恼，只要在硬盘中预留出部分空闲空间，然后根据系统的使用情况，动态调整分区大小。</p>
+<p>以下内容总结了Easwy对于LVM的理解。</p>
+<p>在LVM中，主要有三个概念：</p>
+<ul>
+<li>物理卷(Physical Volume, PV)： 物理卷可以是一个磁盘，也可以是磁盘中的一个分区。它为LVM提供了存储介质。</li>
+<li>逻辑卷组(Logical Volume Group, LVG)： 可以把逻辑卷组想象成一个存储池，或者是逻辑硬盘。物理卷与物理卷在硬件上可以是不连续的，但把多个物理卷加入逻辑卷组后，就可以把这个逻辑卷组看成一个存储空间连续的逻辑硬盘，在这块硬盘上，可以创建多个逻辑卷(LV)。</li>
+<li>逻辑卷(Logical Volume, LV)： 可以将卷组划分成若干个逻辑卷，相当于在逻辑硬盘上划分出几个逻辑分区，每个逻辑分区上都可以创建具体的文件系统。
+到这里我们可以看出，原本是直接在硬盘上创建分区，然后在分区上创建文件系统。使用了LVM后，在其中插入一个逻辑层，相当于是在一块逻辑硬盘上创建逻辑分区，然后在逻辑分区上创建文件系统。</li>
+</ul>
+<p>新插入一个逻辑层，对单个硬盘的读写会有一定的性能损失，但其带来的好处是巨大的。首先，逻辑分区大小不再受硬盘实际大小的限制，它可以扩展到几块硬盘上；其次，逻辑分区可以很方便的做调整大小、备份等维护操作；而且，如果系统中存在多块硬盘，通过设置逻辑卷到物理卷的映射关系(采用LVM striped mapping)，可以提高I/O的读写性能，因为此时的读写是在多块硬盘上并发进行的，比对单个硬盘的读写显然要快很多。</p>
+<p>下面是一个LVM使用的例子：</p>
+<p><img src="./vg.png" alt="LVM"></p>
+<p>Linux下逻辑卷管理器(LVM)示例
+Linux下逻辑卷管理器(LVM)的一个例子
+在图中有两块硬盘，其中硬盘1分了两个分区，/dev/sda1和/dev/sda2，硬盘2没有创建分区。接下来在/dev/sda2和/dev/sdb上创建物理卷，然后把这两个物理卷加入到逻辑卷组vg0中，现在，逻辑卷组vg0看起来像一块很大的逻辑硬盘，然后在其中创建两个逻辑卷/dev/vg0/lv0和/dev/vg0/lv1。</p>
+<p>最后，分别在/dev/sda1、/dev/vg0/lv0和/dev/vg0/lv1上创建文件系统，并分别把它们挂载到文件系统树中。这样看上去，逻辑卷是不是很像是一个逻辑的分区？</p>
+<p>在逻辑卷组vg0中，还预留有一部分空间未用，如果在使用中发现某个逻辑卷空间不够用了，可以在不停机的情况下，直接调整逻辑卷及其上的文件系统的大小。对服务器来讲，这是简单但非常有用的功能。</p>
+<!-- create time: 2015-01-25 19:27:40  -->
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2015-01-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/vim-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">VIM-学习过程</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/c&#43;&#43;11-thread/">
+            <span class="next-text nav-default">C&#43;&#43;11 并发之一</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

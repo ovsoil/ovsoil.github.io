@@ -1,78 +1,180 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Even - A super concise theme for Hugo</title>
+    <title>Posts on Ovsoil&#39;s Blog - Learn，Write，Share</title>
     <link>http://localhost:1313/post/</link>
-    <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
+    <description>Recent content in Posts on Ovsoil&#39;s Blog - Learn，Write，Share</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 Oct 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Theme preview</title>
-      <link>http://localhost:1313/post/even-preview/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      <title>在Redhat6.8上编译安装clang</title>
+      <link>http://localhost:1313/post/build-clang-in-redhat/</link>
+      <pubDate>Tue, 31 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/even-preview/</guid>
-      <description>Based on MarkdownPreview test.md. Markdown 1 2 3 4 5 6 7 8 # H1 ## H2 ### H3 #### H4 ##### H5 ###### H6 ### Duplicate Header ### Duplicate Header H1 H2 H3 H4 H5 H6 Duplicate Header Duplicate Header Paragraphs 1 2 3 4 This is a paragraph. I am still part of the paragraph. New paragraph. This is a paragraph. I am still part of the paragraph.</description>
+      <guid>http://localhost:1313/post/build-clang-in-redhat/</guid>
+      <description>&lt;p&gt;公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C++11的完整支持。为了使用C++11，clang是一个很好的选择。
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。&lt;/p&gt;
+&lt;p&gt;clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>This is a hidden post.</title>
-      <link>http://localhost:1313/post/hidden-post/</link>
-      <pubDate>Thu, 08 Mar 2018 17:40:19 +0800</pubDate>
+      <title>python 的多线程</title>
+      <link>http://localhost:1313/post/threading-in-python/</link>
+      <pubDate>Thu, 04 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/hidden-post/</guid>
-      <description>&lt;p&gt;This post is hidden from the home page.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[English] Creating a New Theme</title>
-      <link>http://localhost:1313/post/english-preview/</link>
-      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/english-preview/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>[日本語] 敬語体系</title>
-      <link>http://localhost:1313/post/japanese-preview/</link>
-      <pubDate>Wed, 30 Aug 2017 01:53:34 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/japanese-preview/</guid>
-      <description>日本語の敬語体系は、一般に、大きく尊敬語・謙譲語・丁寧語に分類される。文化審議会国語分科会は、2007年2月に「敬語の指針」を答申し、これに</description>
-    </item>
-    
-    <item>
-      <title>[中文] 《长恨歌》</title>
-      <link>http://localhost:1313/post/chinese-preview/</link>
-      <pubDate>Wed, 30 Aug 2017 01:37:56 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/chinese-preview/</guid>
-      <description>《长恨歌》是中国唐朝诗人白居易的一首长篇叙事诗。 第一段：贵妃受宠爱 汉皇重色思倾国，御宇多年求不得。杨家有女初长成，养在深闺人未识。 天生丽质难</description>
-    </item>
-    
-    <item>
-      <title>Shortcodes</title>
-      <link>http://localhost:1313/post/shortcodes/</link>
-      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/shortcodes/</guid>
-      <description>&lt;h1 id=&#34;admonition&#34;&gt;Admonition&lt;/h1&gt;
-&lt;div class=&#34;admonition note&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;I&amp;#39;m title!&lt;/p&gt;
-&lt;p&gt;biu biu biu.&lt;/p&gt;
-&lt;details class=&#34;admonition note&#34;&gt;&lt;summary class=&#34;admonition-title&#34;&gt;note&lt;/summary&gt;
-  &lt;p&gt;biu biu biu.&lt;/p&gt;
-&lt;/details&gt;
-&lt;div class=&#34;admonition example&#34;&gt;
-  &lt;p&gt;Without title.&lt;/p&gt;
+      <guid>http://localhost:1313/post/threading-in-python/</guid>
+      <description>&lt;p&gt;在开始之前，首先要了解一下python对多线程的支持。&lt;/p&gt;
+&lt;h3 id=&#34;虚拟机层面&#34;&gt;虚拟机层面&lt;/h3&gt;
+&lt;p&gt;Python虚拟机使用GIL（Global Interpreter Lock，全局解释器锁）来互斥线程对共享资源的访问，暂时无法利用多处理器的优势。&lt;/p&gt;
+&lt;h3 id=&#34;语言层面&#34;&gt;语言层面&lt;/h3&gt;
+&lt;p&gt;在语言层面，Python对多线程提供了很好的支持，可以方便地支持创建线程、互斥锁、信号量、同步等特性。
+Python中多线程相关的模块包括：&lt;code&gt;thread&lt;/code&gt;，&lt;code&gt;threading&lt;/code&gt;，&lt;code&gt;Queue&lt;/code&gt;。其中&lt;code&gt;thread&lt;/code&gt;是多线程的底层支持模块，一般不建议使用; &lt;code&gt;threading&lt;/code&gt;对&lt;code&gt;thread&lt;/code&gt;进行了封装，将一些线程的操作对象化，提供下列类：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Thread 线程类
+Timer与Thread类似，但要等待一段时间后才开始运行
+Lock 锁原语
+RLock 可重入锁。使单线程可以再次获得已经获得的锁
+Condition 条件变量，能让一个线程停下来，等待其他线程满足某个“条件”
+Event 通用的条件变量。多个线程可以等待某个事件发生，在事件发生后，所有的线程都被激活
+Semaphore为等待锁的线程提供一个类似“等候室”的结构
+BoundedSemaphore 与semaphore类似，但不允许超过初始值
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;Queue&lt;/code&gt;：实现了多生产者（Producer）、多消费者（Consumer）的队列，支持锁原语，能够在多个线程之间提供很好的同步支持。提供的类：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Queue队列
+LifoQueue后入先出（LIFO）队列
+PriorityQueue 优先队列
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>不够优雅但很实用的Hexo博客图片方案</title>
+      <link>http://localhost:1313/post/hexo-image-solution/</link>
+      <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/hexo-image-solution/</guid>
+      <description>&lt;p&gt;用hexo写博客很不错，但是图片引用一直是个问题，官方给的解决方案是用本地的&lt;a href=&#34;https://hexo.io/zh-cn/docs/asset-folders.html&#34;&gt;资源文件夹&lt;/a&gt;，但要完美工作还得放弃使用常规的markdown的语法来引用图片，转而使用一种特定的标签。这未免有点太不合理了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;{% asset_img example.jpg This is an example image %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;听说这个插件&lt;a href=&#34;https://github.com/CodeFalling/hexo-asset-image&#34;&gt;hexo-asset-image&lt;/a&gt;支持使用常规markdown语法，我没有试过。
+另外，一般来说，我们部署hexo博客到github pages的同时，一般也会用git来管理我们的markdown源码。这就是说，我们就必须把本地的资源文件夹也一起用git管理，这不是一个好的选择，所以很多人选择了使用网络图床。但是图床又引入了一些新的问题，首先上传图片再拷贝url实在是太麻烦了，而且一些图床不支持https协议的话，还有可能被劫持，带来乱七八糟的广告。&lt;/p&gt;
+&lt;p&gt;所以，如果能够快速上传图片，同时自动插入对应的url，那在hexo中引用图片的体验就不错了&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Erlang 学习01</title>
+      <link>http://localhost:1313/post/learning-erlang-01/</link>
+      <pubDate>Thu, 06 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/learning-erlang-01/</guid>
+      <description>Erlang([&#39;ə:læŋ])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大</description>
+    </item>
+    
+    <item>
+      <title>Powerful Vim</title>
+      <link>http://localhost:1313/post/vimrc/</link>
+      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/vimrc/</guid>
+      <description>Share my vimrc. It is a powerful vim config file. The keymap similar with spacemacs Description vimrc-server: Simple vimrc for server without any plugin vimrc-dev: vimrc for develop Install | Upgrade Prerequisites vim compiled with python support. Check it with vim &amp;ndash;version | grep +python Install the required dependencies: 1 2 3 4 5 6 7 8 9 # ubuntu sudo apt-get install exuberant-ctags git ack-grep sudo apt-get install silversearcher-ag</description>
+    </item>
+    
+    <item>
+      <title>从Vim迁移到Spacemacs</title>
+      <link>http://localhost:1313/post/migrating-from-vim-to-spacemacs/</link>
+      <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/migrating-from-vim-to-spacemacs/</guid>
+      <description>&lt;p&gt;之前有接触过emacs，感触最深的就是和Lisp比起来vimscript实在是太蹩脚了。但习惯了vim，考虑到迁移成本还是没有使用emacs。
+最近Spacemacs挺火的，能够有vim几乎所有的编辑体验,这样迁移成本低了很多，有空倒是可以尝试一下，这里转一篇关于从vim迁移到spacemacs的官方文档翻译，写的清晰明了。
+&lt;a href=&#34;https://www.oschina.net/translate/migrating-from-vim&#34;&gt;从Vim迁移到Spacemacs&lt;/a&gt;
+Spacemacs 不是 vim 的 Emacs 克隆, Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Express Setup Development Environment with Archlinux</title>
+      <link>http://localhost:1313/post/express-setup-development-environment/</link>
+      <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/express-setup-development-environment/</guid>
+      <description>&lt;p&gt;I tried install ubuntu in VirtualBox on my notebook. It&amp;rsquo;s not smooth enough as a productivity environment. So I turn to use ArchLinux. It&amp;rsquo;s a lightweight Linux Distribution which has no unnecessary additions unless you want.
+It&amp;rsquo;s perfect one if your want to setup a linux development environment on old machine.
+Here I write down my notes on how to Setup Archlinux development environment in VirtualBox.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>memcached的网络框架</title>
+      <link>http://localhost:1313/post/memcached-connection/</link>
+      <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/memcached-connection/</guid>
+      <description>memcached并发 memcached是个单进程多线程的程序。memcached底层是用的libevent来管理事件的，下面我们就来看看这</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Interview</title>
+      <link>http://localhost:1313/post/cpp-interview/</link>
+      <pubDate>Sun, 13 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/cpp-interview/</guid>
+      <description>&lt;p&gt;CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>内存页大小为何是4K</title>
+      <link>http://localhost:1313/post/mem-page/</link>
+      <pubDate>Sun, 13 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/mem-page/</guid>
+      <description>&lt;p&gt;为何物理页面的大小4K，而不是大一些或者小一些？&lt;/p&gt;
+&lt;p&gt;内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>（转）面试中的Singleton</title>
+      <link>http://localhost:1313/post/singleton/</link>
+      <pubDate>Fri, 19 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/singleton/</guid>
+      <description>&lt;p&gt;Singleton 经常在面试中谈到，转一篇挺有意思的文章: &lt;a href=&#34;http://www.cnblogs.com/loveis715/archive/2012/07/18/2598409.html&#34;&gt;面试中的Singleton&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;引子&#34;&gt;引子&lt;/h4&gt;
+&lt;p&gt;“请写一个Singleton。”面试官微笑着和我说。
+“这可真简单。”我心里想着，并在白板上写下了下面的Singleton实现：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -86,33 +188,472 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;{{% admonition note &amp;#34;I&amp;#39;m title!&amp;#34; false %}}
-biu biu biu.
-
-{{% admonition type=&amp;#34;note&amp;#34; title=&amp;#34;note&amp;#34; details=&amp;#34;true&amp;#34; %}}
-biu biu biu.
-{{% /admonition %}}
-
-{{% admonition example %}}
-Without title.
-{{% /admonition %}}
-
-{{% /admonition %}}
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;class Singleton
+{
+public:
+    static Singleton&amp;amp; Instance()
+    {
+        static Singleton singleton;
+        return singleton;
+    }
+private:
+    Singleton() { };
+};
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
     </item>
     
     <item>
-      <title>JS Flowchart Diagrams</title>
-      <link>http://localhost:1313/post/js-flowchart-diagrams/</link>
-      <pubDate>Wed, 04 Mar 2015 21:57:50 +0800</pubDate>
+      <title>C&#43;&#43;中线程安全且高效的singleton</title>
+      <link>http://localhost:1313/post/singleton-in-interview/</link>
+      <pubDate>Thu, 18 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/js-flowchart-diagrams/</guid>
-      <description>&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+      <guid>http://localhost:1313/post/singleton-in-interview/</guid>
+      <description>&lt;p&gt;Singleton是一个非常常用的设计模式，几乎所有稍大的程序都会用到它。所以构建一个线程安全，并且高效的singleton很重要。既然要讨论这个主题，我们就先来定义一下我们的需求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lazy initialization。只有在第一次使用的时候才需要初始化出一个singleton对象。这使得程序不需要考虑过多顺序耦合的情况。同时也避免了启动时初始化太多不知道什么时候才会用到的东西。&lt;/li&gt;
+&lt;li&gt;线程安全。多个线程有可能同时调用singleton。如果只需要单线程，那实在没什么需要讨论的。&lt;/li&gt;
+&lt;li&gt;高效。因为singleton会被反复调用，如果效率低的话浪费太大了。&lt;/li&gt;
+&lt;li&gt;通用。适合现有的各种平台，以及未来可能出现的平台。
+有了这些需求，我们就可以开始讨论如何构造这么一个singleton。下面以C++为基础来解析这个问题。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决oh-my-zsh在git目录中变慢的问题</title>
+      <link>http://localhost:1313/post/oh-my-zsh/</link>
+      <pubDate>Wed, 20 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/oh-my-zsh/</guid>
+      <description>oh-my-zsh是一个很棒的终端配置，有很多有用的插件，比如git插件，可以在git的仓库目录中显示分支信息和当前的状态等，但这会导致进入</description>
+    </item>
+    
+    <item>
+      <title>x86 boot</title>
+      <link>http://localhost:1313/post/x86-boot/</link>
+      <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/x86-boot/</guid>
+      <description>CF卡上引导VxWorks的三种方法 方法一. 直接引导： 引导扇区 &amp;raquo; bootrom.sys &amp;raquo; VxWorks 这种方法最快，但要求bootrom.sys保持连续性（可用chkdsk</description>
+    </item>
+    
+    <item>
+      <title>X86 汇编备忘</title>
+      <link>http://localhost:1313/post/learning-x86-compile/</link>
+      <pubDate>Fri, 15 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/learning-x86-compile/</guid>
+      <description>&lt;p&gt;x86汇编语言主要有两个语法分支: AT&amp;amp;T和Intel。我们平常接触到的GNU系的工具（包括GCC，OBJDUMP等）都是使用AT&amp;amp;T语法&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;AT&amp;amp;T&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Intel&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;注释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;寄存器&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;%eax&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;eax&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;立即数&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;$5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;指令后缀&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;movl&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;mov&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;操作数长度4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;操作数方向&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;movl $5, %eax&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;mov eax,5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;寻址1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;var&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;[var]&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;寄存器直接寻址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;寻址2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0x8(%eax)&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;[eax + 0x8]&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;段+偏移寻址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;寻址3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;%segreg:disp(base,index,scale)&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;segreg:[base+index*scale+disp]&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;间接寻址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+    <item>
+      <title>虚拟软盘</title>
+      <link>http://localhost:1313/post/virual-floppy/</link>
+      <pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/virual-floppy/</guid>
+      <description>3.5寸1.44M软盘的结构：2面、80道/面、18扇区/道、512字节/扇区。 所以其扇区总数 = 2 * 80 * 18 = 2880；存储容量 = 1474560B 创建虚拟软</description>
+    </item>
+    
+    <item>
+      <title>EDK II</title>
+      <link>http://localhost:1313/post/edk-ii/</link>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/edk-ii/</guid>
+      <description>&lt;p&gt;These are instructions for setting up EDK II build environment on Ubuntu, and building OVMF images for use with qemu.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ubuntu14.04安装后配置</title>
+      <link>http://localhost:1313/post/ubuntu/</link>
+      <pubDate>Sat, 19 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ubuntu/</guid>
+      <description>&lt;p&gt;之前一直使用Archlinux，但安装在Mac OSX的parallels desktop虚拟机中，这种滚动更新的方式经常会带来一些问题，比如Xorg的版本升级太快导致parallels tools不支持。所以准备换一个长期支持版的ubuntu，这个parallels官方的支持应该会及时一些。这里记录一下ubuntu 14.04安装之后的配置。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>字节对齐</title>
+      <link>http://localhost:1313/post/type-aligned/</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/type-aligned/</guid>
+      <description>在C/C++中，字节对齐指的是数据在内存中的位置是否对齐，如果一个变量的内存地址正好位于它长度的整数倍，他就被称做自然对齐。比如在32位cp</description>
+    </item>
+    
+    <item>
+      <title>Migrate From Octopress to Hexo</title>
+      <link>http://localhost:1313/post/migrate-from-octopress-to-hexo/</link>
+      <pubDate>Wed, 02 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/migrate-from-octopress-to-hexo/</guid>
+      <description>&lt;p&gt;hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hexo is Better than Octopress&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Simple and Quick&lt;/p&gt;
+&lt;p&gt;hexo n #写文章
+hexo g #生成
+hexo d #部署 # 可与hexo g合并为 hexo d -g&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi</title>
+      <link>http://localhost:1313/post/raspberry-pi/</link>
+      <pubDate>Thu, 26 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/raspberry-pi/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://cdn.ovsoil.cn/Raspberry-Pi-2.jpeg-original&#34; alt=&#34;Raspberry-Pi-2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Raspberry Pi&lt;/code&gt; 有如下接口：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电源输入：Micro usb接口的5V 1A 的输入电流。&lt;/li&gt;
+&lt;li&gt;2个USB接口：可以接鼠标和键盘等。&lt;/li&gt;
+&lt;li&gt;HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。&lt;/li&gt;
+&lt;li&gt;以太网接口：100M的以太网接口，插网线上网用的。&lt;/li&gt;
+&lt;li&gt;模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。&lt;/li&gt;
+&lt;li&gt;SD卡插口：插入SD卡，作存储用。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11初体验</title>
+      <link>http://localhost:1313/post/taste-c-plus-plus-11/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/taste-c-plus-plus-11/</guid>
+      <description>&lt;p&gt;在C++11新标准中，语言本身和标准库都增加了很多新内容。这段时间接触了一些，这里总结一下，只涉及一些皮毛。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MacOSX 使用小贴士</title>
+      <link>http://localhost:1313/post/macosx-tips/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/macosx-tips/</guid>
+      <description>&lt;p&gt;使用MacBookPro有一段时间了，有一些有用的使用技巧能够极大的提高了工作学习效率，一直很想记录并分享出来。当然里面有一些习惯带我个人的习惯，不认同的忽略就好，不过为何不尝试改变一下呢。:-)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>libevent 源码学习之一</title>
+      <link>http://localhost:1313/post/libevent-source-1/</link>
+      <pubDate>Tue, 30 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/libevent-source-1/</guid>
+      <description>&lt;p&gt;libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
+libevent 有几个显著的亮点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;事件驱动（event-driven），高性能;&lt;/li&gt;
+&lt;li&gt;轻量级，专注于网络，不如ACE那么臃肿庞大；&lt;/li&gt;
+&lt;li&gt;源代码相当精炼、易读；&lt;/li&gt;
+&lt;li&gt;跨平台，支持Windows、Linux、*BSD和Mac OS；&lt;/li&gt;
+&lt;li&gt;支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等；&lt;/li&gt;
+&lt;li&gt;支持I/O，定时器和信号等事件；&lt;/li&gt;
+&lt;li&gt;注册事件优先级。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>弄清楚编码</title>
+      <link>http://localhost:1313/post/encoding/</link>
+      <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/encoding/</guid>
+      <description>&lt;p&gt;由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。&lt;/p&gt;
+&lt;p&gt;从计算机对多国语言的支持角度看，大致可以分为三个阶段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ASCII&lt;/li&gt;
+&lt;li&gt;ANSI&lt;/li&gt;
+&lt;li&gt;UNICODE&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>学习、学习</title>
+      <link>http://localhost:1313/post/about-learning/</link>
+      <pubDate>Thu, 04 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/about-learning/</guid>
+      <description>&lt;p&gt;学习的过程很多时候可以这样划分:自己学会一门知识(技术)、表达 出来、教会别人、记录下来,虽然这个排序未必对每个人都合适(因为可能不同人有着不同 的特点能力)。学一门知识,经过努力、加以时日,总是可以达到的,把自己学的用自己的 话表达出来就必须要将学到的知识加以消化、理解,而教会一个不懂这门知识的人则比表达 出来要难,因为别人可能并不是适应你的表述方式,记录下来则需要经过沉淀、积累、思考, 最后厚积薄发,方可小成。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>http://localhost:1313/post/design-patterns/</link>
+      <pubDate>Thu, 04 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/design-patterns/</guid>
+      <description>&lt;p&gt;面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。&lt;/p&gt;
+&lt;p&gt;在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>面试问题总结</title>
+      <link>http://localhost:1313/post/question-in-interview/</link>
+      <pubDate>Thu, 04 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/question-in-interview/</guid>
+      <description>有一些理解不记下来，以后我这木讷的嘴怕是说不清楚 编程思想 面向对象（对象导向）编程的理解 面向对象编程的分析和设计实际上追求的就是两点：高内聚(</description>
+    </item>
+    
+    <item>
+      <title>Unix编程之进程</title>
+      <link>http://localhost:1313/post/unix-programing-progress/</link>
+      <pubDate>Wed, 27 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/unix-programing-progress/</guid>
+      <description>fork #inlclude &amp;lt;unistd.h&amp;gt; pid_t fork(void) fork 子进程是父进程的副本，获得数据空间、堆和栈的副本，但共享正文段。共享打开文、用户ID、回话ID、工作目录、、、等等。 vfork vfork 与 for</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11新特性记录</title>
+      <link>http://localhost:1313/post/c-plus-plus-11-1/</link>
+      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/c-plus-plus-11-1/</guid>
+      <description>&lt;p&gt;C++11 FAQ 摘录&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cocos2d-x 源码分析四：Scheduler</title>
+      <link>http://localhost:1313/post/analyse-cocos2d-x-source-4/</link>
+      <pubDate>Thu, 16 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/analyse-cocos2d-x-source-4/</guid>
+      <description>&lt;p&gt;在Node类里面耦合了一个Scheduler类的对象，我们猜测Scheduler是时间调度器，下面我们剖析Cocos2d-x的调度器 Scheduler 类的源码，从源码中去了解它的实现与应用方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cocos2d-x 源码分析三：内存管理</title>
+      <link>http://localhost:1313/post/analyse-cocos2d-x-source-3/</link>
+      <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/analyse-cocos2d-x-source-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cocos2d-x 源码分析二：Director</title>
+      <link>http://localhost:1313/post/analyse-cocos2d-x-source-2/</link>
+      <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/analyse-cocos2d-x-source-2/</guid>
+      <description>前向声明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 /* Forward declarations. */ class LabelAtlas; //class GLView; class DirectorDelegate; class Node; class Scheduler; class ActionManager; class EventDispatcher; class EventCustom; class EventListenerCustom; class TextureCache; class Renderer; class Camera; class Console; 构造/初始化 1 2 3 4 5 6 7 8 9 /** returns a shared instance of</description>
+    </item>
+    
+    <item>
+      <title>Cocos2dx 源码分析之一: 起步(Application)</title>
+      <link>http://localhost:1313/post/analyse-cocos2dx-source-1/</link>
+      <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/analyse-cocos2dx-source-1/</guid>
+      <description>&lt;p&gt;工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;的一些备注点</title>
+      <link>http://localhost:1313/post/c-c-plus-plus-tips/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/c-c-plus-plus-tips/</guid>
+      <description>&lt;p&gt;作为从应用层面开始接触C/C++的开发者，对这个语言的一些特性和关键字使用很少，在这里记录备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GLSL学习</title>
+      <link>http://localhost:1313/post/glsl/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/glsl/</guid>
+      <description>&lt;p&gt;一个OpenGL程序可以用多种方式和shader通信。注意这种通信是单向的，因为shader的输出只能是渲染到某些目标，比如颜色和深度缓存。&lt;/p&gt;
+&lt;p&gt;OpenGL的部分状态可以被shader访问，因此程序改变OpenGL某些状态就可以与shader进行通信了。例如一个程序想把光的颜色传给shader，可以直接调用OpenGL接口，就像使用固定功能流水线时做的那样。&lt;/p&gt;
+&lt;p&gt;不过，使用OpenGL状态并不是设置shader中使用数据的直观方式。比如一个shader需要一个表示时间变化的变量来计算动画，在OpenGL状态中就没有现成的变量可用。当然，你可以使用没有用到的“镜面光截止角度（cutoffangle）”这样一个变量表示时间，但显然让人难以接受。
+幸运的是，GLSL允许用户自定义变量，实现OpenGL应用程序与shader通信。有了这个功能，你就可以命名一个叫做timeElapsed的变量表示经过的时间。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux工具之awk</title>
+      <link>http://localhost:1313/post/linux-tool-awk/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/linux-tool-awk/</guid>
+      <description>&lt;p&gt;AWK之所以叫AWK是因为其取了三位创始人Alfred Aho, Peter Weinberger, 和Brian Kernighan三人名字的首字符。AWK有一本相当经典的书《The AWK Programming Language》&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux工具之sed</title>
+      <link>http://localhost:1313/post/linux-tool-sed/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/linux-tool-sed/</guid>
+      <description>&lt;p&gt;sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MacOSX使用与开发环境搭建</title>
+      <link>http://localhost:1313/post/macosx-boost/</link>
+      <pubDate>Fri, 10 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/macosx-boost/</guid>
+      <description>&lt;p&gt;每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中的元类(metaclass)</title>
+      <link>http://localhost:1313/post/python-metaclass/</link>
+      <pubDate>Tue, 07 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/python-metaclass/</guid>
+      <description>&lt;p&gt;Python中类的概念借鉴于Smalltalk，Python中的&lt;em&gt;所有东西&lt;/em&gt;都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章&lt;a href=&#34;http://blog.jobbole.com/21351/&#34;&gt;深刻理解Python中的元类(metaclass)&lt;/a&gt;讲得很详细，这里学习记录一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git 学习之二</title>
+      <link>http://localhost:1313/post/learning-git-2/</link>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/learning-git-2/</guid>
+      <description>&lt;p&gt;前面记录了Git的一些基本使用，这里补充深入一些的东西。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git 学习之一</title>
+      <link>http://localhost:1313/post/learning-git-1/</link>
+      <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/learning-git-1/</guid>
+      <description>&lt;p&gt;Git是Linus用C实现的一个分布式版本控制工具，与Perforce、SVN和CVS这类集中式的版本控制工具不同。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每台机器都是一台服务器，无需依赖网络就可以帮自己的更新提交到本地服务器，支持离线工作。当有网络环境的时候，就可以把更新推送给其他服务器。&lt;/li&gt;
+&lt;li&gt;安全性高，每台机器都有代码以及版本信息的维护，所有即使某些机器挂掉了，代码依然是安全的。&lt;/li&gt;
+&lt;li&gt;在Git中，同步更新的方式有很多种，可以把自己的更新推送给别人；也可以生成一个diff的patch，通过邮件方式把这个patch发送给别人。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;建议：虽然分布式版本控制没有服务端的概念，但一般在一个Git系统中，为了方便大家交换更新，会找一台机器作为中心服务器，这台机器的目地只是为了方便大家交换更新。即使这台中心服务器挂了，大家依然可以继续工作，只是相互之间交换更新比较麻烦。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SQL学习之一</title>
+      <link>http://localhost:1313/post/sql-learning-1/</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/sql-learning-1/</guid>
+      <description>&lt;p&gt;SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。&lt;/p&gt;
+&lt;p&gt;查询和更新指令构成了 SQL 的 DML 部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SELECT - 从数据库表中获取数据&lt;/li&gt;
+&lt;li&gt;UPDATE - 更新数据库表中的数据&lt;/li&gt;
+&lt;li&gt;DELETE - 从数据库表中删除数据&lt;/li&gt;
+&lt;li&gt;INSERT INTO - 向数据库表中插入数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CREATE DATABASE - 创建新数据库&lt;/li&gt;
+&lt;li&gt;ALTER DATABASE - 修改数据库&lt;/li&gt;
+&lt;li&gt;CREATE TABLE - 创建新表&lt;/li&gt;
+&lt;li&gt;ALTER TABLE - 变更（改变）数据库表&lt;/li&gt;
+&lt;li&gt;DROP TABLE - 删除表&lt;/li&gt;
+&lt;li&gt;CREATE INDEX - 创建索引（搜索键）&lt;/li&gt;
+&lt;li&gt;DROP INDEX - 删除索引&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>python learning 1</title>
+      <link>http://localhost:1313/post/python-learning-1/</link>
+      <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/python-learning-1/</guid>
+      <description>&lt;p&gt;python 基础&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ogre 源码学习之四(场景管理与渲染队列)</title>
+      <link>http://localhost:1313/post/ogre-source-4/</link>
+      <pubDate>Sat, 21 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ogre-source-4/</guid>
+      <description>&lt;p&gt;从图中我们可以看出render queue是Renderable的集合，这是必然的，因为场景树和渲染队列其实都是对Renderable进行分类，只是分类的标准不同，场景树主要是从空间结构对Renderable进行分类，而渲染队列则是对Renderable从material以及blend(渲染属性)上进行分类。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Octopress个性化配置</title>
+      <link>http://localhost:1313/post/custom-octopress-blog/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/custom-octopress-blog/</guid>
+      <description>&lt;h3 id=&#34;zsh-no-matches-found-new_post&#34;&gt;zsh: no matches found: new_post[&amp;hellip;]&lt;/h3&gt;
+&lt;p&gt;原因是zsh解释[]字符的问题。可以使用转义符来解决这一问题，避免麻烦的话，在~/.zshrc中加入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;alias&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;rake&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;noglob rake&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;中文title&#34;&gt;中文title&lt;/h3&gt;
+&lt;p&gt;为方便直接使用中文作为博客的标题，仿照new_post，建一个自己的任务post，包含两个参数，一个作为文件名，一个作为中文标题。
+在Rakefile末尾增加如下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -130,71 +671,365 @@ Without title.
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]
-e=&amp;gt;end: End:&amp;gt;http://www.google.com
-op1=&amp;gt;operation: My Operation|past
-op2=&amp;gt;operation: Stuff|current
-sub1=&amp;gt;subroutine: My Subroutine|invalid
-cond=&amp;gt;condition: Yes
-or No?|approved:&amp;gt;http://www.google.com
-c2=&amp;gt;condition: Good idea|rejected
-io=&amp;gt;inputoutput: catch something...|request
-
-st-&amp;gt;op1(right)-&amp;gt;cond
-cond(yes, right)-&amp;gt;c2
-cond(no)-&amp;gt;sub1(left)-&amp;gt;op1
-c2(yes)-&amp;gt;io-&amp;gt;e
-c2(no)-&amp;gt;op2-&amp;gt;e
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;    &lt;span class=&#34;n&#34;&gt;desc&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Begin a new post in &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;source_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;posts_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; with Alias&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:title_alias&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;raise&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;### You haven&amp;#39;t set anything up yet. First run `rake install` to set up an Octopress theme.&amp;#34;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;directory?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;source_dir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;mkdir_p&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;source_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;posts_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;with_defaults&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;new-post&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;title_alias&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title_alias&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;source_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;posts_dir&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strftime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y-%m-%d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_url&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new_post_ext&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exist?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;nb&#34;&gt;abort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;rake aborted!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; already exists. Do you want to overwrite?&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;y&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+      &lt;span class=&#34;nb&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Creating new post: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+      &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;---&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;layout: post&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;title: &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title_alias&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;date: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strftime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y-%m-%d %H:%M&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;comments: true&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;categories: &amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;puts&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;---&amp;#34;&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
-    </item>
-    
-    <item>
-      <title>JS Sequence Diagrams</title>
-      <link>http://localhost:1313/post/js-sequence-diagrams/</link>
-      <pubDate>Wed, 04 Mar 2015 21:57:45 +0800</pubDate>
-      
-      <guid>http://localhost:1313/post/js-sequence-diagrams/</guid>
-      <description>&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;/div&gt;&lt;p&gt;使用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;    rake post[&amp;#34;How to create octopress blog&amp;#34;,&amp;#34;如何建立Octopress博客&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;设置使用指定的编辑器自动打开新建的blog&#34;&gt;设置使用指定的编辑器自动打开新建的blog&lt;/h3&gt;
+&lt;p&gt;每次用&lt;code&gt;rake　new_post&lt;/code&gt;新建blog后都要手动打开编辑，果断google一下&lt;/p&gt;
+&lt;p&gt;在Rakefile中，找到## &amp;ndash; Misc Configs &amp;ndash; ##这段注释，然后在server_port下面加入editor = &amp;ldquo;open&amp;rdquo;
+然后再找到new_post命令，在末尾加入如下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Andrew-&amp;gt;China: Says Hello
-Note right of China: China thinks\nabout it
-China--&amp;gt;Andrew: How are you?
-Andrew-&amp;gt;&amp;gt;China: I am good thanks!
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#{editor}&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;system&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;editor&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;字体&#34;&gt;字体&lt;/h3&gt;
+&lt;p&gt;Octopresss默认使用的是 google webfonts，遗憾的是在天朝不好用，而且它没有中文字体，所以你用粗体，没有效果。
+所以，将source/_includes/custom/head.html中的两行代码注释掉，省去了加载字体，加快网页加载速度。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!--Fonts from Google&amp;quot;s Web font directory at http://google.com/webfonts --&amp;gt;
+&amp;lt;!-- &amp;lt;link href=&amp;quot;http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic&amp;quot; rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt; --&amp;gt;
+&amp;lt;!-- &amp;lt;link href=&amp;quot;http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;quot; rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt; --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考&lt;a href=&#34;http://lifesinger.wordpress.com/2011/04/06/best-web-default-fonts/&#34;&gt;最佳Web中文默认字体&lt;/a&gt;，在sass/custom/_fonts.scss 中添加如下三行代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$heading-font-family: arial, sans-serif;
+$header-title-font-family: arial, sans-serif;
+$header-subtitle-font-family: arial, sans-serif;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;刷新网页，可以看见中文的粗体变黑了。&lt;/p&gt;
+&lt;h3 id=&#34;语法高亮&#34;&gt;语法高亮&lt;/h3&gt;
+&lt;h4 id=&#34;pygnment&#34;&gt;pygnment&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;``` [language] [title] [url] [link text]
+    code snippet
+```
+[language] - Used by the syntax highlighter. Passing &#39;plain&#39; disables highlighting. (Supported languages.)
+[title] - Add a figcaption to your code block.
+[url] - Download or reference link for your code.
+[Link text] - Text for the link, defaults to &#39;link&#39;.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;gist代码内嵌&#34;&gt;Gist代码内嵌&lt;/h4&gt;
+&lt;p&gt;当使用这种方式的代码高亮时，仅仅需要的是gist的id，个人的理解gist是，gist对每段用户上传的代码段都会有一个对应的id，当用户给出对应的代码的id后，将会从gist上面下载对应的已经高亮的html文件，最终在用户的页面上显示出来。
+语法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{ % gist gist_id [filename] %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{ % gist 996818 %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果一个gist的id对应有多个文件，这时需要对想要高亮的文件添加文件名，具体语法如下所示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{ % gist 1059334 svg_bullets.rb %}
+{ % gist 1059334 usage.scss %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总体来说，gist代码高亮是很简单的，只是需要将代码上传到gist，然后获取相应的id然后按照上面的语法进行设置即可。只是每次在写博客时，都需要对博客文章中的代码拷贝到网址上生成，在没有网时，代码高亮比较麻烦。&lt;/p&gt;
+&lt;h4 id=&#34;使用code-block的方式&#34;&gt;使用Code Block的方式&lt;/h4&gt;
+&lt;p&gt;目前自己的博客这种方式用的比较多，前面写的文章目前全部修改成为了这种方式，感觉这种方式和pygnment的方式差不多，之前全部采用的是pygnment的方式，利用正则表达式把所有文章的代码高亮全部改成了使用code block。它的具体语法如下所示：（与pygnment很相似，指定语言即可）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{ % codeblock [title] [lang:language] [url] [link text] %}
+code snippet
+{ % endcodeblock %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;和之前描述的类似，中括号的内容是可选的。&lt;/p&gt;
+&lt;h3 id=&#34;只显示摘要&#34;&gt;只显示摘要&lt;/h3&gt;
+&lt;p&gt;如果希望在首页每篇博文只显示一部分内容，例如摘要。可以在你的markdown文件中插入：`&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ogre 源码学习之三(资源系统)</title>
+      <link>http://localhost:1313/post/ogre-source-3/</link>
+      <pubDate>Fri, 20 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ogre-source-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ogre 源码学习之二(几个基本类的实现)</title>
+      <link>http://localhost:1313/post/ogre-source-2/</link>
+      <pubDate>Thu, 19 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ogre-source-2/</guid>
+      <description>几个基本类的实现： MemoryAllocator MemoryAllocator /** A set of categories that indicate the purpose of a chunk of memory being allocated. These categories will be provided at allocation time in order to allow the allocation policy to vary its behaviour if it wishes. This allows you to use a single policy but still have variant behaviour. The level of control it gives you is</description>
+    </item>
+    
+    <item>
+      <title>进程，线程，并发</title>
+      <link>http://localhost:1313/post/jin-cheng-xian-cheng-bing-fa/</link>
+      <pubDate>Wed, 18 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/jin-cheng-xian-cheng-bing-fa/</guid>
+      <description>&lt;p&gt;看了一些资料，记录以下自己的理解。&lt;/p&gt;
+&lt;p&gt;进程是表示资源分配的基本单位，它运行起来需要的是系统资源，是系统给他分配的一些资源。至于是不是系统调度的基本单位，实际上跟操作系统内核是有关系的，在Mac、Windows NT等采用微内核结构的操作系统中，进程的功能发生了变化：它只是资源分配的单位，而不再是调度运行的单位。在微内核系统中，真正调度运行的基本单位是线程。因此，实现并发功能的单位是线程。有必要说下，进程需要的资源和线程需要的资源。跟操作系统有关，但是也很相像。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>octopress 博客搭建</title>
+      <link>http://localhost:1313/post/octopress-bo-ke-da-jian/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/octopress-bo-ke-da-jian/</guid>
+      <description>&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;h3 id=&#34;jekyll&#34;&gt;Jekyll&lt;/h3&gt;
+&lt;p&gt;Jekyll一个简单的博客形态的静态站点生产机器。Jekyll 有一套模板目录，可以将 Markdown文件（或者Textile）转换为静态网页，并生成一个完整的可发布的静态网站。&lt;/p&gt;
+&lt;h3 id=&#34;octopress&#34;&gt;Octopress&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://octopress.org&#34;&gt;Octopress&lt;/a&gt;是基于 Jekyll 的博客框架。他们的关系就像 jQuery 与 js 的关系一样。它为我们提供了现成的美观的主题模板，并且配置简单，使用方便，大大降低了我们建站的门槛。&lt;/p&gt;
+&lt;h3 id=&#34;ruby&#34;&gt;Ruby&lt;/h3&gt;
+&lt;p&gt;Ruby是一种编程语言，Octopress是用Ruby实现的。&lt;/p&gt;
+&lt;h3 id=&#34;github&#34;&gt;Github&lt;/h3&gt;
+&lt;p&gt;GitHub 是全球最热的开源社区，提供代码托管服务，以及我们搭建博客所需要的Pages服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ogre 源码学习之一(SampleBrower)</title>
+      <link>http://localhost:1313/post/ogre-source-1/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ogre-source-1/</guid>
+      <description>&lt;p&gt;SampleBrower&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VIM-学习过程</title>
+      <link>http://localhost:1313/post/vim-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 26 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/vim-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;在网上看到一位前辈提到vim的学习过程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等），
+学习 operator + motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改)&lt;/li&gt;
+&lt;li&gt;学习基础的 Ex 命令，:s 什麼的&lt;/li&gt;
+&lt;li&gt;学习 text-objects，知道 operator + text-objects 的方法，可进行手术般精准的定位和修改，&lt;/li&gt;
+&lt;li&gt;习惯 operator + motion 后，多注意使用可重复的命令组合&lt;/li&gt;
+&lt;li&gt;练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令&lt;/li&gt;
+&lt;li&gt;开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户）&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>逻辑卷管理器(LVM)学习</title>
+      <link>http://localhost:1313/post/lvm/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/lvm/</guid>
+      <description>&lt;p&gt;通过使用Linux的逻辑卷管理器(Logical Volume Manager, LVM)，用户可以在系统运行时动态调整文件系统的大小，把数据从一块硬盘重定位到另一块硬盘，也可以提高I/O操作的性能，以及提供冗余保护，它的快照功能允许用户对逻辑卷进行实时的备份。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11 并发之一</title>
+      <link>http://localhost:1313/post/c&#43;&#43;11-thread/</link>
+      <pubDate>Wed, 14 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/c&#43;&#43;11-thread/</guid>
+      <description>&lt;p&gt;相信 Linux 程序员都用过 Pthread, 但有了 C++11 的 std::thread 以后，你可以在语言层面编写多线程程序了，直接的好处就是多线程程序的可移植性得到了很大的提高，所以作为一名 C++ 程序员，熟悉 C++11 的多线程编程方式还是很有益处的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;中的static</title>
+      <link>http://localhost:1313/post/static-in-cpp/</link>
+      <pubDate>Thu, 08 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/static-in-cpp/</guid>
+      <description>&lt;p&gt;先记录一下以前了解的static的基本知识&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;c语言中的static&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;static成员&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在类声明中声明，在类方法文件中定义并初始化。定义时不能加上static关键字，是为了和其它的static变量混淆。
+另外如果static成员是const的整型或者枚举类型，可以在声明时初始化，但仍然需要在类外定义（定义时不能再初始化）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown 语法说明（转）</title>
+      <link>http://localhost:1313/post/markdown-syntax/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/markdown-syntax/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to &lt;a href=&#34;http://daringfireball.net/projects/markdown/syntax&#34;&gt;Markdown: Syntax&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;声明：&lt;/strong&gt; 这份文档派生(fork)于&lt;a href=&#34;http://markdown.tw/&#34;&gt;繁体中文版&lt;/a&gt;，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里&lt;a href=&#34;http://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md&#34;&gt;查看它的源文件&lt;/a&gt;。「繁体中文版的原始文件可以&lt;a href=&#34;https://github.com/othree/markdown-syntax-zhtw/blob/master/syntax.md&#34;&gt;查看这里&lt;/a&gt; 。」&amp;ndash;By @&lt;a href=&#34;http://twitter.com/riku&#34;&gt;riku&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>多线程编程之三</title>
+      <link>http://localhost:1313/post/multiprocessing-program-03/</link>
+      <pubDate>Fri, 12 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/multiprocessing-program-03/</guid>
+      <description>APUE</description>
+    </item>
+    
+    <item>
+      <title>多线程编程之二</title>
+      <link>http://localhost:1313/post/multiprocessing-program-02/</link>
+      <pubDate>Thu, 11 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/multiprocessing-program-02/</guid>
+      <description>pthread int pthread_mutex_init(pthread_mutex_t *restrict mutex, const pthread_mutexattr_t *restrict attr); int pthread_mutex_destroy(pthread_mutex_t *mutex); int pthread_mutex_lock(pthread_mutex_t *mutex); int pthread_mutex_trylock(pthread_mutex_t *mutex); int pthread_mutex_unlock(pthread_mutex_t *mutex);</description>
+    </item>
+    
+    <item>
+      <title>多线程编程之一</title>
+      <link>http://localhost:1313/post/multiprocessing-program-01/</link>
+      <pubDate>Wed, 10 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/multiprocessing-program-01/</guid>
+      <description>&lt;p&gt;在多线程存在的环境中，除了堆栈中的临时数据之外，所有的数据都是共享的。如果我们需要线程之间正确地运行，那么务必需要保证公共数据的执行和计算是正确的。简单一点说，就是保证数据在执行的时候必须是互斥的。否则，如果两个或者多个线程在同一时刻对数据进行了操作，那么后果是不可想象的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bash Shell备忘</title>
+      <link>http://localhost:1313/post/bash-memo/</link>
+      <pubDate>Wed, 03 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/bash-memo/</guid>
+      <description>&lt;p&gt;Linux的Shell种类众多，常见的有：Bourne Shell（/usr/bin/sh或/bin/sh）、Bourne Again Shell（/bin/bash）、C Shell（/usr/bin/csh）、K Shell（/usr/bin/ksh）、Shell for Root（/sbin/sh）。其中Bash是大多数Linux系统默认的Shell, Bash Shell 脚本很简单，但是不常用的话，我这种记忆力能记住的实在有限，真要用到还得到处查手册。所以记个简单备忘，以便参考.&lt;/p&gt;
+&lt;p&gt;Hello World :)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello World !&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
     </item>
     
     <item>
-      <title>Syntax Highlighting</title>
-      <link>http://localhost:1313/post/syntax-highlighting/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
+      <title>Linux 命令备忘</title>
+      <link>http://localhost:1313/post/linux-memo/</link>
+      <pubDate>Mon, 01 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/syntax-highlighting/</guid>
-      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;helloWorld&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;alert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
+      <guid>http://localhost:1313/post/linux-memo/</guid>
+      <description>&lt;p&gt;Linux is a Unix-like computer operating system assembled under the model of free and open-source software development and distribution. The defining component of Linux is the Linux kernel, an operating system kernel first released on September 17, 1991 by Linus Torvalds. The Free Software Foundation uses the name GNU/Linux to describe the operating system, which has led to some controversy.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>建站之一</title>
+      <link>http://localhost:1313/post/building-website-01/</link>
+      <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/building-website-01/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;A记录&lt;/li&gt;
+&lt;li&gt;CNAME&lt;/li&gt;
+&lt;li&gt;TTL&lt;/li&gt;
+&lt;li&gt;域名&lt;/li&gt;
+&lt;li&gt;DNS&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>编写可读代码的艺术</title>
+      <link>http://localhost:1313/post/readable-code/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/readable-code/</guid>
+      <description>&lt;p&gt;这是《The Art of Readable Code》的读书笔记，再加一点自己的认识。强烈推荐此书：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;英文版：&lt;a href=&#34;http://book.douban.com/subject/5442971/&#34; title=&#34;The Art Of Readable Code&#34;&gt;《The Art of Readable Code》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;中文版：&lt;a href=&#34;http://book.douban.com/subject/10797189/&#34; title=&#34;编写可读代码的艺术&#34;&gt;编写可读代码的艺术&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>GNU toolchain</title>
+      <link>http://localhost:1313/post/gnu-toolchain/</link>
+      <pubDate>Tue, 08 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/gnu-toolchain/</guid>
+      <description>&lt;p&gt;GNU toolchain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gcc&lt;/li&gt;
+&lt;li&gt;gdb&lt;/li&gt;
+&lt;li&gt;autoconfig&lt;/li&gt;
+&lt;li&gt;Makefile&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Github Pages建独立博客</title>
+      <link>http://localhost:1313/post/github-pages/</link>
+      <pubDate>Sat, 10 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/github-pages/</guid>
+      <description>&lt;p&gt;Github是代码托管社区，Github Pages通过托管网页代码可以实现简单的静态网站，所以我们可以利用它建立自己的独立博客，这是免费的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://github.com&#34; title=&#34;Github&#34;&gt;Github&lt;/a&gt;很好的将代码和社区联系在了一起，于是发生了很多有趣的事情，世界也因为他美好了一点点。Github作为现在最流行的代码仓库，已经得到很多大公司和项目的青睐，比如&lt;a href=&#34;https://github.com/jquery/jquery&#34; title=&#34;jQuery@github&#34;&gt;jQuery&lt;/a&gt;、&lt;a href=&#34;https://github.com/twitter/bootstrap&#34; title=&#34;Twitter@github&#34;&gt;Twitter&lt;/a&gt;等。为使项目更方便的被人理解，介绍页面少不了，甚至会需要完整的文档站，Github替你想到了这一点，他提供了&lt;a href=&#34;http://pages.github.com/&#34; title=&#34;Github Pages&#34;&gt;Github Pages&lt;/a&gt;的服务，不仅可以方便的为项目建立介绍站点，也可以用来建立个人博客。&lt;/p&gt;
+&lt;p&gt;Github Pages有以下几个优点：&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;轻量级的博客系统，没有麻烦的配置&lt;/li&gt;
+    &lt;li&gt;使用标记语言，比如&lt;a href=&#34;http://markdown.tw&#34;&gt;Markdown&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;无需自己搭建服务器&lt;/li&gt;
+    &lt;li&gt;根据Github的限制，对应的每个站有300MB空间&lt;/li&gt;
+    &lt;li&gt;可以绑定自己的域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然他也有缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用&lt;a href=&#34;https://github.com/mojombo/jekyll&#34; title=&#34;Jekyll&#34;&gt;Jekyll&lt;/a&gt;模板系统，相当于静态页发布，适合博客，文档介绍等。&lt;/li&gt;
+&lt;li&gt;动态程序的部分相当局限，比如没有评论，不过还好我们有解决方案。&lt;/li&gt;
+&lt;li&gt;基于Git，很多东西需要动手，不像Wordpress有强大的后台&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;大致介绍到此，作为个人博客来说，简洁清爽的表达自己的工作、心得，就已达目标，所以Github Pages是我认为此需求最完美的解决方案了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>算法和数据结构之一</title>
+      <link>http://localhost:1313/post/algorithems-and-datastructure-1/</link>
+      <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/algorithems-and-datastructure-1/</guid>
+      <description>&lt;p&gt;##栈和队列
+&lt;a href=&#34;&#34;&gt;Arthor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;&#34;&gt;Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在伯乐在线上看到一系列算法与数据结构的博文，里面提到&lt;a href=&#34;&#34;&gt;Algorithems, 4th Edition&lt;/a&gt;一书和&lt;a href=&#34;&#34;&gt;Coursera公开课&lt;/a&gt;，我借机学习一下，参考这个系列的博客记录一下自己的学习过程，好歹作为这个博客的开端。&lt;/p&gt;</description>
     </item>
     
   </channel>

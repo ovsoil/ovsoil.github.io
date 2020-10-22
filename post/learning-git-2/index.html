@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Git 学习之二 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="前面记录了Git的一些基本使用，这里补充深入一些的东西。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/learning-git-2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Git 学习之二" />
+<meta property="og:description" content="前面记录了Git的一些基本使用，这里补充深入一些的东西。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/learning-git-2/" />
+<meta property="article:published_time" content="2015-04-03T00:00:00+00:00" />
+
+<meta itemprop="name" content="Git 学习之二">
+<meta itemprop="description" content="前面记录了Git的一些基本使用，这里补充深入一些的东西。">
+
+<meta itemprop="wordCount" content="2653">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git 学习之二"/>
+<meta name="twitter:description" content="前面记录了Git的一些基本使用，这里补充深入一些的东西。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Git 学习之二</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-03 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#细看远程仓库命令">细看远程仓库命令</a></li>
+            <li><a href="#merge和rebase">merge和rebase</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前面记录了Git的一些基本使用，这里补充深入一些的东西。</p>
+<h3 id="细看远程仓库命令">细看远程仓库命令</h3>
+<ul>
+<li>
+<p>查看有用的信息:</p>
+<pre><code>  git branch
+  git remote
+</code></pre>
+</li>
+<li>
+<p>push命令用来将本地分支的更新推送的远程仓库</p>
+</li>
+</ul>
+<p>通过”git push”更新、创建远程分支</p>
+<p>通过”git push”删除远程分支</p>
+<p>省略分支信息的”git push origin”
+通过这种方式push的时候，报出了一个警告，提示”push.default”没有设置。</p>
+<p>在Git中push有两种设置：</p>
+<p>simple方式：只是推送当前分支的更新到对应的远程分支；在Git 2.0以后就默认使用这种方式
+matching方式：会推送所有有对应的远程分支的本地分支</p>
+<p>根据Git的提示，我们可以通过”git config –global push.default”来设置push方式。</p>
+<ul>
+<li>pull命令的作用是取回远程某个分支的更新，然后合并到指定的本地分支</li>
+</ul>
+<p>取回origin主机release-1.0分支的更新，与本地的release-1.0分支合并:<code>git pull origin release-1.0:release1.0</code></p>
+<p>一般来说，pull命令都是在关联的本地分支和远程分支之间进行；当然，你可以使用不关联的本地分支和远程分支进行pull操作，但是不建议这么做。</p>
+<p>如果真的需要别的远程分支上的更新，建议使用”cherry-pick”把这个更新拿到关联的远程分支上，然后在关联分支上进行pull操作。</p>
+<p>省略本地分支名：git pull origin release-1.0
+表示取回origin/next远程分支的更新，然后合并到当前分支</p>
+<p>如果当前分支存在上游（关联）分支，可以直接使用git pull origin
+表示本地的当前分支自动与关联的origin主机分支进行合并</p>
+<p>“git pull”操作实际上等价于，先执行”git fetch”获得远程更新，然后”git merge”与本地分支进行合并。</p>
+<p>当然，pull命令也支持使用rebase模式进行合并：</p>
+<p>git pull &ndash;rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+在这种情况下，”git pull”就等价于”git fetch”加上”git rebase”。</p>
+<p>建议使用”git fetch”加上”git rebase”的方式来取代”git pull”获取远程更新，具体原因后面再介绍。</p>
+<p>git fetch</p>
+<p>fetch命令比较简单，作用就是将远程的更新取回到本地。</p>
+<p>git fetch origin
+该命令表示将远程origin主机的所有分支上的更新取回本地</p>
+<p>git fetch origin master
+该命令只取回远程origin主机上master分支上的更新</p>
+<h3 id="merge和rebase">merge和rebase</h3>
+<p>merge会有三种情况：</p>
+<ul>
+<li>当目标分支是当前分支的祖先commit节点，也就是说当前分支已经是最新的了，merge命令没有任何效果。</li>
+<li>当前分支是目标分支的祖先commit节点时，会发生Fast-forward的merge</li>
+<li>merge命令中加上”–no-ff”进行合并操作</li>
+</ul>
+<p>cherry-pick</p>
+<p>在实际应用中，我们可能会经常碰到这种情况，在分支A上提交了一个更新，但是后来发现我们同样需要在分支B上应用这个更新。
+”git reflog”找到A上那个更新的SHA1哈希值，然后切换到B分支上使用”git cherry-pick”。当我们手动合并过冲突，然后继续执行”cherry-pick”时候，Git会给出友好的交互界面，如果我们不需要更新这个提交的message</p>
+<p>rebase和merge的差别主要是：</p>
+<p>rebase更清晰，因为commit历史是线性的，但commit不一定按日期先后排，而是当前分支的commit总在后面（参考rebase原理）
+merge之后commit历史变得比较复杂，并且一定程度上反映了各个分支的信息，而且 commit按日期排序的。</p>
+<p>###搭建git服务器</p>
+<p>在远程仓库一节中，我们讲了远程仓库实际上和本地仓库没啥不同，纯粹为了7x24小时开机并交换大家的修改。</p>
+<p>GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</p>
+<p>搭建Git服务器需要准备一台运行Linux的机器，强烈推荐用Ubuntu或Debian，这样，通过几条简单的apt命令就可以完成安装。</p>
+<p>假设你已经有sudo权限的用户账号，下面，正式开始安装。</p>
+<p>第一步，安装git：</p>
+<p>$ sudo apt-get install git
+第二步，创建一个git用户，用来运行git服务：</p>
+<p>$ sudo adduser git
+第三步，创建证书登录：</p>
+<p>收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。</p>
+<p>第四步，初始化Git仓库：</p>
+<p>先选定一个目录作为Git仓库，假定是/srv/sample.git，在/srv目录下输入命令：</p>
+<p>$ sudo git init &ndash;bare sample.git
+Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：</p>
+<p>$ sudo chown -R git:git sample.git
+第五步，禁用shell登录：</p>
+<p>出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：</p>
+<p>git❌1001:1001:,,,:/home/git:/bin/bash
+改为：</p>
+<p>git❌1001:1001:,,,:/home/git:/usr/bin/git-shell
+这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
+<p>第六步，克隆远程仓库：</p>
+<p>现在，可以通过git clone命令克隆远程仓库了，在各自的电脑上运行：</p>
+<p>$ git clone git@server:/srv/sample.git
+Cloning into &lsquo;sample&rsquo;&hellip;
+warning: You appear to have cloned an empty repository.
+剩下的推送就简单了。</p>
+<p>管理公钥
+如果团队很小，把每个人的公钥收集起来放到服务器的/home/git/.ssh/authorized_keys文件里就是可行的。如果团队有几百号人，就没法这么玩了，这时，可以用Gitosis来管理公钥。</p>
+<p>这里我们不介绍怎么玩Gitosis了，几百号人的团队基本都在500强了，相信找个高水平的Linux管理员问题不大。</p>
+<p>管理权限
+有很多不但视源代码如生命，而且视员工为窃贼的公司，会在版本控制系统里设置一套完善的权限控制，每个人是否有读写权限会精确到每个分支甚至每个目录下。因为Git是为Linux源代码托管而开发的，所以Git也继承了开源社区的精神，不支持权限控制。不过，因为Git支持钩子（hook），所以，可以在服务器端编写一系列脚本来控制提交等操作，达到权限控制的目的。Gitolite就是这个工具。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/python-metaclass/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python中的元类(metaclass)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/learning-git-1/">
+            <span class="next-text nav-default">Git 学习之一</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

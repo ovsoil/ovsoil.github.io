@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;11新特性记录 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="C&#43;&#43;11 FAQ 摘录
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/c-plus-plus-11-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43;11新特性记录" />
+<meta property="og:description" content="C&#43;&#43;11 FAQ 摘录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/c-plus-plus-11-1/" />
+<meta property="article:published_time" content="2015-05-21T00:00:00+00:00" />
+
+<meta itemprop="name" content="C&#43;&#43;11新特性记录">
+<meta itemprop="description" content="C&#43;&#43;11 FAQ 摘录">
+
+<meta itemprop="wordCount" content="2892">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;11新特性记录"/>
+<meta name="twitter:description" content="C&#43;&#43;11 FAQ 摘录"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;11新特性记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-05-21 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#attribute">“attribute&rdquo;</a></li>
+            <li><a href="#常量表达式constexpr--一般化的受保证的常量表达式">常量表达式（constexpr） — 一般化的受保证的常量表达式</a></li>
+            <li><a href="#枚举类具有类域和强类型的枚举">枚举类——具有类域和强类型的枚举</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>C++11 FAQ 摘录</p>
+<h3 id="attribute">“attribute&rdquo;</h3>
+<p>“属性”是C11标准中的新语法，用于让程序员在代码中提供额外信息。相较于风格各异的传统方式(<strong>attribute</strong>, __declspec, #pragma等)，“属性”语法致力于将各种“方言”进行统一。
+与传统语法不同的是，“属性”语法相当灵活，可以随处添加，且总是作用于与之相邻的语法实体。</p>
+<pre><code>void f [[ noreturn ]] () // f() 永不返回
+{
+  throw &quot;error&quot;; // 虽然不得返回，但可以抛出异常
+}
+
+struct foo* f [[carries_dependency]] (int i); // 编译优化指示
+int* g(int* x, int* y [[carries_dependency]]);
+</code></pre>
+<p>正如你看到的那样，属性被放置在两个双重中括号“[[…]]”之间。目前，noreturn和carries_dependency是C++11标准中仅有的两个通用属性。</p>
+<p>我们有理由担心属性的大量使用会引起C++语言的混乱，很可能将产生很多C++语言的“方言”。
+所以，我们推荐仅在不影响源代码的业务逻辑的前提下，才使用属性来帮助编译器作更好的错误检查（例如，[[noreturn]]，或者是帮助代码优化（例如， [[carries_dependency]]）。</p>
+<p>在未来的计划中，属性的一个重要用途是为OpenMP提供更好的辅助信息。例如：</p>
+<pre><code>// 使用[[omp::parallel()]]属性告诉编译器，这个for循环可以并行执行
+for [[omp::parallel()]] (int i=0; i&amp;lt;v.size(); ++i) {
+// ...
+</code></pre>
+<p>就像上面的代码展示的那样，通过指定for循环的[[omp::parallel()]]属性，编译器将使用OpenMP对这个for循环进行并行化处理，从而这个for循环将并行执行。</p>
+<!--more-->
+<h3 id="常量表达式constexpr--一般化的受保证的常量表达式">常量表达式（constexpr） — 一般化的受保证的常量表达式</h3>
+<p>常量表达式机制是为了：</p>
+<p>提供一种更加通用的常量表达式
+允许用户自定义的类型成为常量表达式
+提供了一种保证在编译期完成初始化的方法（可以在编译时期执行某些函数调用）
+考虑下面这段代码：</p>
+<pre><code>enum Flags { good=0, fail=1, bad=2, eof=4 };
+constexpr int operator|(Flags f1, Flags f2)
+{ return Flags(int(f1)|int(f2)); }
+void f(Flags x)
+{
+    switch (x) {
+    case bad:         /* … */ break;
+    case eof:         /* … */ break;
+    case bad|eof:     /* … */ break;
+    default:          /* … */ break;
+    }
+}
+</code></pre>
+<p>在这里，常量表达式关键字constexpr表示这个重载的操作符“|”只应包含形式简单的运算，如果它的参数本身就是常量 ，那么这个操作符应该在编译时期就应该计算出它的结果来。（译注： 我们都知道，switch的分支条件要求常量，而使用constexpr关键字重载操作符“|”之后，虽然“bad|eof”是一个表达式，但是因为这两个参数都是常量，在编译时期，就可以计算出它的结果，因而也可以作为常量对待。）</p>
+<p>除了可以在编译时期被动地计算表达式的值之外，我们希望能够强制要求表达式在编译时期计算其结果值，从而用作其它用途，比如对某个变量进行赋值。当我们在变量声明前加上constexpr关键字之后，可以实现这一功能，当然，它也同时会让这个变量成为常量。</p>
+<pre><code>constexpr int x1 = bad|eof;    // ok
+void f(Flags f3)
+{
+    // 错误：因为f3不是常量，所以无法在编译时期计算这个表达式的结果值
+    constexpr int x2 = bad|f3;
+    int x3 = bad|f3;     // ok，可以在运行时计算
+}
+</code></pre>
+<p>使用constexpr强制在运行期求值，一般用于全局对象（或namespace内的对象），尤其是那些放在只读区的对象。
+除了基本类型外，对于那些构造函数比较简单的对象和由其构成的表达式，也可以成为常量表达式</p>
+<pre><code>struct Point {
+    int x,y;
+    constexpr Point(int xx, int yy) : x(xx), y(yy){}
+};
+constexpr Point origo(0,0);
+constexpr int z = origo.x;
+constexpr Point a[] = {Point(0,0), Point(1,1), Point(2,2) };
+constexpr int x = a[1].x;    // x 变成常量1
+</code></pre>
+<p>需要注意的是，constexpr并不是const的通用版，反之亦然：</p>
+<p>const主要用于表达“对接口的写权限控制”，即“对于被const修饰的量名(例如const指针变量)，不得通过它对所指对象作任何修改”。(但是可以通过其他接口修改该对象)。另外，把对象声明为const也为编译器提供了潜在的优化可能。具体来说就是，如果把一个量声明为const，并且没有其他地方对该量作取址运算，那么编译器通常(取决于编译期实现)会用该量的实际常量值直接替换掉代码中所有引用该量的地方，而不用在最终编译结果中生成对该量的存取指令。
+constexpr的主要功能则是让更多的运算可以在编译期完成，并能保证表达式在语义上是类型安全的。(译注：相比之下，C语言中#define只能提供简单的文本替换，而不具任何类型检查能力)。与const相比，被constexpr修饰的对象则强制要求其初始化表达式能够在编译期完成计算。之后所有引用该常量对象的地方，若非必要，一律用计算出来的常量值替换。
+（译注：zwvista的一段评论，有助于我们理解constexpr的意义，感谢zwvista。constexpr 将编译期常量概念延伸至括用户自定义常量以及常量函数，其值的不可修改性由编译器保证，因而constexpr 表达式是一般化的，受保证的常量表达式。）</p>
+<h3 id="枚举类具有类域和强类型的枚举">枚举类——具有类域和强类型的枚举</h3>
+<p>枚举类（“新的枚举”/“强类型的枚举”）主要用来解决传统的C++枚举的三个问题：</p>
+<p>传统C++枚举会被隐式转换为int，这在那些不应被转换为int的情况下可能导致错误
+传统C++枚举的每一枚举值在其作用域范围内都是可见的，容易导致名称冲突(同名冲突)
+不可以指定枚举的底层数据类型，这可能会导致代码不容易理解、兼容性问题以及不可以进行前向声明
+枚举类（enum）（“强类型枚举”）是强类型的，并且具有类域：</p>
+<pre><code> enum Alert { green, yellow, election, red }; // 传统枚举
+ enum class Color { red, blue };   // 新的具有类域和强类型的枚举类
+ // 它的枚举值在类的外部是不可直接访问的，需加“类名::”
+ //  不会被隐式转换成int
+ enum class TrafficLight { red, yellow, green };
+ Alert a = 7;   //  错误，传统枚举不是强类型的，a没有数据类型
+ Color c = 7;   // 错误，没有int到Color的隐式转换
+ int a2 = red;           // 正确，Alert被隐式转换成int
+// 在 C++98中是错误的，但是在C++11中正确的
+int a3 = Alert::red;
+int a4 = blue;            // 错误，blue并没有在类域中
+int a5 = Color::blue; // 错误，没有Color到int的默认转换
+Color a6 = Color::blue;   // 正确 
+</code></pre>
+<p>正如上面的代码所展示的那样，传统的枚举可以照常工作，但是你现在可以通过提供一个类名来改善枚举的使用，使其成为一个强类型的具有类域的枚举。</p>
+<p>因为新的具有类名的枚举具有传统的枚举的功能（命名的枚举值），同时又具有了类的一些特点（枚举值作用域处于类域之内且不会被隐式类型转换成int），所以我们将其称为枚举类（enum class）。</p>
+<p>因为可以指定枚举的底层数据类型，所以可以进行简单的互通操作以及保证枚举值所占的字节大小：</p>
+<pre><code>enum class Color : char { red, blue }; // 紧凑型表示(一个字节)
+// 默认情况下，枚举值的底层数据类型为int
+enum class TrafficLight { red, yellow, green };
+// E占几个字节呢？旧规则只能告诉你：取决于编译器实现
+enum E { E1 = 1, E2 = 2, Ebig = 0xFFFFFFF0U };
+
+// C11中我们可以指定枚举值的底层数据类型大小
+enum EE : unsigned long { EE1 = 1, EE2 = 2, EEbig = 0xFFFFFFF0U };
+</code></pre>
+<p>同时，由于能够指定枚举值的底层数据类型，所以前向声明得以成为可能：
+（译注：就是在枚举类定义之前就使用这个枚举类的名字声明指针或引用变量）</p>
+<pre><code>enum class Color_code : char;     // (前向) 声明
+void foobar(Color_code* p);   // 使用
+// ...
+// 定义
+enum class Color_code : char { red, yellow, green, blue }; 
+</code></pre>
+<p>枚举类的底层数据类型必须是有符号或无符号的整型，默认情况下是int。
+标准库中也使用了枚举类。</p>
+<p>系统特定的错误代码，定义在: enum class errc
+指针安全指示，定义在: enum class pointer_safety { relaxed, preferred, strict }
+I/O流错误，定义在: enum class io_errc { stream = 1 }
+异步通信错误，定义在: enum class future_errc { broken_promise, future_already_retrieved, promise_already_satisfied }
+其中的某些枚举类还定义了操作符重载，比如“==”等。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/unix-programing-progress/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Unix编程之进程</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/analyse-cocos2d-x-source-4/">
+            <span class="next-text nav-default">cocos2d-x 源码分析四：Scheduler</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

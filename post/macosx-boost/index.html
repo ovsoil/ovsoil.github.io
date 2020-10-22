@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MacOSX使用与开发环境搭建 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/macosx-boost/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MacOSX使用与开发环境搭建" />
+<meta property="og:description" content="每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/macosx-boost/" />
+<meta property="article:published_time" content="2015-04-10T00:00:00+00:00" />
+
+<meta itemprop="name" content="MacOSX使用与开发环境搭建">
+<meta itemprop="description" content="每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。">
+
+<meta itemprop="wordCount" content="1381">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MacOSX使用与开发环境搭建"/>
+<meta name="twitter:description" content="每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MacOSX使用与开发环境搭建</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-10 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#日常应用篇">日常应用篇</a></li>
+            <li><a href="#开发环境篇">开发环境篇</a></li>
+            <li><a href="#软件清单">软件清单</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>每次更换系统或者更换电脑的时候，都免不了花时间去折腾开发环境的问题。我深知这个过程的繁琐和浪费时间，但有时候仍然乐此不疲，或许是强迫症作祟。所以真的有必要在这里整理一下。欢迎补充修正。</p>
+<h3 id="日常应用篇">日常应用篇</h3>
+<h3 id="开发环境篇">开发环境篇</h3>
+<ul>
+<li>screen: 特别是 ssh 到登录远程时用以管理会话</li>
+<li>curl: 网络请求, 相关的还有 traceroute, dig 等</li>
+<li>find: 文件查找</li>
+<li>grep/zgrep/zcat: 查看日志的时候用</li>
+<li>awk: 这个本身就很强大了, 具体编程语法不用太掌握但可以了解一些基本的用法, 比如之前用到过给一个log文件, 能够取里面的参数拼接update 的sql(文件里有相应 update 的值和 where 条件值)</li>
+<li>sed: 文本替换, 还有 tr, 注意 sed 的语法 Mac 和 一般 Linux 还有些不一样( 比如原文替换的时候 mac 里需要用参数 -i &ldquo;&quot;), 比如之前迁移 wordpress 到 jekyll 上的时候需要将一些链接整体替换成新的路径.</li>
+<li>cut: 按列取数据, awk 也可以</li>
+<li>sort: 这个就不多说了</li>
+<li>uniq: 一般和 sort 一块用, 只能去重相邻的行</li>
+<li>diff: 比较文件, 类似的还有 comm (输出3列, 分别是: 只在文件1, 只在文件2 和两个文件都在的行)</li>
+<li>paste: 两个文件按列拼接</li>
+<li>od: 以16/8/2进制查看文件</li>
+<li>wc: 统计文件字节数/字数/行数</li>
+<li>openssl sha1/aes-256-ecb/des/base64 等等: 比如当前我们开发用的 MVC 框架play framework用来加密 session 的算法, 可以方便算出 encoded 的 sessionid 进行 debug.</li>
+<li>md5/base64: 常见的 md5, base64 编码</li>
+<li>sips: scriptable image processing system 比如批量处理图片大小, 压缩等等</li>
+</ul>
+<h4 id="basic">Basic</h4>
+<p>搭建开发环境首先要安装的就是Xcode的Command Line Tools:<code>xcode-select --install</code>。安装之后就可以使用Mac下的c语言编译器clang、C++编译器clang++，调试器lldb了。</p>
+<p>接下来安装和配置一些常用工具，包括包管理工具, zsh, Vim, git的安装配置。</p>
+<ol>
+<li>brew</li>
+</ol>
+<p>包管理工具已经成为现在操作系统中不可缺少的一个重要工具了，它能大大减轻软件安装的负担，节约我们的时间。Linux中常用的有yum和apt-get工具，甚至Windows平台也 有Chocolatey这样优秀的工具，在OSX中，有两款大家常用的管理工具：Homebrew或者MacPorts。Homebrew被越多人推荐， 因为Homebrew不会破坏OSX 原生的环境，她安装的所有文件都是在用户独立空间内 的，这让你安装的所有软件对于该用户来说都是可以访问的，不需要使用sudo。</p>
+<ul>
+<li>Home Brew：Mac下最好用的包管理工具</li>
+<li>brew-cask：用来装GUI程序的包管理工具
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">brew tap caskroom/cask  <span class="c1"># 添加 Github 上的 caskroom/cask 库</span>
+brew install brew-cask  <span class="c1"># 安装 brew-cask</span>
+brew cask install google-chrome <span class="c1"># 安装 Google 浏览器</span>
+brew update <span class="o">&amp;&amp;</span> brew upgrade brew-cask <span class="o">&amp;&amp;</span> brew cleanup <span class="c1"># 更新</span>
+<span class="c1"># add this in .bashrc&amp;.zshrc to change the repo</span>
+<span class="nb">export</span> <span class="nv">HOMEBREW_BOTTLE_DOMAIN</span><span class="o">=</span>https://mirrors.ustc.edu.cn/homebrew-bottles
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>LaunchRocket： 图形化的Service管理工具，可以直接用brew-cask命令安装
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">brew tap jimbojsb/launchrocket
+brew cask install launchrocket
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<ol start="2">
+<li>
+<p>iTerm2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Oh-My-Zsh</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># install</span>
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - <span class="p">|</span> sh
+<span class="c1"># add plugin(zsh-nvm for example)</span>
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+<span class="c1"># load in your .zshrc</span>
+<span class="nv">plugins</span><span class="o">+=(</span>zsh-nvm<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>tmux</p>
+</li>
+</ol>
+<ul>
+<li>install</li>
+</ul>
+<ul>
+<li>
+<p>推荐这个配置<a href="https://github.com/gpakosz/.tmux.git">gpakosz/.tmux</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># install</span>
+<span class="nb">cd</span>
+rm -rf .tmux
+git clone https://github.com/gpakosz/.tmux.git
+ln -s .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Install Tmux Plugin Manageer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+</code></pre></td></tr></table>
+</div>
+</div><p>Put this at the bottom of .tmux.conf:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># List of plugins</span>
+<span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tpm&#39;</span>
+<span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tmux-sensible&#39;</span>
+
+<span class="c1"># Other examples:</span>
+<span class="c1"># set -g @plugin &#39;github_username/plugin_name&#39;</span>
+<span class="c1"># set -g @plugin &#39;git@github.com/user/plugin&#39;</span>
+<span class="c1"># set -g @plugin &#39;git@bitbucket.com/user/plugin&#39;</span>
+
+<span class="c1"># Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)</span>
+run <span class="s1">&#39;~/.tmux/plugins/tpm/tpm&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Reload TMUX environment so TPM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">tmux <span class="nb">source</span> ~/.tmux.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>Use
+<code>prefix + I</code>: Installs new plugins from GitHub or any other git repository Refreshes TMUX environment
+<code>prefix + U</code>: updates plugin(s)</p>
+</li>
+</ul>
+<ol start="5">
+<li>
+<p>vim</p>
+</li>
+<li>
+<p>emacs(spacemacs)</p>
+</li>
+<li>
+<p>tools</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>ag</p>
+</li>
+<li>
+<p>fzf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span> -f ~/.fzf.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.fzf.zsh
+</code></pre></td></tr></table>
+</div>
+</div><p><em>use</em>
+ctrl+t
+**<tab>
+processid: kill -9 <tab></p>
+</li>
+</ul>
+<h4 id="language">language</h4>
+<ol>
+<li>
+<p>C/C++</p>
+</li>
+<li>
+<p>java</p>
+</li>
+<li>
+<p>python</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WORKON_HOME</span><span class="o">=</span>~/.virtualenvs
+<span class="nb">source</span> /usr/local/bin/virtualenvwrapper.sh
+<span class="c1"># alias ipython to ipy</span>
+<span class="nb">alias</span> <span class="nv">ipy</span><span class="o">=</span><span class="s2">&#34;python -c &#39;import IPython; IPython.terminal.ipapp.launch_new_instance()&#39;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>
+<p>javascript</p>
+</li>
+<li>
+<p>nodejs</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><a href="https://github.com/creationix/nvm">nvm</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># install nvm</span>
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh <span class="p">|</span> bash
+<span class="c1"># If you&#39;re using zsh you can easily install nvm as a zsh plugin. Install zsh-nvm and run nvm upgrade to upgrade</span>
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+<span class="c1"># load in your .zshrc and restart zsh</span>
+<span class="nv">plugins</span><span class="o">+=(</span>zsh-nvm<span class="o">)</span>
+<span class="c1"># upgrade nvm</span>
+nvm upgrade
+<span class="c1"># nvm use node</span>
+npm install -g cnpm --registry<span class="o">=</span>https://registry.npm.taobao.org
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>hexo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cnpm install hexo-cli -g
+hexo init blog
+<span class="nb">cd</span> blog
+cnpm install
+hexo server
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="软件清单">软件清单</h3>
+<p>最后列一下其它一些有用的软件</p>
+<ul>
+<li>终端</li>
+</ul>
+<ul>
+<li>TotalTerminal</li>
+</ul>
+<ul>
+<li>编辑器</li>
+</ul>
+<ul>
+<li>sublime_text_2</li>
+<li>atom</li>
+</ul>
+<ul>
+<li>开发</li>
+</ul>
+<ul>
+<li>Valgrind 动态分析工具</li>
+<li>guard-livereload 本地网页自动重载</li>
+<li>IntelliJ IDEA Guide</li>
+<li>jekyll</li>
+<li>hexo</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux-tool-sed/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux工具之sed</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/python-metaclass/">
+            <span class="next-text nav-default">Python中的元类(metaclass)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

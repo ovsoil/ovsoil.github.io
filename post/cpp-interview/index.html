@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Cpp-Interview - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/cpp-interview/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Cpp-Interview" />
+<meta property="og:description" content="CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/cpp-interview/" />
+<meta property="article:published_time" content="2016-03-13T20:35:56+00:00" />
+<meta property="article:modified_time" content="2016-03-13T20:35:56+00:00" />
+<meta itemprop="name" content="Cpp-Interview">
+<meta itemprop="description" content="CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。">
+<meta itemprop="datePublished" content="2016-03-13T20:35:56&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-13T20:35:56&#43;00:00" />
+<meta itemprop="wordCount" content="11330">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cpp-Interview"/>
+<meta name="twitter:description" content="CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Cpp-Interview</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-03-13 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#编程思想">编程思想</a>
+          <ul>
+            <li><a href="#多态">多态</a></li>
+            <li><a href="#异常">异常</a></li>
+            <li><a href="#并发相关">并发相关</a></li>
+            <li><a href="#stl相关">STL相关</a></li>
+            <li><a href="#static">static</a></li>
+            <li><a href="#volatile">volatile</a></li>
+            <li><a href="#sizeof-运算符">sizeof 运算符</a></li>
+            <li><a href="#c内存堆栈">C++内存堆栈</a></li>
+            <li><a href="#类型转换">类型转换</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>CPP相关的一些理解，面试中多少也会提到。这里记下来，以后有了新的理解可以再更正补充。</p>
+<h2 id="编程思想">编程思想</h2>
+<p>对面向对象（对象导向）以及设计模式的理解
+面向对象有三大特性，封装、继承、多态。封装可以使得代码模块化，继承可以扩展已存在的代码，他们的目的都是为了代码重用。而多态的目的则是为了接口重用。
+面向对象编程的分析和设计实际上追求的就是两点：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。在面向对象系统的设计和开发中，有很多积累下来的原则，比如封装、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等，在设计模式中你总是能看到他们的影子。特别是组合(委托)和继承的差异带来系统在耦合性上的差别，在多个设计模式中都有提及。而一些设计模式的思想在我们做系统的设计和开发中则是经常要用到的，比如说Template、Strategy、Singleton、Factory模式的思想，还有很多的模式已经有非常成熟的模型，比如说Observer(包括Model-Control-View模式)是MFC和其它一些客户端框架中都有应用，Iterator模式更是在STL中的关键。对于很小的系统,确实没有必要专门去使用一些设计模式，但设计模式体现的是一种思想，指导我们的程序设计和开发。</p>
+<h3 id="多态">多态</h3>
+<p>多态（polymorphism）是面向对象编程的核心概念，简单地概括为“一个接口，多种方法”，程序在运行时才决定调用的函数。体现接口复用的思想，能够大大提高一些设计的可扩展与可维护性。</p>
+<p>更为广义的说法：多态性就是指同样的消息，不同的行为。在C++中，这里的消息就是指通过父类的指针或者引用调用同样的接口函数。这种技术可以让父类的指针有“多种形态”，这是一种泛型技术。所谓泛型技术，说白了就是试图使用不变的代码来实现可变的算法。比如：模板技术，RTTI技术，虚函数技术，要么是试图做到在编译时决议，要么试图做到运行时决议。</p>
+<p>虚函数（Virtual Function）是通过一张虚函数表（Virtual Table）来实现的。简称为V-Table。在这个表中，主是要一个类的虚函数的地址表，这张表解决了继承、覆盖的问题，保证其容真实反应实际的函数。一个定义了虚函数的类，就会有这样一张表，并在类的实例中保存该表的指针。C++的编译器应该是保证虚函数表的指针存在于对象实例中最前面的位置（这是为了保证取到虚函数表的有最高的性能——如果有多层继承或是多重继承的情况下）。</p>
+<p>C++通过2个特性来实现多态</p>
+<ul>
+<li>子类指针能够安全的转化为基类指针;</li>
+<li>虚函数, 允许子类重新定义(override)成员函数；</li>
+</ul>
+<h4 id="多态类中的虚函数表是-compile-time还是-run-time时建立的">多态类中的虚函数表是 Compile-Time，还是 Run-Time时建立的?</h4>
+<p>答案：虚拟函数表是在编译期就建立了，每个定义了虚函数的类都有一张虚表。而这个虚表的指针是在运行期，也就是类的实例构造（调用构造函数）时进行初始化的，这是实现多态的关键。</p>
+<h4 id="子类重写的虚函数是否可以不加virtual在子类的空间里有没有父类的这个函数或者父类的私有变量">子类重写的虚函数是否可以不加virtual？在子类的空间里，有没有父类的这个函数，或者父类的私有变量?</h4>
+<p>答案：只要基类在定义成员函数时已经声明了 virtual关键字，在派生类实现的时候覆盖该函数时，virtual关键字可加可不加，不影响多态的实现。子类的空间里有父类的所有变量(static除外)。</p>
+<h3 id="异常">异常</h3>
+<p>参考文章<a href="http://baiy.cn/doc/cpp/inside_exception.htm">C++异常机制的实现方式和开销分析</a></p>
+<h4 id="异常安全性">异常安全性</h4>
+<ul>
+<li>异常安全
+异常安全是分等级的，异常安全的等级一般有：</li>
+</ul>
+<ol>
+<li>函数提供基本保证(the basic guarantee)（不会发生内存泄漏并且程序内的每个对象都处在合法的状态，没有流错位，没有野指针，但是不是每个对象的精确状态是可以预期的，如可能发生异常后，指针处在空指针状态，或者某种默认状态，但是客户无法预知到底是哪一个），对于达成基本保证可以多使用智能指针来管理资源</li>
+<li>函数提供强力保证(the strong guarantee)，强力保证含义是，成功或者回滚保证，发生异常的函数对程序来说，没有任何改动，提供发生异常时候的回滚机制。调用提供强力保证的函数之后，仅有两种可能的程序状态：像预期一样成功执行了函数，或者函数回滚继续保持函数被调用时当时的状态。与之相比，如果调用只提供基本保证的函数引发了异常，程序可能存在于任何合法的状态。</li>
+</ol>
+<p>函数提供强力保证的有效解决办法是copy-and-swap:
+先做出一个你要改变的对象的copy，然后在这个copy上做出全部所需的改变。如果改变过程中的某些操作抛出了异常，最初的对象保持不变。在所有的改变完全成功之后，将被改变的对象和最初的对象在一个不会抛出异常的操作中进行swap。</p>
+<ol start="3">
+<li>函数有不抛出保证(the nothrow guarantee)，对于所有对内建类型（例如，ints，指针，等等）的操作都是不抛出（nothrow）的（也就是说，提供不抛出保证）。这是异常安全代码中必不可少的基础构件。</li>
+</ol>
+<ul>
+<li>注意事项：
+异常安全最关键的是：swap ctor dctor 不发生异常保证，只有成功或者终止程序两种状态
+一个函数的异常安全等级，是取决于它所调用的函数中最低异常安全等级的函数。
+C++11新增了noexcept关键字，在void func() noexcept{}
+noexcept保证了这个函数不会抛出异常，只有终止程序和成功执行两种状态。
+noexcept可以接受一个常量表达式，noexcept(constexpr。。。)当常量表达式为转换为true说明该函数保证不抛出异常。</li>
+</ul>
+<p>从异常安全的观点看，不抛出的函数（nothrow functions）是极好的，但是在 C++ 的 C 部分之外部不调用可能抛出异常的函数简直就是寸步难行。使用动态分配内存的任何东西（例如，所有的 STL 容器）如果不能找到足够的内存来满足一个请求，在典型情况下，它就会抛出一个 bad_alloc 异常。只要你能做到就提供不抛出保证，但是对于大多数函数，选择是在基本的保证和强力的保证之间的。</p>
+<p>但是，不是所有函数都能做出异常保证的，考虑这样一个函数，函数内部的函数内是一个对数据库的操作，一旦异常发生，难以撤销对数据库的更改。如果想对这样的函数做到异常的strong guarantee保证，就是非常困难度事情。
+所以对于只对局部变量改变的函数保证异常安起会相对比较容易。如果函数的操作中牵扯到全局变量等等，就变得困难的多。</p>
+<p>解决异常安全的好办法：</p>
+<ol>
+<li>多使用RAII，使用智能指针来管理内存。由于unwind机制的保证，当异常发生时，函数栈内已构造的局部对象的析构函数会被一一调用，在析构函数内释放资源，也就杜绝了内存泄漏的问题。</li>
+<li>做好程序设计。特别是异常发生时的回滚机制的正确使用，copy-and-swap是有效的方法。</li>
+<li>注意需要异常保证的函数内部的调用函数，异常安全等级是以有最低等级异常保证的函数确定的。
+一个系统即使只有一个函数不是异常安全的，那么系统作为一个整体就不是异常安全的，因为调用那个函数可能发生泄漏资源和恶化数据结构。</li>
+<li>对于一些需要保证性能的程序，在提供基本的异常安全时，要注意，栈解退机制只是调用析构函数，对于内置类型的操作不会被回滚，所以。像起累加器作用的一些内置类型变量，应该注意在函数成功执行后再进行累加。避免数据结构恶化。重新分配资源给原本已经持有资源的变量，应该先清空释放变量的资源，指针再设置为nullptr，防止资源重新分配过程中抛出异常，导致指针变为野指针的问题。</li>
+<li>流对象，资源对象，new对象，不应该直接作为参数，一旦抛出异常，就可能会导致严重的问题，函数也许会被错误的执行，资源也许会泄漏。对于函数参数和函数内使用的全局变量，应该保证在进入函数内部是是正常状态。</li>
+<li>减少全局变量的使用，对包含全局变量的函数做异常安全是比较困难的事情，栈解退也只对局部变量起效果。</li>
+<li>如果不知道如何处理异常，就不要捕获异常，直接终止比吞掉异常不处理要好</li>
+<li>保证 构造 析构 swap不会失败</li>
+</ol>
+<p>这里有个注意事项：
+在构造函数中，如果抛出异常，是不会调用当前正在构造的类的析构函数的，因为当前正在构造的类没有构造完成，只会析构已经构造完成成员和父类，So，极易导致内存泄漏，这里要谨慎处理，使用RAII，智能指针，noexcept保证不会抛出异常和恶化数据。</p>
+<ul>
+<li>构造与析构函数的异常</li>
+</ul>
+<p>构造函数可以抛出异常，但要谨防引发的问题。
+构造函数抛出异常常会引起对象的部分构造，因为不能自动调用析构函数，在异常发生之前分配的资源将得不到及时的清理，进而造成内存泄漏问题。
+处理的方法一般有：
+1. 手动处理
+2. 使用智能指针
+3. 把可能抛出异常的初始化代码转移到单独的init函数中，并定义release函数。
+通过<code>if(!init()) release();</code>来保证资源释放。</p>
+<p>析构函数不能抛出异常，这是C++标准中指明的。</p>
+<p>C++异常处理模型是为C++语言量身设计的，更进一步的说，它实际上也是为C++语言中面向对象而服务的。C++异常处理模型最大的特点和优势就是对C++中的面向对象提供了最强大的无缝支持。那么如果对象在运行期间出现了异常，C++异常处理模型有责任清除那些由于出现异常所导致的已经失效了的对象(也即对象超出了它原来的作用域)，并释放对象原来所分配的资源， 这就是调用这些对象的析构函数来完成释放资源的任务，所以从这个意义上说，析构函数已经变成了异常处理的一部分。
+总结来说，有两点：
+1）如果析构函数抛出异常，则异常点之后的程序不会执行，如果析构函数在异常点之后执行了某些必要的动作比如释放某些资源，则这些动作不会执行，会造成诸如资源泄漏的问题。</p>
+<p>2）通常异常发生时，c++的机制会调用已经构造对象的析构函数来释放资源，此时若析构函数本身也抛出异常，则前一个异常尚未处理，又有新的异常，会造成程序崩溃的问题。</p>
+<p>当无法保证在析构函数中不发生异常时，该怎么办?</p>
+<p>把异常完全封装在析构函数内部，决不让异常抛出函数之外。</p>
+<h3 id="并发相关">并发相关</h3>
+<ul>
+<li>进程与线程
+几点重要概念：</li>
+</ul>
+<ol>
+<li>一个进程中可以同时包含多个线程。
+　</li>
+<li>我们通常认为线程是操作系统可识别的最小并发执行和调度单位（不要跟俺说还有 Green Thread 或者 Fiber，OS Kernel 不认识也不参与这些物件的调度）。
+　</li>
+<li>同一进程中的多个线程共享代码段（代码和常量）、数据段（静态和全局变量）和扩展段（堆存储），但是每个线程有自己的栈段。栈段又叫运行时栈，用来存放所有局部变量和临时变量（参数、返回值、临时构造的变量等）。这一条对下文中的某些概念来说是非常重要的 。但是请注意，这里提到的各个“段”都是逻辑上的说法，在物理上某些硬件架构或者操作系统可能不使用段式存储。不过没关系，编译器会保证这些逻辑概念和假设的前提条件对每个 C/C++ 程序员来说始终是成立的。
+　</li>
+<li>由于共享了除栈以外的所有内存地址段，线程不可以有自己的“静态”或“全局”变量，为了弥补这一缺憾，操作系统通常会提供一种称为 TLS（Thread Local Storage，即：“线程本地存储”）的机制。通过该机制可以实现类似的功能。TLS 通常是线程控制块（TCB）中的某个指针所指向的一个指针数组，数组中的每个元素称为一个槽（Slot），每个槽中的指针由使用者定义，可以指向任意位置（但通常是指向堆存储中的某个偏移）。</li>
+</ol>
+<ul>
+<li>多个线程可以读一个变量，只有一个线程可以对这个变量进行写，是否需要加锁？
+必须要</li>
+</ul>
+<p>如果是多线程+多核的情况，你的第一个线程在CPU0上修改了这个变量，第二个线程不会马上在CPU1上看到你的改动。</p>
+<p>因为你操作的变量都在缓存(cache)中，CPU0/1可能会同时保存一份变量缓存，也就是说你的变量在缓存里是两份，只有一个CPU（核）更新的话是不一定触发另外一个CPU立即更新的。</p>
+<p>参考知乎问题:<a href="http://www.zhihu.com/question/26848513">一个简单的ia32的CPU指令重排序与cache问题，我的推算为什么得不出示例的结果？ - CPU 指令集</a></p>
+<ul>
+<li>死锁</li>
+</ul>
+<h3 id="stl相关">STL相关</h3>
+<h4 id="stl容器元素必须满足以下三个基本要求">STL容器元素必须满足以下三个基本要求：</h4>
+<ol>
+<li>必须可透过copy构造函数进行复制。
+副本与原本必须相等，亦即所有相等测试的结果，原本与副本的行为都必须一致。所有容器都会在内部生成一个元素副本，并返回该暂时性副本，因此copy构造函数会被频繁地调用。 所以copy构造函数应该尽可能的优化。</li>
+<li>必须可以透过assignment操作符完成赋值动作。
+容器与算法都使用assignment操作符，才能以新元素改写旧元素。</li>
+<li>必须可以透过析构函数完成销毁动作。
+当容器元素被移除，它在容器内的副本将被销毁，因此析构函数绝不能被设计为private。此外，依c++惯例，析构函数决不能抛出异常(throw exceptions)，否则没戏唱了。</li>
+</ol>
+<p>上述这三个条件对任何class都是隐式成立的。下面几个条件，也应当获得满足：</p>
+<ol>
+<li>对序列式容器而言，元素的default构造函数必须可用。
+我们可以在没有给予任何初值的情况下，创建一个非空容器，或增加窗口的元素个数。这些元素都将以default构造函数完成。</li>
+<li>对于某些动作，必须定义operator==以执行相等测试。如果你有搜寻需求，这一点特别重要。</li>
+<li>在关联式容器中，元素必须定义出排序准则。缺省情况下是operator&lt;，透过仿函数less&lt;&gt;被调用。</li>
+</ol>
+<h4 id="stl的线程安全性">STL的线程安全性</h4>
+<p>参考《Effective STL》第12条：切勿对 STL容器的线程安全性有不切实际的依赖。</p>
+<p>标准C++的世界相当狭小和古旧。在这个纯净的世界中，所有的可执行程序都是静态链接的。不存在内存映像文件或共享内存。没有窗口系统，没有网络，没有数据库，也没有其他进程。考虑到这一点，当你得知 C++标准对线程只字未提时，你不应该感到惊讶。于是，你对STL的线程安全性的第一个期望应该是，它会因不同实现而异。</p>
+<p>当然，多线程程序是很普遍的，所以多数 STL提供商会尽量使自己的实现可在多线程环境下工作。然而，即使他们在这一方面做得不错，多数负担仍然在你的肩膀上。理解为什么会这样是很重要的。STL提供商对解决多线程问题只能做很有限的工作，你需要知道这一点。</p>
+<p>在STL容器中支持多线程的标准（这是多数提供商们所希望的）已经为 SGI所确定，并在它们的 STL Web站点上发布。概括来说，它指出，对一个STL实现你最多只能期望：</p>
+<ul>
+<li>
+<p>多个线程读是安全的。多个线程可以同时读同一个容器的内容，并且保证是正确的。自然地，在读的过程中，不能对容器有任何写入操作。</p>
+</li>
+<li>
+<p>多个线程对不同的容器做写入操作是安全的。多个线程可以同时对不同的容器做写入操作。</p>
+</li>
+</ul>
+<p>就这些。我必须指明，这是你所能期望的，而不是你所能依赖的。有些实现提供了这些保证，有些则没有。</p>
+<p>知乎答案参考<a href="https://www.zhihu.com/question/29987589/answer/46509882"></a>：</p>
+<p>STL 语义上不提供任何强度的线程安全保证。使用STL做多线程编程是基于你对实现的了解的。因此你这个问题不可能有一个简单的回答，假如你读的时候（锁定的情况下）获取了引用，而随后的写触发了重新分配，那照样会有问题。读还有一致性的问题，而在vector上你大体上只能（通过锁）获得按照索引原子读取一个值这样的能力，索引、多次读之间都可能不一致。</p>
+<p>并发编程的核心问题从来就不是并发容器或者同步原语，而是并发模式，你要处理什么问题？你需要什么样的语义？这才是核心问题。</p>
+<h4 id="stl的异常安全性">STL的异常安全性</h4>
+<p>大多数的STL实现都使用了异常，STL是异常安全的，只不过各个容器操作函数提供不同等级的异常安全保证。</p>
+<h4 id="stl的问题">STL的问题</h4>
+<ul>
+<li>参考知乎问题：<a href="http://www.zhihu.com/question/20201972">为何某些公司不允许使用 C++ STL</a></li>
+</ul>
+<p>最初开始禁用 C++ STL，更多地是早期项目编码实践中留下的惯例，被后来的程序员继承下来。老项目中这种选择尤其地多。不过如果有人将其上升到公司行为在不同项目中全面禁用 STL，则没有必要，而且我倾向于做这种决定的人并不理解 C++ 编译系统。</p>
+<p>一般来说，项目中禁用 C++ 多见于两种具体场景：或者项目的产出产品为函数库，或者需要引用第三方函数库。具体地来说，有三个主要原因：</p>
+<ol>
+<li>
+<p>第一个原因是二进制边界混乱。对需要在项目中使用第三方函数库的程序员来说，二进制边界是个头痛的问题。C++ 在这一方面本身就处理得不算好，加上模板后起到的是雪上加霜的后果。没有经验的程序员会贪图方便而在公开头文件中使用 C++ 模板，如果这时调用方的编译器选项设置或 STL 版本和编译方不同，那么就可能出现同样的头文件在不同的环境下二进制布局不符的情况。——顺便说一句，在过去十年里，各个主流编译器附带的 STL 版本变化节奏不慢，所以这种由于编译环境不同而导致的 bug 并不算罕见，但缺乏汇编知识的用户难以排查。</p>
+</li>
+<li>
+<p>第二个原因是不愿使用异常。如今除了 Android 上的 STLPort 关闭异常，大部分主流 C++ STL 实现里都无法脱离异常使用 STL。异常带来的问题主要是两个：性能下降，代码膨胀。这几年 C++ 编译器在性能方面的改进很多，good path 的性能问题已经基本没有，但代码膨胀问题却没有太多改善，甚至这个性能问题的一部分解决方案就是以代码膨胀为代价。我写过一篇短文比对过 Android 上 gcc 4.6 在有无异常的情况下的汇编代码逻辑，可以看到，启动异常时生成的汇编代码量多出了相当一部分（我的例子中是 50%），用于处理各种隐含代码中的异常问题。这一条在手机系统中有时候会引起意想不到的麻烦，比如软件升级后导致 app 在低存储容量的手机中安装失败。顺便说一句，这个问题并不是 gcc 独有，clang 上生成的代码是一样的。参考：http://dummydigit.net/posts/2014-01-01-23-30-1.html。</p>
+</li>
+<li>
+<p>最后一个原因是 C 兼容。严格地说，STL 在这个问题上算是躺枪，这个坑在很多具体的场景中也是因为异常而引入，但这个问题的麻烦程度比前两个问题更高。比如 gcc 在编译纯 C 代码时默认关闭 -fexceptions 选项，因此这样编译出来的代码中没有异常处理相关的栈展开。如果某个 C++ 项目引用了一个第三方 C 项目，它很难确保那个 C 项目给出的二进制代码中正确进行了异常处理并保证代码服从异常安全操作。这种场景下混用 C/C++ ，就可能在抛出异常时莫名其妙地崩溃或者出现 C 代码区段中的资源泄漏，特别是 expat 那种大量利用回调的代码结构。要规避这种风险并非不可能，但需要 C 的架构部分做修改，比如使用 DOM 那种树形结构，这种做法对历史项目而言又很难办到。换言之，如果一个项目出于种种原因需要保持 C 兼容，而 STL 就属于其中一个不可控的变数，与其相信程序员不犯错，不如直接禁用更可控一些。参考：Code Gen Options</p>
+</li>
+</ol>
+<p>要解决二进制相关的问题很简单：整个项目的所有相关代码在同一个代码基上编译，强制打开编译选项添加异常代码，并去除一切二进制依赖。但对很多小公司来说，引入这样的系统对配置管理的要求较高。如果一部分依赖关系来自自己并不了解的第三方代码，轻易修改编译选项可能带来的风险与第三方代码库的规模成正比。退一步说，即便团队里真的有强大的配置管理工程师能够搞定一切，他们也不会有能力解决代码膨胀问题，除非他们有权决定换一个编译器。相比之下，前面朋友所说的所谓性能或者编译出错时糟糕的可读性，在我看来反倒是次要因素，而且这些缺陷都正在新的编译器中逐步得到解决或改善，比如 clang。</p>
+<p>说几个STL的缺点吧，虽然都是在比较极端的情况下出现，但是对于一些大项目还是会遇到的</p>
+<ol>
+<li>
+<p>代码膨胀问题
+每一个实例化过的模板类，都会膨胀出一份独立的代码，比如
+std::vector<a href="std::string">std::string</a>, std::vector<int>，编译后会产生两份代码，在VC2008下，每份代码大约是3-4kb，这是因为vector比较简单代码少，如果是map则会产生30-50kb的代码，因为map里有个复杂的红黑树。对于数据处理类的代码里一般会定义很多种不同的结构体，不同的结构体放到不同的容器里，就会实例化出很多个类的代码，我见过一个项目里，这样的vector就有数百个。</p>
+</li>
+<li>
+<p>内存使用效率问题 （以vc++2008为例）
+stl在内存使用效率上是比较低效的，比如std::string，它的sizeof大概是28，因为它有一个内置的16字节数组，用来做小字符串优化的，就是说低于16字节的字符串都会至少占用28字节内存，如果刚好17字节字符串，则会占用28字节+额外分配的字符串内存，额外分配的内存是一个堆块，又有很多浪费，相比用一个char *存储字符串大约多占用了一倍内存。
+还有map&lt;&gt;，每一个map的node都是一块独立分配的内存，如果是 map&lt;int, int&gt;呢，那就很悲剧了，为了存一个int要消耗几十个字节，很浪费的。
+如果元素数量有百万级，那么内存占用就很可观了，这种情况下建议自己实现allocator，做内存池。</p>
+</li>
+<li>
+<p>deep copy问题
+让两个容器的实例做赋值操作，看起来就一条语句，实际上容器里的每个元素都执行了一次赋值操作。如果容器里有百万级的数据，那么一个等号就产生了几百万次的构造和析构。
+传递参数的时候一定要用 const 引用，赋值可以用 swap代替。</p>
+</li>
+<li>
+<p>隐式类型转换
+比如 有个函数<code>void doSomething(const std::string &amp;str);</code>
+调用的时候
+<code>doSomething(&quot;hello&quot;);</code>
+能编译执行，但是会产生一个临时的匿名的std::string实例，把&quot;hello&quot;复制一遍，然后在调用完成后析构掉。如果这个发生在循环体内部有可能影响性能。(C++11有改善？)</p>
+</li>
+</ol>
+<p>以上这些问题，在小程序里或者数据规模不大的时候，比如容器内元素只有几千这个规模，都不是什么大问题，那时开发效率才是重点，但是一旦有大数据stl容器会成为性能瓶颈的。</p>
+<h3 id="static">static</h3>
+<h4 id="static-用法">static 用法</h4>
+<ul>
+<li>在函数体内，一个被声明为静态的变量在这一函数被调用过程中维持上一次的值不变，即只初始化一次（该变量存放在静态变量区，而不是栈区）。</li>
+<li>在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所用函数访问，但不能被模块外访问。（注：模块可以理解为文件）
+在模块内，一个被声明为静态的函数只可被这一模块内的其它函数调用。那就是，这个函数被限制在声明它的模块的本地范围内使用。
+《C和指针》中说static有两层含义：指明存储属性；改变链接属性。（1）全局变量（包括函数）加上static关键字后，链接属性变为internal，也就是将他们限定在了本作用域内；（2）局部变量加上static关键字后，存储属性变为静态存储，不存储在栈区，下一次将保持上一次的尾值。除此之外，C++中还有新用法：</li>
+</ul>
+<p>在类中的static成员变量意味着它为该类的所有实例所共享，也就是说当某个类的实例修改了该静态成员变量，其修改值为该类的其它所有实例所见；
+在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量(当然，可以通过传递一个对象来访问其成员)。</p>
+<h4 id="static数据成员和static成员函数">static数据成员和static成员函数</h4>
+<p>答：（1）static数据成员：
+static数据成员独立于该类的任意对象而存在；每个static数据成员是与类关联的对象，并不与该类的对象相关联。Static数据成员（const static数据成员除外）必须在类定义体的外部定义。不像普通数据成员，static成员不是通过类的构造函数进行初始化，而是应该在定义时进行初始化。
+（2）static成员函数：
+Static成员函数没有this形参，它可以直接访问所属类的static成员，不能直接使用非static成员。因为static成员不是任何对象的组成部分，所以static成员不能被声明为const。同时，static成员函数也不能被声明为虚函数。</p>
+<h4 id="类使用static成员的优点如何访问">类使用static成员的优点，如何访问？</h4>
+<p>答：优点：
+（1）static 成员的名字是在类的作用域中，因此可以避免与其他类的成员或全局对象名字冲突；
+（2）可以实施封装。static 成员可以是私有成员，而全局对象不可以；
+（3） static 成员是与特定类关联的，可清晰地显示程序员的意图。
+static 数据成员必须在类定义体的外部定义(正好一次)，static 关键字只能用于类定义体内部的声明中，定义不能标示为static. 不像普通数据成员，static成员不是通过类构造函数进行初始化，也不能在类的声明中初始化，而是应该在定义时进行初始化.保证对象正好定义一次的最好办法，就是将static 数据成员的定义放在包含类非内联成员函数定义的文件中。
+静态数据成员初始化的格式为：
+＜数据类型＞＜类名＞::＜静态数据成员名＞=＜值＞
+类的静态数据成员有两种访问形式：
+＜类对象名＞.＜静态数据成员名＞ 或 ＜类类型名＞::＜静态数据成员名＞</p>
+<h3 id="volatile">volatile</h3>
+<p>volatile本意是“易变“，提醒编译器它后面所定义的变量随时都有可能改变，不要对访问该变量的代码就不再进行优化。volatile 指出变量是随时可能发生变化的，每次使用的时候必须从它所在的内存地址中读取，即使它前面的指令刚刚从该处读取过数据，而且读取的数据立刻被保存。而优化做法是，由于编译器发现两次读数据之间程序没有对变量进行过操作，它会自动使用上次读的数据。这样一来，如果是一个寄存器变量或者一个端口数据就会出错（它们的值由程序直接控制之外的过程控制），所以说volatile可以保证对特殊地址的稳定访问。volatile 关键字不能保证全局变量多线程安全。
+一般说来，volatile用在如下的几个地方：</p>
+<ul>
+<li>中断服务程序中修改的供其它程序检测的变量需要加volatile；</li>
+<li>多任务环境下各任务间共享的标志应该加volatile；</li>
+<li>存储器映射的硬件寄存器通常也要加volatile，因为每次对它的读写都可能有不同意义；
+另外，以上这几种情况经常还要同时考虑数据的完整性（相互关联的几个标志读了一半被打断了重写），在1中可以通过关中断来实现，2中可以禁止任务调度，3中则只能依靠硬件的良好设计了。</li>
+</ul>
+<h3 id="sizeof-运算符">sizeof 运算符</h3>
+<p>sizeof 运算符返回一条表达式或者一个类型名字所占的字节数，sizeof 运算符满足右结合律，所得的值是一个 size_t 类型的常量表达式。sizeof 运算符的运算对象有两种形式：</p>
+<pre><code>sizeof (type)
+sizeof expr
+</code></pre>
+<p>第二种形式中，返回的是表达式结果类型的大小（注意，sizeof 并不实际计算其运算对象的值）。</p>
+<pre><code>Sales_data data, *p;        
+sizeof(Sales_data); // 存储 Sales_data 类型的对象所占空间的大小
+sizeof data;        // data 的类型的大小，即 Sales_data
+sizeof p;           // 指针所占空间的大小
+sizeof *p;          // p所指类型的空间大小，即sizeof(Sales_data)
+sizeof data.revenue;// Sales_data 的 revenue 成员对应类型的大小
+sizeof Sales_data::revenue;// 另一种获取 revenue 大小的方式
+</code></pre>
+<p>在 sizeof 的运算对象中解引用一个无效指针仍然是一种安全的行为，因为指针实际上并没有被真正使用，sizeof 并不需要真的解引用指针也能知道它所指对象的类型。这是一件可以在程序运行前（编译时）完成的事情，所以，sizeof(*p)直接就被具体数字给取代了，在运行时也就不会有了解引用这个表达式。</p>
+<h3 id="c内存堆栈">C++内存堆栈</h3>
+<p>堆区，栈区的区别：</p>
+<ul>
+<li>管理方式：对于栈来讲，是由编译器自动管理；对于堆来说，分配释放工作由程序员控制，容易造成内存泄露。</li>
+<li>空间大小：一般来讲在32位系统下，堆内存可以达到4G的空间（除去操作系统占用的，应该再3G左右？），从这个角度来看堆内存几乎是没有什么限制的。但是对于栈来讲，一般都是有一定的空间大小的。</li>
+<li>碎片问题：对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。对于栈来讲，则不会存在这个问题。</li>
+<li>生长方向：对于堆来讲，向着内存地址增加的方向增长；对于栈来讲，向着内存地址减小的方向增长。</li>
+<li>分配方式：堆都是动态分配的，没有静态分配的堆。栈有2种分配方式：静态分配和动态分配。</li>
+<li>分配效率：计算机在底层对栈提供支持，分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。堆则是C/C++函数库提供的，它的机制是很复杂的，效率比栈要低得多。</li>
+</ul>
+<h3 id="类型转换">类型转换</h3>
+<ul>
+<li>
+<p>reinterpret_cast：一个指针转化为其他类型的指针时，不做类型检测，操作结果是一个指针指向另一个指针的值的二进制拷贝；</p>
+<p>class A{};
+class B{};
+A* a = new A;
+B* b = reinterpret_cast(a);</p>
+</li>
+<li>
+<p>static_cast：允许执行隐式转换和相反的转换操作，父类转换为子类是强制转换，而子类转换为父类就是隐式转换；</p>
+<p>class Base {};
+class Derive:public Base{};
+Base* a = new Base;
+Derive *b = static_cast(a);</p>
+</li>
+<li>
+<p>dynamic_cast：用于对象的指针和引用，当用于多态类型转换时，允许隐式转换及相反的过程中。与static_cast的不同之处在于，在相反的转换过程中，dynamic_cast会检测操作的有效性，如果返回的不是被请求的有效完整对象，则返回null，反之返回这个有效的对象，如果是引用返回无效时则会抛出bad_cast异常；</p>
+</li>
+<li>
+<p>const_cast：这个转换操作会操纵传递对象的const属性，或者设置或者移除该属性。</p>
+<p>class C{};
+const C* a = new C;
+C *b = const_cast(a);</p>
+</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-03-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/memcached-connection/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">memcached的网络框架</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/mem-page/">
+            <span class="next-text nav-default">内存页大小为何是4K</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

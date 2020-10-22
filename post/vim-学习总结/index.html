@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>VIM-学习过程 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="在网上看到一位前辈提到vim的学习过程
+ 学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等）， 学习 operator &#43; motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改) 学习基础的 Ex 命令，:s 什麼的 学习 text-objects，知道 operator &#43; text-objects 的方法，可进行手术般精准的定位和修改， 习惯 operator &#43; motion 后，多注意使用可重复的命令组合 练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令 开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户） " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/vim-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="VIM-学习过程" />
+<meta property="og:description" content="在网上看到一位前辈提到vim的学习过程
+
+学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等），
+学习 operator &#43; motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改)
+学习基础的 Ex 命令，:s 什麼的
+学习 text-objects，知道 operator &#43; text-objects 的方法，可进行手术般精准的定位和修改，
+习惯 operator &#43; motion 后，多注意使用可重复的命令组合
+练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令
+开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户）
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/vim-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" />
+<meta property="article:published_time" content="2015-01-26T00:00:00+00:00" />
+
+<meta itemprop="name" content="VIM-学习过程">
+<meta itemprop="description" content="在网上看到一位前辈提到vim的学习过程
+
+学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等），
+学习 operator &#43; motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改)
+学习基础的 Ex 命令，:s 什麼的
+学习 text-objects，知道 operator &#43; text-objects 的方法，可进行手术般精准的定位和修改，
+习惯 operator &#43; motion 后，多注意使用可重复的命令组合
+练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令
+开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户）
+">
+
+<meta itemprop="wordCount" content="870">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VIM-学习过程"/>
+<meta name="twitter:description" content="在网上看到一位前辈提到vim的学习过程
+
+学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等），
+学习 operator &#43; motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改)
+学习基础的 Ex 命令，:s 什麼的
+学习 text-objects，知道 operator &#43; text-objects 的方法，可进行手术般精准的定位和修改，
+习惯 operator &#43; motion 后，多注意使用可重复的命令组合
+练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令
+开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户）
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">VIM-学习过程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-01-26 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#vim-surround">VIM-surround</a></li>
+          </ul>
+        </li>
+        <li><a href="#normal-mode">Normal mode</a></li>
+        <li><a href="#visual-mode">Visual mode</a></li>
+        <li><a href="#insert-mode">Insert mode</a>
+          <ul>
+            <li><a href="#vim-complete">VIM-Complete</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>在网上看到一位前辈提到vim的学习过程</p>
+<ol>
+<li>学习什麼是 operator（命令d,y,c 等），什麼是 motion（所有能移动光标的命令，h j k l w e f t / ? 等等），
+学习 operator + motion 的方式，如 ct. （将当前光标到 . (点) 之间的内容删除并进入 insert mode 准备修改)</li>
+<li>学习基础的 Ex 命令，:s 什麼的</li>
+<li>学习 text-objects，知道 operator + text-objects 的方法，可进行手术般精准的定位和修改，</li>
+<li>习惯 operator + motion 后，多注意使用可重复的命令组合</li>
+<li>练习使用书签定位，q 记录宏，使用多个 register，使用 args，使用 buffer 使用其他的 Ex 命令</li>
+<li>开始 map 经常反覆使用的命令，开始写 vimscript，开始知道自己需要什麼样的插件,比如： pathogen 或 vundle，tagbar, CtrlP, Gundo, UltiSnips，surround，Syntastic，Conque，ack.vim，vim-commentary，fugitive（如果是 git 用户）</li>
+</ol>
+<p>举一些在这个情况下有用的例子：</p>
+<p>ci&rdquo; （由 change operator 和 text-object i&rdquo; 组成）</p>
+<p>这个命令会找到当前光标所在行的下一个 &quot; 括起来的字符串，清除引号裏面的内容，并进入 insert mode 以方便修改
+用起来比解释起来简单，你可用 const char* hello = &ldquo;Hello world.&quot;; 类似这样的代码来测试</p>
+<p>yaB （由 yank operator 和 text-object aB 组成）</p>
+<p>这个命令会将当前光标所在的代码块（{} 括起来的内容，包括花括号本身）复制到默认 register，
+方便在其他地方用 p 贴出来（当然，写代码不鼓励 copy and paste），你可用用任何一个 {} 来测试，然后找另外一个地方 p</p>
+<p>gUiw （由 make uppercase operator 和 text-object iw 组成）</p>
+<p>这个命令会将当前光标所在的 word 全部变成大写
+如将 max_size 变成 MAX_SIZE
+这个时候，开始知道为什麼 vim 精确高效，而且并不是因为全键盘无需鼠标</p>
+<p>##一些插件</p>
+<h3 id="vim-surround">VIM-surround</h3>
+<h2 id="normal-mode">Normal mode</h2>
+<p>ds  - delete a surrounding
+cs  - change a surrounding
+ys  - add a surrounding
+yS  - add a surrounding and place the surrounded text on a new line + indent it
+yss - add a surrounding to the whole line
+ySs - add a surrounding to the whole line, place it on a new line + indent it
+ySS - same as ySs</p>
+<h2 id="visual-mode">Visual mode</h2>
+<p>s   - in visual mode, add a surrounding
+S   - in visual mode, add a surrounding but place text on new line + indent it</p>
+<h2 id="insert-mode">Insert mode</h2>
+<p><CTRL-s> - in insert mode, add a surrounding
+<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+<CTRL-g>s - same as <CTRL-s>
+<CTRL-g>S - same as <CTRL-s><CTRL-s>
+下载地址：
+surround.vim – Delete/change/add parentheses/quotes/XML-tags/much more with ease : vim online</p>
+<h3 id="vim-complete">VIM-Complete</h3>
+<h4 id="ycm">YCM</h4>
+<p>Compiling YCM with semantic support for C-family languages:</p>
+<pre><code>cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer
+</code></pre>
+<p>Compiling YCM without semantic support for C-family languages:</p>
+<pre><code>cd ~/.vim/bundle/YouCompleteMe
+./install.sh
+</code></pre>
+<p>MacVim启动出错：</p>
+<pre><code>Fatal Python error: PyThreadState_Get: no current thread
+Vim: Caught deadly signal ABRT
+Vim: Finished.
+</code></pre>
+<p>通过<code>brew unlink python</code>可以解决。</p>
+<!-- create time: 2015-01-26 21:47:41  -->
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/ogre-source-1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ogre 源码学习之一(SampleBrower)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/lvm/">
+            <span class="next-text nav-default">逻辑卷管理器(LVM)学习</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

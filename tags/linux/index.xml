@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Ovsoil&#39;s Blog - Learn，Write，Share</title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in linux on Ovsoil&#39;s Blog - Learn，Write，Share</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 19 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ubuntu14.04安装后配置</title>
+      <link>http://localhost:1313/post/ubuntu/</link>
+      <pubDate>Sat, 19 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ubuntu/</guid>
+      <description>&lt;p&gt;之前一直使用Archlinux，但安装在Mac OSX的parallels desktop虚拟机中，这种滚动更新的方式经常会带来一些问题，比如Xorg的版本升级太快导致parallels tools不支持。所以准备换一个长期支持版的ubuntu，这个parallels官方的支持应该会及时一些。这里记录一下ubuntu 14.04安装之后的配置。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

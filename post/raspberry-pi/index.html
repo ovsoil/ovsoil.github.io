@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Raspberry Pi - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="Raspberry Pi 有如下接口：
+ 电源输入：Micro usb接口的5V 1A 的输入电流。 2个USB接口：可以接鼠标和键盘等。 HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。 以太网接口：100M的以太网接口，插网线上网用的。 模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。 SD卡插口：插入SD卡，作存储用。 " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/raspberry-pi/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Raspberry Pi" />
+<meta property="og:description" content="
+Raspberry Pi 有如下接口：
+
+电源输入：Micro usb接口的5V 1A 的输入电流。
+2个USB接口：可以接鼠标和键盘等。
+HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。
+以太网接口：100M的以太网接口，插网线上网用的。
+模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。
+SD卡插口：插入SD卡，作存储用。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/raspberry-pi/" />
+<meta property="article:published_time" content="2015-11-26T15:39:11+00:00" />
+<meta property="article:modified_time" content="2015-11-26T15:39:11+00:00" />
+<meta itemprop="name" content="Raspberry Pi">
+<meta itemprop="description" content="
+Raspberry Pi 有如下接口：
+
+电源输入：Micro usb接口的5V 1A 的输入电流。
+2个USB接口：可以接鼠标和键盘等。
+HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。
+以太网接口：100M的以太网接口，插网线上网用的。
+模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。
+SD卡插口：插入SD卡，作存储用。
+">
+<meta itemprop="datePublished" content="2015-11-26T15:39:11&#43;00:00" />
+<meta itemprop="dateModified" content="2015-11-26T15:39:11&#43;00:00" />
+<meta itemprop="wordCount" content="1568">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Raspberry Pi"/>
+<meta name="twitter:description" content="
+Raspberry Pi 有如下接口：
+
+电源输入：Micro usb接口的5V 1A 的输入电流。
+2个USB接口：可以接鼠标和键盘等。
+HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。
+以太网接口：100M的以太网接口，插网线上网用的。
+模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。
+SD卡插口：插入SD卡，作存储用。
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Raspberry Pi</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-11-26 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#连接树莓派">连接树莓派</a>
+          <ul>
+            <li><a href="#ssh连接">ssh连接</a></li>
+            <li><a href="#远程桌面">远程桌面</a></li>
+            <li><a href="#共享上网">共享上网</a></li>
+          </ul>
+        </li>
+        <li><a href="#树莓派配置">树莓派配置</a>
+          <ul>
+            <li><a href="#raspi-config">raspi-config</a></li>
+            <li><a href="#网络和软件源">网络和软件源</a></li>
+            <li><a href="#samba">Samba</a></li>
+            <li><a href="#其它应用">其它应用</a></li>
+            <li><a href="#备份">备份</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><img src="http://cdn.ovsoil.cn/Raspberry-Pi-2.jpeg-original" alt="Raspberry-Pi-2"></p>
+<p><code>Raspberry Pi</code> 有如下接口：</p>
+<ul>
+<li>电源输入：Micro usb接口的5V 1A 的输入电流。</li>
+<li>2个USB接口：可以接鼠标和键盘等。</li>
+<li>HDMI接口：接HDMI接口的显示器，如果是DVI或VGA的，需要买转接线。</li>
+<li>以太网接口：100M的以太网接口，插网线上网用的。</li>
+<li>模拟信号音频和视频输出接口：可以接电视机，输出模拟信号，显示在电视机上。</li>
+<li>SD卡插口：插入SD卡，作存储用。</li>
+</ul>
+<h2 id="连接树莓派">连接树莓派</h2>
+<h3 id="ssh连接">ssh连接</h3>
+<p>如果没有HDMI显示器或者串口调试工具，我们也可以通过ssh连接<code>Raspberry Pi</code>。第一次启动<code>Raspberry Pi</code>，很难确定Pi的IP地址，但可以通过其它Linux平台(本文以ubuntu为例）的<code>dhcp-server</code>配置并知晓IP。</p>
+<ol>
+<li>安装
+<code>sudo apt-get install dhcp</code></li>
+<li>配置：
+<code>sudo vim /etc/dhcp/dhcpd.conf</code><br>
+加入以下内容</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    subnet 192.168.1.0 netmask 255.255.255.0 <span class="o">{</span> 
+    range 192.168.1.2 192.168.1.114<span class="p">;</span> 
+    default-lease-time 86400<span class="p">;</span> 
+    max-lease-time 259200<span class="p">;</span> 
+    option subnet-mask 255.255.255.0<span class="p">;</span> 
+    option broadcast-address 192.168.1.255<span class="p">;</span> 
+    option routers 192.168.1.2<span class="p">;</span> 
+    option domain-name-servers 192.168.1.2<span class="p">;</span> 
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>配置dhcp server的IP（与配置文件中指定的相同），并启动<code>dhcpd</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    sudo ifconfig eth0 192.168.1.2/24
+    sudo dhcpd
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>连上网线，启动Raspberry Pi即可在dhcp-server端查看Pi的IP：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    cat /var/lib/dhcpd/dhcpd.lease
+    ssh pi@Pi<span class="err">&#39;</span>sIP
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="远程桌面">远程桌面</h3>
+<p>在Pi上安装xrdp，默认xrdp会随机启动
+<code>sudo apt-get install xrdp</code>
+在其它Linux平台上安装rdesktop，一个远程桌面客户端：
+<code>sudo apt-get install rdesktop</code></p>
+<h3 id="共享上网">共享上网</h3>
+<p>使用一根网线连接Pi和电脑实现了Pi和电脑的互联，Pi却无法连接internet。</p>
+<p>我使用iptables来让Fedora作路由器的功能，相当于Pi通过网线连接到了一台局域网的路由器一样。
+Fedora当路由器作用，同时作Nat功能，将Pi的地址转换为Fedora连接局域网的网卡的地址（我这里的网卡是无线网卡），因为局域网路由器和Pi不在一个网段。</p>
+<p>打开Fedora的ip_forward功能，允许转发从Pi发来的和到达Pi的包，作路由器用:
+echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+在Fedora上面添加iptables，实现SNAT:
+sudo iptables -t nat -A POSTROUTING -j SNAT<br>
+&ndash;to-source 192.168.1.100 &ndash;random
+–random 选项让内核帮我们选源端口
+192.168.1.100 是我连接路由器上网的那个网卡的ip地址，是个无线网卡,接口wlan0</p>
+<p>在Pi内部检测网络联通：
+ping <a href="http://www.baidu.com">www.baidu.com</a>
+如果没有配置域名服务器 需要配置域名解析服务器地址:</p>
+<p>echo nameserver 8.8.8.8 | sudo tee /etc/resolv.conf</p>
+<h2 id="树莓派配置">树莓派配置</h2>
+<h3 id="raspi-config">raspi-config</h3>
+<p>第一项 Expand Filesystem 扩展 SD 卡上可用的空间</p>
+<h3 id="网络和软件源">网络和软件源</h3>
+<h4 id="lets-start-by-customising-the-etcifplugdactiondifupdown-script">Let&rsquo;s start by customising the /etc/ifplugd/action.d/ifupdown script:</h4>
+<p>编辑 <code>/etc/ifplugd/action.d/ifupdown</code> :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh 
+</span><span class="cp"></span><span class="nb">set</span> -e 
+  
+<span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span> in 
+up<span class="o">)</span> 
+  /sbin/ifup <span class="nv">$1</span> 
+  <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> eth0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span> /sbin/ifdown wlan0 <span class="p">;</span> <span class="k">fi</span> <span class="c1"># This is a new bit</span> 
+  <span class="p">;;</span> 
+down<span class="o">)</span> 
+  /sbin/ifdown <span class="nv">$1</span> 
+  <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> eth0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span> /sbin/ifup wlan0 <span class="p">;</span> <span class="k">fi</span> <span class="c1"># Another new bit</span> 
+  <span class="p">;;</span> 
+<span class="k">esac</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="samba">Samba</h3>
+<h4 id="samba安装与配置">samba安装与配置</h4>
+<h4 id="自动挂载">自动挂载</h4>
+<ol>
+<li>
+<p>修改<code>/etc/fstab</code></p>
+</li>
+<li>
+<p>通过<code>udev</code></p>
+</li>
+<li>
+<p>通过autofs实现</p>
+</li>
+</ol>
+<ul>
+<li>安装autofs
+<code>apt-get install autofs</code></li>
+<li>autofs配置
+autofs的主要配置文件有两个，分别是/etc下的auto.master和auto.misc。其中，auto.master是起控制作用的，它定义了挂载点和automount动作的文件，例如<code>/misc /etc/auto.misc</code>就指定了auto.misc就是automount动作的文件，</li>
+</ul>
+<h4 id="windows-连接-samba">windows 连接 samba</h4>
+<p>Windows 10用微软账户登录时，无法连接samba服务器，换本地用户登录就可以了。</p>
+<p>“secpol.msc”打开管理工具，展开“本地策略”；
+然后，单击“安全选项”。 双击“网络安全：LAN Manager 身份验证级别”；
+最后，单击列表中：发送LM和NTLMv2，如果已协商，则使用NTLMv2协议。</p>
+<h3 id="其它应用">其它应用</h3>
+<h4 id="摄像头">摄像头</h4>
+<ul>
+<li>
+<p>vlc视频流输出</p>
+<p>raspivid -o - -t 0 -w 640 -h 360 -fps 25|cvlc -vvv stream:///dev/stdin &ndash;sout &lsquo;#standard{access=http,mux=ts,dst=:8090}&rsquo; :demux=h264 &amp;&gt; /dev/null</p>
+</li>
+<li>
+<p>motion 做视频流服务器<a href="http://www.freebuf.com/news/special/61378.html"></a></p>
+</li>
+<li>
+<p>mjpg-stream 做视频流服务器<a href="http://blog.csdn.net/blueslime/article/details/12429411"></a></p>
+</li>
+</ul>
+<h3 id="备份">备份</h3>
+<p>dosfstools：fat32分区格式化工具
+dump：dump &amp; restore 备份工具
+parted &amp; kpartx：虚拟磁盘工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install dosfstools dump parted kpartx
+</code></pre></td></tr></table>
+</div>
+</div><p>备份脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    <span class="c1">#!/bin/sh</span>
+    sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>raspberrypi.img <span class="nv">bs</span><span class="o">=</span>1MB <span class="nv">count</span><span class="o">=</span><span class="m">3000</span>   <span class="c1"># 新建备份镜像</span>
+    sudo parted raspberrypi.img --script -- mklabel msdos
+    sudo parted raspberrypi.img --script -- mkpart primary fat32 8192s 122879s
+    sudo parted raspberrypi.img --script -- mkpart primary ext4 122880s -1
+
+    <span class="nv">loopdevice</span><span class="o">=</span><span class="sb">`</span>sudo losetup -f --show raspberrypi.img<span class="sb">`</span>
+    <span class="nv">device</span><span class="o">=</span><span class="sb">`</span>sudo kpartx -va <span class="nv">$loopdevice</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*(loop[0-9])p.*/\1/g&#39;</span> <span class="p">|</span> head -1<span class="sb">`</span>
+    <span class="nv">device</span><span class="o">=</span><span class="s2">&#34;/dev/mapper/</span><span class="si">${</span><span class="nv">device</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="nv">partBoot</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">device</span><span class="si">}</span><span class="s2">p1&#34;</span>
+    <span class="nv">partRoot</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">device</span><span class="si">}</span><span class="s2">p2&#34;</span>
+    sudo mkfs.vfat <span class="nv">$partBoot</span>
+    sudo mkfs.ext4 <span class="nv">$partRoot</span>
+    sudo mount -t vfat <span class="nv">$partBoot</span> /media
+    sudo cp -rfp /boot/* /media/
+    sudo umount /media
+    sudo mount -t ext4 <span class="nv">$partRoot</span> /media/
+    <span class="nb">cd</span> /media
+    sudo dump -0uaf - / <span class="p">|</span> sudo restore -rf -
+    <span class="nb">cd</span>
+    sudo umount /media
+    sudo kpartx -d <span class="nv">$loopdevice</span>
+    sudo losetup -d <span class="nv">$loopdevice</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2015-11-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/migrate-from-octopress-to-hexo/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Migrate From Octopress to Hexo</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/taste-c-plus-plus-11/">
+            <span class="next-text nav-default">C&#43;&#43;11初体验</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>c on Ovsoil&#39;s Blog - Learn，Write，Share</title>
+    <link>http://localhost:1313/tags/c/</link>
+    <description>Recent content in c on Ovsoil&#39;s Blog - Learn，Write，Share</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>字节对齐</title>
+      <link>http://localhost:1313/post/type-aligned/</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/type-aligned/</guid>
+      <description>在C/C++中，字节对齐指的是数据在内存中的位置是否对齐，如果一个变量的内存地址正好位于它长度的整数倍，他就被称做自然对齐。比如在32位cp</description>
+    </item>
+    
+  </channel>
+</rss>

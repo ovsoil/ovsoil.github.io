@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Erlang 学习01 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="Erlang([&#39;ə:læŋ])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/learning-erlang-01/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Erlang 学习01" />
+<meta property="og:description" content="Erlang([&#39;ə:læŋ])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/learning-erlang-01/" />
+<meta property="article:published_time" content="2016-10-06T22:01:13+00:00" />
+<meta property="article:modified_time" content="2016-10-06T22:01:13+00:00" />
+<meta itemprop="name" content="Erlang 学习01">
+<meta itemprop="description" content="Erlang([&#39;ə:læŋ])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大">
+<meta itemprop="datePublished" content="2016-10-06T22:01:13&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-06T22:01:13&#43;00:00" />
+<meta itemprop="wordCount" content="1425">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Erlang 学习01"/>
+<meta name="twitter:description" content="Erlang([&#39;ə:læŋ])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Erlang 学习01</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-10-06 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Erlang([<code>'ə:læŋ</code>])是一种通用的面向并发的编程语言，它由瑞典电信设备制造商爱立信所辖的CS-Lab开发，目的是创造一种可以应对大规模并发活动的编程语言和运行环境。
+Erlang属于多重范型编程语言，涵盖函数式、并发式及分布式。顺序执行的Erlang是一个及早求值, 单次赋值和动态类型的函数式编程语言。
+Erlang是一个结构化，动态类型编程语言，内建并行计算支持。最初是由爱立信专门为通信应用设计的，比如控制交换机或者变换协议等，因此非常适 合于构建分布式，实时软并行计算系统。</p>
+<!-- more -->
+<ul>
+<li>
+<p>What is Erlang?
+Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang&rsquo;s runtime system has built-in support for concurrency, distribution and fault tolerance.</p>
+</li>
+<li>
+<p>What is OTP?
+OTP is set of Erlang libraries and design principles providing middle-ware to develop these systems. It includes its own distributed database, applications to interface towards other languages, debugging and release handling tools.</p>
+</li>
+<li>
+<p>rlang是一门函数式编程语言，具有不可变状态</p>
+</li>
+<li>
+<p>Erlang的变量是一次性赋值变量(single-assignment variable)</p>
+</li>
+<li>
+<p>在Erlang里，变量的获得值是一次成功模式匹配操作的结果，=是一个模式匹配操作符</p>
+</li>
+<li>
+<p>在Erlang里，原子被用于表示常量值，原子是全局性的，以小写字母开头，还可以放在单引号内，一个原子的值就是它本身</p>
+</li>
+<li>
+<p>元组用于把一些数量固定的项目归组成单一的实体，用大括号括起，元组会在声明时自动创建，不再使用时则被销毁</p>
+</li>
+<li>
+<p>对于不感兴趣的变量，可以用_ 作为占位符，符号_被称为匿名变量</p>
+</li>
+<li>
+<p>列表用于存放任意数量的元素，用中括号括起，列表的第一个元素称为列表头，剩下的称为列表尾</p>
+</li>
+<li>
+<p>Erlang中没有字符串，在Erlang中字符串被表示为一个由整数组成的列表或者一个二进制型，当字符串表示为一个整数列表时，列表里的每个元素都代表了一个Unicode代码点。可以用字符串字面量来创建这样一个列表，字符串字面量是用双引号围起来的一串字符。当shell打印某个列表的值时，只有当列表中所有整数都代表可打印字符才打印字符串字面量。</p>
+</li>
+<li>
+<p>f()命令让shell忘记现有所有绑定</p>
+</li>
+<li>
+<p>模块和函数是构建顺序与并行程序的基本单元，模块包含了函数，而函数可以顺序或并行运行</p>
+</li>
+<li>
+<p>-module(module_name)是模块声明，位于文件第一行，module_name必须与存放该模块的主文件名相同</p>
+</li>
+<li>
+<p>export([func_name/1])是导出声明，Name/N这种记法是指一个带有N个参数的函数Name,N被称为函数的元数(arity)，export的参数是由Name/N组成的一个列表，未导出的函数只能在模块内调用(相当于私有方法)</p>
+</li>
+<li>
+<p>逗号分隔函数调用，数据构造和模式中的参数</p>
+</li>
+<li>
+<p>分号分隔子句，例如函数定义，以及case，if，try…catch，和receive表达式</p>
+</li>
+<li>
+<p>句号分隔函数整体，以及shell里的表达式</p>
+</li>
+<li>
+<p>Erlang中用于代表函数的数据类型被称为fun，操作其他函数的函数被称为高阶函数(higher-order function)</p>
+</li>
+<li>
+<p>Erlang没有单独的布尔值类型,不过原子true和false具有特殊的意义,可以用来表示布尔值,可用的布尔表达式有四种:not, and, or, xor</p>
+</li>
+<li>
+<p>从R16B版开始,Erlang源代码文件都假定才用UTF-8字符集编码</p>
+</li>
+<li>
+<p>Erlang中的数字不是整数就是浮点数,K进制整数使用K#Digits这种写法</p>
+</li>
+<li>
+<p>短路求值:orelse andalso</p>
+</li>
+<li>
+<p>type用于类型定义, 如预定义的类型别名:-type term() :: any(). -type term() :: true | false. -type byte() :: 0..255. -type list() :: [any()].</p>
+</li>
+<li>
+<p>在Erlang里创建和销毁进程是非常快速的,进程间发送消息是非常快速的,可以拥有大量进程,进程不共享任何内存,完全独立,唯一的交互方式是消息传递</p>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-10-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/hexo-image-solution/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">不够优雅但很实用的Hexo博客图片方案</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/vimrc/">
+            <span class="next-text nav-default">Powerful Vim</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

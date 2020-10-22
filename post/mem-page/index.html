@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>内存页大小为何是4K - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="为何物理页面的大小4K，而不是大一些或者小一些？
+内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/mem-page/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="内存页大小为何是4K" />
+<meta property="og:description" content="为何物理页面的大小4K，而不是大一些或者小一些？
+内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/mem-page/" />
+<meta property="article:published_time" content="2016-03-13T20:19:05+00:00" />
+<meta property="article:modified_time" content="2016-03-13T20:19:05+00:00" />
+<meta itemprop="name" content="内存页大小为何是4K">
+<meta itemprop="description" content="为何物理页面的大小4K，而不是大一些或者小一些？
+内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。">
+<meta itemprop="datePublished" content="2016-03-13T20:19:05&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-13T20:19:05&#43;00:00" />
+<meta itemprop="wordCount" content="1924">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="内存页大小为何是4K"/>
+<meta name="twitter:description" content="为何物理页面的大小4K，而不是大一些或者小一些？
+内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">内存页大小为何是4K</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-03-13 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>为何物理页面的大小4K，而不是大一些或者小一些？</p>
+<p>内核的页面大小首先跟CPU有关，不同的架构支持的页面大小也不相同，但有一个共同点，那就是肯定支持4K的页面大小。为什么处理器在设计的时候会选择4K，而不是其他，这个只有熟悉CPU历史的人才能给出答案，本人才疏学浅，回答不上来，有兴趣的自己找一找。当然处理器的设计者在考虑页面大小的时候，也不是凭空就选择了这个大小，除了历史因素，肯定综合了考虑了大页面、小页面的优缺点，所以这里主要列出这些优缺点，通过这些比较来发现内核为什么将默认的页面大小选择为4K。</p>
+<p>现在更多争论的是大页面还是维持现在的页面4K大小，所以小页面的情况我们就不考虑了，通过比较前两者也可以得出小页面的情况。支持大页面的人通常认为大页面有以下好处：</p>
+<ol>
+<li>
+<p>减小page table占用的内存。
+假设内存一定的话，页面大小越大，管理页面占用的内存也越小。现在内核中每个页面假设是4K的话，这4K不是全都可用，还有一部分用作struct page（大约是64bytes），如果是2.6.32的话，每个页还有一个page_cgroup（32bytes），也就是说内存大小的2.3%(96/4096)会被内核固定使用。如果页面大小是4M的话，这个比率大约是0.0006%。假设内存时64G的话，页面大小是4K，管理页占用的内存为1.472G，而页面大小是4M，管理页面占用的内存为0.393M。所以页面比较大时，节省的内存比较多。</p>
+</li>
+<li>
+<p>提高TLB的命中率
+每次访问内存的时候，都要将虚拟地址转换为物理地址，如果每次都访问页表的话，消耗比较大。因此，通常使用TLB来加速这个过程。但是TLB的可以直接转换的地址范围是有限的（具体就是项数乘以页面大小），一旦出现TLB miss，这时就必须去页表中查找。所以，如果是大页面的话，同样TLB项数的情况下，可以跟踪更大的内存。</p>
+</li>
+<li>
+<p>提高磁盘I/O
+我们知道在访问磁盘时，最耗时的操作就是查找写入盘区的起始位置，也就是在磁盘盘片上将读写头置于正确的位置上。所以如果是大页面的话，可以减少写入磁盘的次数。比如要写入4M的缓存，页面大小是4M的话，只需写入1次，而页面大小是4K的话，则需要写入4次。</p>
+</li>
+<li>
+<p>提供缓存利用率
+如果是大页面的话，可以减少访问伙伴系统的次数。调用伙伴系统的操作队系统的数据和指令高速缓存有相当的影响。内核越浪费这些资源，这些资源对用户空间进程就越不可用。
+除了上面提高的好处，肯定还有的好处，就不一一列举了。那既然有这么好处，而且现在内存越来越大，为什么不更多地采用大页面呢？比如4M？
+软件开发中，从来不会有非常完美的方案，都是在优缺点之间找到平衡点。同样，大页面有这样那样的好处，缺点也很明显。</p>
+</li>
+<li>
+<p>最大的问题就是内存浪费，而且这个问题非常严重。
+比如这时要分配的内存是4M+1byte，这时需要两个页面才能满足分配的需要，这个时候浪费的内存为4M-1byte。如果页面是4K的话，浪费的内存数量为4k-1byte。页面太大，可能导致每个页面都只使用了部分空间，剩余的空间就被浪费了。当然对于数据库这样的系统来说，页面越大会越好，但是内核要考虑到通用的情况，而不是专注于特殊的应用场景。再比如，现在系统都是只分配虚拟地址空间，虚拟地址空间只有在真正被访问的时候，才映射物理页面，而且为了减少物理页面的浪费，对不访问的部分，则不作映射。如果页面太大，在映射很小的部分时，分配的内存会越大，浪费也就越大。系统在运行时，会频繁地请求内存页的操作，这样导致潜在的浪费会非常严重。这样的浪费会完全抵消减小page table的优势。</p>
+</li>
+<li>
+<p>页面太大，会导致大量的内存碎片。
+因为底层的内存管理是以页面为单位。如果系统运行了很长时间，空闲的内存很多，但是连续的内存块都小于要分配的页面数。这时可以通过移动内存块或者利用swap来获取可用内存，但是会导致分配内存的操作很慢，这种慢会形成恶性循环，严重影响系统的性能。如果是小页面的话，内存的利用会比较紧凑，分配页面时需要的连续内存块的大小不像大页面那样需要的那么大。</p>
+</li>
+<li>
+<p>如果CPU崩溃，TLB可以访问的内存越大，对系统的影响也越大。
+这时一把双刃剑，大页面可以提供TLB访问的内存数量，但是CPU崩溃时，会导致很多内存访问要去页表中请求物理地址。</p>
+</li>
+<li>
+<p>兼容性问题。
+X86处理器支持的页面大小只有4K，所以如果页面过大的话，会导致兼容性问题。</p>
+</li>
+<li>
+<p>如果页面太大，在将内存页换出到swap分区时，需要换出的内存也就越大，会影响性能。</p>
+</li>
+</ol>
+<p>总之，这个页面大小4K是在计算机发展过程中选择的，也是在实践中经过检验的，现在看来这个页面是合适的。
+如果你还是想找到更多的证据说服自己的话，可以看看Linus Torvalds是怎么解释这个问题的：
+<a href="http://yarchive.net/comp/linux/page_sizes.html"></a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-03-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp-interview/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Cpp-Interview</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/singleton/">
+            <span class="next-text nav-default">（转）面试中的Singleton</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

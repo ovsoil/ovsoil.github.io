@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python中的元类(metaclass) - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="Python中类的概念借鉴于Smalltalk，Python中的所有东西都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章深刻理解Python中的元类(metaclass)讲得很详细，这里学习记录一下。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/python-metaclass/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python中的元类(metaclass)" />
+<meta property="og:description" content="Python中类的概念借鉴于Smalltalk，Python中的所有东西都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章深刻理解Python中的元类(metaclass)讲得很详细，这里学习记录一下。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/python-metaclass/" />
+<meta property="article:published_time" content="2015-04-07T00:00:00+00:00" />
+
+<meta itemprop="name" content="Python中的元类(metaclass)">
+<meta itemprop="description" content="Python中类的概念借鉴于Smalltalk，Python中的所有东西都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章深刻理解Python中的元类(metaclass)讲得很详细，这里学习记录一下。">
+
+<meta itemprop="wordCount" content="2303">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python中的元类(metaclass)"/>
+<meta name="twitter:description" content="Python中类的概念借鉴于Smalltalk，Python中的所有东西都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章深刻理解Python中的元类(metaclass)讲得很详细，这里学习记录一下。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python中的元类(metaclass)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-07 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Python中类的概念借鉴于Smalltalk，Python中的<em>所有东西</em>都是对象。所以，类同样也是对象，这个对象（类）拥有创建对象（类实例）的能力。伯乐在线上一篇翻译文章<a href="http://blog.jobbole.com/21351/">深刻理解Python中的元类(metaclass)</a>讲得很详细，这里学习记录一下。</p>
+<p>###Python中，类也是对象，可以对其进行如下操作：</p>
+<ol>
+<li>
+<p>你可以将它赋值给一个变量</p>
+</li>
+<li>
+<p>你可以拷贝它</p>
+</li>
+<li>
+<p>你可以为它增加属性</p>
+</li>
+<li>
+<p>你可以将它作为函数参数进行传递</p>
+</li>
+<li>
+<p>你可以返回一个类（根据参数返回不同的类）</p>
+<pre><code> &gt;&gt;&gt; print ObjectCreator     # 你可以打印一个类，因为它其实也是一个对象
+ &lt;class '__main__.ObjectCreator'&gt;
+ &gt;&gt;&gt; def echo(o):
+ …       print o
+ …
+ &gt;&gt;&gt; echo(ObjectCreator)                 # 你可以将类做为参数传给函数
+ &lt;class '__main__.ObjectCreator'&gt;
+ &gt;&gt;&gt; print hasattr(ObjectCreator, 'new_attribute')
+ Fasle
+ &gt;&gt;&gt; ObjectCreator.new_attribute = 'foo' #  你可以为类增加属性
+ &gt;&gt;&gt; print hasattr(ObjectCreator, 'new_attribute')
+ True
+ &gt;&gt;&gt; print ObjectCreator.new_attribute
+ foo
+ &gt;&gt;&gt; ObjectCreatorMirror = ObjectCreator # 你可以将类赋值给一个变量
+ &gt;&gt;&gt; print ObjectCreatorMirror()
+ &lt;__main__.ObjectCreator object at 0x8997b4c&gt;
+ &gt;&gt;&gt; def choose_class(name):
+ …       if name == 'foo':
+ …           class Foo(object):
+ …               pass
+ …           return Foo     # 返回的是类，不是类的实例
+ …       else:
+ …           class Bar(object):
+ …               pass
+ …           return Bar
+ …
+ &gt;&gt;&gt; MyClass = choose_class('foo')
+ &gt;&gt;&gt; print MyClass              # 函数返回的是类，不是类的实例
+ &lt;class '__main__'.Foo&gt;
+ &gt;&gt;&gt; print MyClass()            # 你可以通过这个类创建类实例，也就是对象
+ &lt;__main__.Foo object at 0x89c6d4c&gt;
+</code></pre>
+</li>
+</ol>
+<p>当你使用class关键字时，Python解释器自动创建这个对象。但就和Python中的大多数事情一样，Python仍然提供给你手动处理的方法。内建的type函数有一种完全不同的能力，能动态的创建类。type可以接受一个类的描述作为参数，然后返回一个类。</p>
+<pre><code>type(类名, 父类的元组（针对继承的情况，可以为空），包含属性的字典（名称和值）)
+</code></pre>
+<p>例子：</p>
+<pre><code>&gt;&gt;&gt; class MyShinyClass(object):
+…       pass
+可以手动像这样创建：
+
+&gt;&gt;&gt; MyShinyClass = type('MyShinyClass', (), {})  # 返回一个类对象
+&gt;&gt;&gt; print MyShinyClass
+&lt;class '__main__.MyShinyClass'&gt;
+&gt;&gt;&gt; print MyShinyClass()  #  创建一个该类的实例
+&lt;__main__.MyShinyClass object at 0x8997cec&gt;
+</code></pre>
+<p>元类就是用来创建类的“东西”。函数type实际上是一个元类。type就是Python在背后用来创建所有类的元类。str是用来创建字符串对象的类，而int是用来创建整数对象的类。你可以通过检查__class__属性来看到这一点。</p>
+<pre><code>&gt;&gt;&gt; age = 35
+&gt;&gt;&gt; age.__class__
+&lt;type 'int'&gt;
+&gt;&gt;&gt; name = 'bob'
+&gt;&gt;&gt; name.__class__
+&lt;type 'str'&gt;
+&gt;&gt;&gt; def foo(): pass
+&gt;&gt;&gt;foo.__class__
+&lt;type 'function'&gt;
+&gt;&gt;&gt; class Bar(object): pass
+&gt;&gt;&gt; b = Bar()
+&gt;&gt;&gt; b.__class__
+&lt;class '__main__.Bar'&gt;
+</code></pre>
+<p>对于任何一个__class__的__class__属性又是什么呢？</p>
+<pre><code>&gt;&gt;&gt; a.__class__.__class__
+&lt;type 'type'&gt;
+&gt;&gt;&gt; age.__class__.__class__
+&lt;type 'type'&gt;
+&gt;&gt;&gt; foo.__class__.__class__
+&lt;type 'type'&gt;
+&gt;&gt;&gt; b.__class__.__class__
+&lt;type 'type'&gt;
+</code></pre>
+<p>当你写下如下代码：</p>
+<pre><code>class Foo(Bar):
+    pass
+</code></pre>
+<p>Python做了如下的操作：
+Foo中有__metaclass__这个属性吗？如果是，Python会在内存中通过__metaclass__创建一个名字为Foo的类对象（我说的是类对象，请紧跟我的思路）。如果Python没有找到__metaclass__，它会继续在Bar（父类）中寻找__metaclass__属性，并尝试做和前面同样的操作。如果Python在任何父类中都找不到__metaclass__，它就会在模块层次中去寻找__metaclass__，并尝试做同样的操作。如果还是找不到__metaclass__,Python就会用内置的type来创建这个类对象。</p>
+<p>元类的主要目的就是为了当创建类时能够自动地改变类。通常，你会为API做这样的事情，你希望可以创建符合当前上下文的类。</p>
+<p>###为什么要用metaclass类而不是函数?</p>
+<p>由于__metaclass__可以接受任何可调用的对象，那为何还要使用类呢，因为很显然使用类会更加复杂啊？这里有好几个原因：</p>
+<ol>
+<li>意图会更加清晰。当你读到UpperAttrMetaclass(type)时，你知道接下来要发生什么。</li>
+<li>你可以使用OOP编程。元类可以从元类中继承而来，改写父类的方法。元类甚至还可以使用元类。</li>
+<li>你可以把代码组织的更好。当你使用元类的时候肯定不会是像我上面举的这种简单场景，通常都是针对比较复杂的问题。将多个方法归总到一个类中会很有帮助，也会使得代码更容易阅读。</li>
+<li>你可以使用__new__, __init__以及__call__这样的特殊方法。它们能帮你处理不同的任务。就算通常你可以把所有的东西都在__new__里处理掉，有些人还是觉得用__init__更舒服些。</li>
+<li>哇哦，这东西的名字是metaclass，肯定非善类，我要小心！</li>
+</ol>
+<p>###究竟为什么要使用元类？</p>
+<p>现在回到我们的大主题上来，究竟是为什么你会去使用这样一种容易出错且晦涩的特性？好吧，一般来说，你根本就用不上它：</p>
+<p>“元类就是深度的魔法，99%的用户应该根本不必为此操心。如果你想搞清楚究竟是否需要用到元类，那么你就不需要它。那些实际用到元类的人都非常清楚地知道他们需要做什么，而且根本不需要解释为什么要用元类。”  —— Python界的领袖 Tim Peters</p>
+<p>元类的主要用途是创建API。一个典型的例子是Django ORM。它允许你像这样定义：</p>
+<p>class Person(models.Model):
+name = models.CharField(max_length=30)
+age = models.IntegerField()
+但是如果你像这样做的话：</p>
+<p>guy  = Person(name='bob&rsquo;, age='35&rsquo;)
+print guy.age
+这并不会返回一个IntegerField对象，而是会返回一个int，甚至可以直接从数据库中取出数据。这是有可能的，因为models.Model定义了__metaclass__， 并且使用了一些魔法能够将你刚刚定义的简单的Person类转变成对数据库的一个复杂hook。Django框架将这些看起来很复杂的东西通过暴露出一个简单的使用元类的API将其化简，通过这个API重新创建代码，在背后完成真正的工作。</p>
+<p>结语
+首先，你知道了类其实是能够创建出类实例的对象。好吧，事实上，类本身也是实例，当然，它们是元类的实例。</p>
+<pre><code>&gt;&gt;&gt;class Foo(object): pass
+&gt;&gt;&gt; id(Foo)
+142630324
+</code></pre>
+<p>Python中的一切都是对象，它们要么是类的实例，要么是元类的实例，除了type。type实际上是它自己的元类，在纯Python环境中这可不是你能够做到的，这是通过在实现层面耍一些小手段做到的。其次，元类是很复杂的。对于非常简单的类，你可能不希望通过使用元类来对类做修改。你可以通过其他两种技术来修改类：
+1） Monkey patching
+2)   class decorators
+当你需要动态修改类时，99%的时间里你最好使用上面这两种技术。当然了，其实在99%的时间里你根本就不需要动态修改类。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/macosx-boost/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MacOSX使用与开发环境搭建</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/learning-git-2/">
+            <span class="next-text nav-default">Git 学习之二</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

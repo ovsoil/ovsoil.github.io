@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spacemacs on Ovsoil&#39;s Blog - Learn，Write，Share</title>
+    <link>http://localhost:1313/tags/spacemacs/</link>
+    <description>Recent content in spacemacs on Ovsoil&#39;s Blog - Learn，Write，Share</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/spacemacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从Vim迁移到Spacemacs</title>
+      <link>http://localhost:1313/post/migrating-from-vim-to-spacemacs/</link>
+      <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/migrating-from-vim-to-spacemacs/</guid>
+      <description>&lt;p&gt;之前有接触过emacs，感触最深的就是和Lisp比起来vimscript实在是太蹩脚了。但习惯了vim，考虑到迁移成本还是没有使用emacs。
+最近Spacemacs挺火的，能够有vim几乎所有的编辑体验,这样迁移成本低了很多，有空倒是可以尝试一下，这里转一篇关于从vim迁移到spacemacs的官方文档翻译，写的清晰明了。
+&lt;a href=&#34;https://www.oschina.net/translate/migrating-from-vim&#34;&gt;从Vim迁移到Spacemacs&lt;/a&gt;
+Spacemacs 不是 vim 的 Emacs 克隆, Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

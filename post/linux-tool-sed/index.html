@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux工具之sed - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/linux-tool-sed/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux工具之sed" />
+<meta property="og:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/linux-tool-sed/" />
+<meta property="article:published_time" content="2015-04-10T00:00:00+00:00" />
+
+<meta itemprop="name" content="Linux工具之sed">
+<meta itemprop="description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。">
+
+<meta itemprop="wordCount" content="3831">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux工具之sed"/>
+<meta name="twitter:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux工具之sed</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-10 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#my-cats-name-is-betty">my cat&rsquo;s name is betty</a></li>
+    <li><a href="#my-dogs-name-is-frank">my dog&rsquo;s name is frank</a></li>
+    <li><a href="#my-fishs-name-is-george">my fish&rsquo;s name is george</a></li>
+    <li><a href="#my-goats-name-is-adam">my goat&rsquo;s name is adam</a></li>
+    <li><a href="#如果你这样搞的话就会有问题">如果你这样搞的话，就会有问题</a></li>
+    <li><a href="#要解决上面的那个问题就得像下面这样">要解决上面的那个问题，就得像下面这样。</a></li>
+    <li><a href="#其中的-指定了除了的字符重复0次或多次">其中的&rsquo;[^&gt;]&rsquo; 指定了除了&gt;的字符重复0次或多次。</a></li>
+    <li><a href="#其中的1i表明其要在第1行前插入一行insert">其中的1i表明，其要在第1行前插入一行（insert）</a></li>
+    <li><a href="#其中的1a表明其要在最后一行后追加一行append">其中的1a表明，其要在最后一行后追加一行（append）</a></li>
+    <li><a href="#注意其中的fisha这意思是匹配到fish后就追加一行">注意其中的/fish/a，这意思是匹配到/fish/后就追加一行</a>
+      <ul>
+        <li><a href="#this-is-my-cat-my-cats-name-is-betty">$ sed &ldquo;/my/a &mdash;-&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty</a></li>
+        <li><a href="#this-is-my-dog-my-dogs-name-is-frank">This is my dog, my dog&rsquo;s name is frank</a></li>
+        <li><a href="#this-is-my-fish-my-fishs-name-is-george">This is my fish, my fish&rsquo;s name is george</a></li>
+        <li><a href="#this-is-my-goat-my-goats-name-is-adam">This is my goat, my goat&rsquo;s name is adam</a></li>
+      </ul>
+    </li>
+    <li><a href="#匹配fish并输出可以看到fish的那一行被打了两遍">匹配fish并输出，可以看到fish的那一行被打了两遍，</a></li>
+    <li><a href="#这是因为sed处理时会把处理的信息输出">这是因为sed处理时会把处理的信息输出</a></li>
+    <li><a href="#使用n参数就好了">使用n参数就好了</a></li>
+    <li><a href="#从一个模式到另一个模式">从一个模式到另一个模式</a></li>
+    <li><a href="#其中的3表示后面连续3行">其中的+3表示后面连续3行</a></li>
+    <li><a href="#this-is-my-dog">This is my dog</a></li>
+    <li><a href="#my-dogs-name-is-frank-1">my dog&rsquo;s name is frank</a></li>
+    <li><a href="#this-is-my-fish">This is my fish</a></li>
+    <li><a href="#my-fishs-name-is-george-1">my fish&rsquo;s name is george</a></li>
+    <li><a href="#对3行到第6行执行命令thisd">对3行到第6行，执行命令/This/d</a></li>
+    <li><a href="#对3行到第6行匹配this成功后再匹配fish成功后执行d命令">对3行到第6行，匹配/This/成功后，再匹配/fish/，成功后执行d命令</a></li>
+    <li><a href="#从第一行到最后一行如果匹配到this则删除之如果前面有空格则去除空格">从第一行到最后一行，如果匹配到This，则删除之；如果前面有空格，则去除空格</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>sed全名叫stream editor，流编辑器，用程序的方式来编辑文本，相当的hacker啊。sed基本上就是玩正则模式匹配，所以，玩sed的人，正则表达式一般都比较强。</p>
+<p>用s命令替换
+我使用下面的这段文本做演示：</p>
+<p>$ cat pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+This is my dog
+my dog&rsquo;s name is frank
+This is my fish
+my fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam
+把其中的my字符串替换成Hao Chen’s，下面的语句应该很好理解（s表示替换命令，/my/表示匹配my，/Hao Chen’s/表示把匹配替换成Hao Chen’s，/g 表示一行上的替换所有的匹配）：</p>
+<p>$ sed &ldquo;s/my/Hao Chen&rsquo;s/g&rdquo; pets.txt
+This is Hao Chen&rsquo;s cat
+Hao Chen&rsquo;s cat&rsquo;s name is betty
+This is Hao Chen&rsquo;s dog
+Hao Chen&rsquo;s dog&rsquo;s name is frank
+This is Hao Chen&rsquo;s fish
+Hao Chen&rsquo;s fish&rsquo;s name is george
+This is Hao Chen&rsquo;s goat
+Hao Chen&rsquo;s goat&rsquo;s name is adam
+注意：如果你要使用单引号，那么你没办法通过\’这样来转义，就有双引号就可以了，在双引号内可以用\”来转义。</p>
+<p>再注意：上面的sed并没有对文件的内容改变，只是把处理过后的内容输出，如果你要写回文件，你可以使用重定向，如：</p>
+<p>$ sed &ldquo;s/my/Hao Chen&rsquo;s/g&rdquo; pets.txt &gt; hao_pets.txt
+或使用 -i 参数直接修改文件内容：</p>
+<p>$ sed -i &ldquo;s/my/Hao Chen&rsquo;s/g&rdquo; pets.txt
+在每一行最前面加点东西：</p>
+<p>$ sed &lsquo;s/^/#/g&rsquo; pets.txt
+#This is my cat</p>
+<h1 id="my-cats-name-is-betty">my cat&rsquo;s name is betty</h1>
+<p>#This is my dog</p>
+<h1 id="my-dogs-name-is-frank">my dog&rsquo;s name is frank</h1>
+<p>#This is my fish</p>
+<h1 id="my-fishs-name-is-george">my fish&rsquo;s name is george</h1>
+<p>#This is my goat</p>
+<h1 id="my-goats-name-is-adam">my goat&rsquo;s name is adam</h1>
+<p>在每一行最后面加点东西：</p>
+<p>$ sed &lsquo;s/$/ &mdash; /g&rsquo; pets.txt
+This is my cat &mdash;
+my cat&rsquo;s name is betty &mdash;
+This is my dog &mdash;
+my dog&rsquo;s name is frank &mdash;
+This is my fish &mdash;
+my fish&rsquo;s name is george &mdash;
+This is my goat &mdash;
+my goat&rsquo;s name is adam &mdash;
+顺手介绍一下正则表达式的一些最基本的东西：</p>
+<p>^ 表示一行的开头。如：/^#/ 以#开头的匹配。
+$ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
+&lt; 表示词首。 如 &lt;abc 表示以 abc 为首的詞。
+&gt; 表示词尾。 如 abc&gt; 表示以 abc 結尾的詞。
+. 表示任何单个字符。</p>
+<ul>
+<li>表示某个字符出现了0次或多次。
+<input disabled="" type="checkbox"> 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
+正规则表达式是一些很牛的事，比如我们要去掉某html中的tags：</li>
+</ul>
+<p>html.txt</p>
+<p><b>This</b> is what <span style="text-decoration: underline;">I</span> meant. Understand?
+看看我们的sed命令</p>
+<h1 id="如果你这样搞的话就会有问题">如果你这样搞的话，就会有问题</h1>
+<p>$ sed &lsquo;s/&lt;.*&gt;//g&rsquo; html.txt
+Understand?</p>
+<h1 id="要解决上面的那个问题就得像下面这样">要解决上面的那个问题，就得像下面这样。</h1>
+<h1 id="其中的-指定了除了的字符重复0次或多次">其中的&rsquo;[^&gt;]&rsquo; 指定了除了&gt;的字符重复0次或多次。</h1>
+<p>$ sed &lsquo;s/&lt;[^&gt;]*&gt;//g&rsquo; html.txt
+This is what I meant. Understand?
+我们再来看看指定需要替换的内容：</p>
+<p>$ sed &ldquo;3s/my/your/g&rdquo; pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+This is your dog
+my dog&rsquo;s name is frank
+This is my fish
+my fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam
+下面的命令只替换第3到第6行的文本。</p>
+<p>$ sed &ldquo;3,6s/my/your/g&rdquo; pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+This is your dog
+your dog&rsquo;s name is frank
+This is your fish
+your fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam</p>
+<p>$ cat my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam
+只替换每一行的第一个s：</p>
+<p>$ sed &lsquo;s/s/S/1&rsquo; my.txt
+ThiS is my cat, my cat&rsquo;s name is betty
+ThiS is my dog, my dog&rsquo;s name is frank
+ThiS is my fish, my fish&rsquo;s name is george
+ThiS is my goat, my goat&rsquo;s name is adam
+只替换每一行的第二个s：</p>
+<p>$ sed &lsquo;s/s/S/2&rsquo; my.txt
+This iS my cat, my cat&rsquo;s name is betty
+This iS my dog, my dog&rsquo;s name is frank
+This iS my fish, my fish&rsquo;s name is george
+This iS my goat, my goat&rsquo;s name is adam
+只替换第一行的第3个以后的s：</p>
+<p>$ sed &lsquo;s/s/S/3g&rsquo; my.txt
+This is my cat, my cat&rsquo;S name iS betty
+This is my dog, my dog&rsquo;S name iS frank
+This is my fiSh, my fiSh&rsquo;S name iS george
+This is my goat, my goat&rsquo;S name iS adam
+多个匹配
+如果我们需要一次替换多个模式，可参看下面的示例：（第一个模式把第一行到第三行的my替换成your，第二个则把第3行以后的This替换成了That）</p>
+<p>$ sed &lsquo;1,3s/my/your/g; 3,$s/This/That/g&rsquo; my.txt
+This is your cat, your cat&rsquo;s name is betty
+This is your dog, your dog&rsquo;s name is frank
+That is your fish, your fish&rsquo;s name is george
+That is my goat, my goat&rsquo;s name is adam
+上面的命令等价于：（注：下面使用的是sed的-e命令行参数）</p>
+<p>sed -e &lsquo;1,3s/my/your/g&rsquo; -e &lsquo;3,$s/This/That/g&rsquo; my.txt
+我们可以使用&amp;来当做被匹配的变量，然后可以在基本左右加点东西。如下所示：</p>
+<p>$ sed &lsquo;s/my/[&amp;]/g&rsquo; my.txt
+This is [my] cat, [my] cat&rsquo;s name is betty
+This is [my] dog, [my] dog&rsquo;s name is frank
+This is [my] fish, [my] fish&rsquo;s name is george
+This is [my] goat, [my] goat&rsquo;s name is adam
+圆括号匹配
+使用圆括号匹配的示例：（圆括号括起来的正则表达式所匹配的字符串会可以当成变量来使用，sed中使用的是\1,\2…）</p>
+<p>$ sed &lsquo;s/This is my ([^,]*),.<em>is (.</em>)/\1:\2/g&rsquo; my.txt
+cat:betty
+dog:frank
+fish:george
+goat:adam
+上面这个例子中的正则表达式有点复杂，解开如下（去掉转义字符）：</p>
+<p>正则为：This is my ([^,]*),.<em>is (.</em>)
+匹配为：This is my (cat),……….is (betty)</p>
+<p>然后：\1就是cat，\2就是betty</p>
+<p>sed的命令
+让我们回到最一开始的例子pets.txt，让我们来看几个命令：</p>
+<p>N命令
+先来看N命令 —— 把下一行的内容纳入当成缓冲区做匹配。</p>
+<p>下面的的示例会把原文本中的偶数行纳入奇数行匹配，而s只匹配并替换一次，所以，就成了下面的结果：</p>
+<p>$ sed &lsquo;N;s/my/your/&rsquo; pets.txt
+This is your cat
+my cat&rsquo;s name is betty
+This is your dog
+my dog&rsquo;s name is frank
+This is your fish
+my fish&rsquo;s name is george
+This is your goat
+my goat&rsquo;s name is adam
+也就是说，原来的文件成了：</p>
+<p>This is my cat\n  my cat&rsquo;s name is betty
+This is my dog\n  my dog&rsquo;s name is frank
+This is my fish\n  my fish&rsquo;s name is george
+This is my goat\n  my goat&rsquo;s name is adam
+这样一来，下面的例子你就明白了，</p>
+<p>$ sed &lsquo;N;s/\n/,/&rsquo; pets.txt
+This is my cat,  my cat&rsquo;s name is betty
+This is my dog,  my dog&rsquo;s name is frank
+This is my fish,  my fish&rsquo;s name is george
+This is my goat,  my goat&rsquo;s name is adam
+a命令和i命令
+a命令就是append， i命令就是insert，它们是用来添加行的。如：</p>
+<h1 id="其中的1i表明其要在第1行前插入一行insert">其中的1i表明，其要在第1行前插入一行（insert）</h1>
+<p>$ sed &ldquo;1 i This is my monkey, my monkey&rsquo;s name is wukong&rdquo; my.txt
+This is my monkey, my monkey&rsquo;s name is wukong
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam</p>
+<h1 id="其中的1a表明其要在最后一行后追加一行append">其中的1a表明，其要在最后一行后追加一行（append）</h1>
+<p>$ sed &ldquo;$ a This is my monkey, my monkey&rsquo;s name is wukong&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my monkey, my monkey&rsquo;s name is wukong
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam
+我们可以运用匹配来添加文本：</p>
+<h1 id="注意其中的fisha这意思是匹配到fish后就追加一行">注意其中的/fish/a，这意思是匹配到/fish/后就追加一行</h1>
+<p>$ sed &ldquo;/fish/a This is my monkey, my monkey&rsquo;s name is wukong&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+This is my monkey, my monkey&rsquo;s name is wukong
+This is my goat, my goat&rsquo;s name is adam
+下面这个例子是对每一行都挺插入：</p>
+<h2 id="this-is-my-cat-my-cats-name-is-betty">$ sed &ldquo;/my/a &mdash;-&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty</h2>
+<h2 id="this-is-my-dog-my-dogs-name-is-frank">This is my dog, my dog&rsquo;s name is frank</h2>
+<h2 id="this-is-my-fish-my-fishs-name-is-george">This is my fish, my fish&rsquo;s name is george</h2>
+<h2 id="this-is-my-goat-my-goats-name-is-adam">This is my goat, my goat&rsquo;s name is adam</h2>
+<p>c命令
+c 命令是替换匹配行</p>
+<p>$ sed &ldquo;2 c This is my monkey, my monkey&rsquo;s name is wukong&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my monkey, my monkey&rsquo;s name is wukong
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam</p>
+<p>$ sed &ldquo;/fish/c This is my monkey, my monkey&rsquo;s name is wukong&rdquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my monkey, my monkey&rsquo;s name is wukong
+This is my goat, my goat&rsquo;s name is adam
+d命令
+删除匹配行</p>
+<p>$ sed &lsquo;/fish/d&rsquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my goat, my goat&rsquo;s name is adam</p>
+<p>$ sed &lsquo;2d&rsquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam</p>
+<p>$ sed &lsquo;2,$d&rsquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+p命令
+打印命令</p>
+<p>你可以把这个命令当成grep式的命令</p>
+<h1 id="匹配fish并输出可以看到fish的那一行被打了两遍">匹配fish并输出，可以看到fish的那一行被打了两遍，</h1>
+<h1 id="这是因为sed处理时会把处理的信息输出">这是因为sed处理时会把处理的信息输出</h1>
+<p>$ sed &lsquo;/fish/p&rsquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+This is my fish, my fish&rsquo;s name is george
+This is my goat, my goat&rsquo;s name is adam</p>
+<h1 id="使用n参数就好了">使用n参数就好了</h1>
+<p>$ sed -n &lsquo;/fish/p&rsquo; my.txt
+This is my fish, my fish&rsquo;s name is george</p>
+<h1 id="从一个模式到另一个模式">从一个模式到另一个模式</h1>
+<p>$ sed -n &lsquo;/dog/,/fish/p&rsquo; my.txt
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george</p>
+<p>#从第一行打印到匹配fish成功的那一行
+$ sed -n &lsquo;1,/fish/p&rsquo; my.txt
+This is my cat, my cat&rsquo;s name is betty
+This is my dog, my dog&rsquo;s name is frank
+This is my fish, my fish&rsquo;s name is george
+几个知识点
+好了，下面我们要介绍四个sed的基本知识点：</p>
+<p>Pattern Space
+第零个是关于-n参数的，大家也许没看懂，没关系，我们来看一下sed处理文本的伪代码，并了解一下Pattern Space的概念：</p>
+<p>foreach line in file {
+//放入把行Pattern_Space
+Pattern_Space &lt;= line;</p>
+<pre><code>// 对每个pattern space执行sed命令
+Pattern_Space &lt;= EXEC(sed_cmd, Pattern_Space);
+
+// 如果没有指定 -n 则输出处理后的Pattern_Space
+if (sed option hasn't &quot;-n&quot;)  {
+   print Pattern_Space
+}
+</code></pre>
+<p>}
+Address
+第一个是关于address，几乎上述所有的命令都是这样的（注：其中的!表示匹配成功后是否执行命令）</p>
+<p>[address[,address]][!]{cmd}</p>
+<p>address可以是一个数字，也可以是一个模式，你可以通过逗号要分隔两个address 表示两个address的区间，参执行命令cmd，伪代码如下：</p>
+<p>bool bexec = false
+foreach line in file {
+if ( match(address1) ){
+bexec = true;
+}</p>
+<pre><code>if ( bexec == true) {
+    EXEC(sed_cmd);
+}
+
+if ( match (address2) ) {
+    bexec = false;
+}
+</code></pre>
+<p>}
+关于address可以使用相对位置，如：</p>
+<h1 id="其中的3表示后面连续3行">其中的+3表示后面连续3行</h1>
+<p>$ sed &lsquo;/dog/,+3s/^/# /g&rsquo; pets.txt
+This is my cat
+my cat&rsquo;s name is betty</p>
+<h1 id="this-is-my-dog">This is my dog</h1>
+<h1 id="my-dogs-name-is-frank-1">my dog&rsquo;s name is frank</h1>
+<h1 id="this-is-my-fish">This is my fish</h1>
+<h1 id="my-fishs-name-is-george-1">my fish&rsquo;s name is george</h1>
+<p>This is my goat
+my goat&rsquo;s name is adam
+命令打包
+第二个是cmd可以是多个，它们可以用分号分开，可以用大括号括起来作为嵌套命令。下面是几个例子：
+$ cat pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+This is my dog
+my dog&rsquo;s name is frank
+This is my fish
+my fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam</p>
+<h1 id="对3行到第6行执行命令thisd">对3行到第6行，执行命令/This/d</h1>
+<p>$ sed &lsquo;3,6 {/This/d}&rsquo; pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+my dog&rsquo;s name is frank
+my fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam</p>
+<h1 id="对3行到第6行匹配this成功后再匹配fish成功后执行d命令">对3行到第6行，匹配/This/成功后，再匹配/fish/，成功后执行d命令</h1>
+<p>$ sed &lsquo;3,6 {/This/{/fish/d}}&rsquo; pets.txt
+This is my cat
+my cat&rsquo;s name is betty
+This is my dog
+my dog&rsquo;s name is frank
+my fish&rsquo;s name is george
+This is my goat
+my goat&rsquo;s name is adam</p>
+<h1 id="从第一行到最后一行如果匹配到this则删除之如果前面有空格则去除空格">从第一行到最后一行，如果匹配到This，则删除之；如果前面有空格，则去除空格</h1>
+<p>$ sed &lsquo;1,${/This/d;s/^ *//g}&rsquo; pets.txt
+my cat&rsquo;s name is betty
+my dog&rsquo;s name is frank
+my fish&rsquo;s name is george
+my goat&rsquo;s name is adam
+Hold Space
+第三个我们再来看一下 Hold Space</p>
+<p>接下来，我们需要了解一下Hold Space的概念，我们先来看四个命令：</p>
+<p>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
+G： 将hold space中的内容append到pattern space\n后
+h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
+H： 将pattern space中的内容append到hold space\n后
+x： 交换pattern space和hold space的内容</p>
+<p>这些命令有什么用？我们来看两个示例吧，用到的示例文件是：</p>
+<p>$ cat t.txt
+one
+two
+three
+第一个示例：</p>
+<p>$ sed &lsquo;H;g&rsquo; t.txt
+one</p>
+<p>one
+two</p>
+<p>one
+two
+three
+是不是有点没看懂，我作个图你就看懂了。</p>
+<p>第二个示例，反序了一个文件的行：</p>
+<p>$ sed &lsquo;1!G;h;$!d&rsquo; t.txt
+three
+two
+one
+其中的 ‘1!G;h;$!d’ 可拆解为三个命令</p>
+<p>1!G —— 只有第一行不执行G命令，将hold space中的内容append回到pattern space
+h —— 第一行都执行h命令，将pattern space中的内容拷贝到hold space中
+$!d —— 除了最后一行不执行d命令，其它行都执行d命令，删除当前行</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux-tool-awk/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux工具之awk</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/macosx-boost/">
+            <span class="next-text nav-default">MacOSX使用与开发环境搭建</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

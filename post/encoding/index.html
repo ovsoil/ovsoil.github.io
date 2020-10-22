@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>弄清楚编码 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。
+从计算机对多国语言的支持角度看，大致可以分为三个阶段：
+ ASCII ANSI UNICODE " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/encoding/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="弄清楚编码" />
+<meta property="og:description" content="由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。
+从计算机对多国语言的支持角度看，大致可以分为三个阶段：
+
+ASCII
+ANSI
+UNICODE
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/encoding/" />
+<meta property="article:published_time" content="2015-06-16T00:00:00+00:00" />
+
+<meta itemprop="name" content="弄清楚编码">
+<meta itemprop="description" content="由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。
+从计算机对多国语言的支持角度看，大致可以分为三个阶段：
+
+ASCII
+ANSI
+UNICODE
+">
+
+<meta itemprop="wordCount" content="2396">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="弄清楚编码"/>
+<meta name="twitter:description" content="由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。
+从计算机对多国语言的支持角度看，大致可以分为三个阶段：
+
+ASCII
+ANSI
+UNICODE
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">弄清楚编码</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-06-16 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#编码">编码</a></li>
+            <li><a href="#编码与存储">编码与存储</a></li>
+            <li><a href="#文件编码">文件编码</a></li>
+            <li><a href="#cc字符串常量">C/C++字符串常量</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>由于工作环境经常在各种平台，各种语言和区域环境之间切换，乱码一直是一个讨厌的问题，乱码问题大多源于编码。所以想再这里把编码问题弄清楚，也分享一下学习心得。</p>
+<p>从计算机对多国语言的支持角度看，大致可以分为三个阶段：</p>
+<ul>
+<li>ASCII</li>
+<li>ANSI</li>
+<li>UNICODE</li>
+</ul>
+<h3 id="编码">编码</h3>
+<ol>
+<li>
+<p>ASCII编码
+ASCII码一共规定了128个字符的编码，比如空格&quot;SPACE&quot;是32（二进制00100000），大写的字母A是65（二进制01000001）。这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的1位统一规定为0。
+英语用128个符号编码就够了，但是用来表示其他语言，128个符号是不够的。一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。但是不同的国家有不同的字母，编码字符集是不一样的，比如，130在法语编码中代表了é，在希伯来语编码中却代表了字母Gimel (ג)。</p>
+</li>
+<li>
+<p>ANSI编码
+为使计算机支持更多语言，使用2个字节来表示1个字符。这样不同的国家和地区制定了不同的标准，由此产生了<code>GB2312</code>, <code>BIG5</code>, <code>JIS</code> 等各自的编码标准。这些使用 2 个字节来代表一个字符的各种汉字延伸编码方式，称为<code>ANSI</code>编码。在简体中文系统下，<code>ANSI</code> 编码代表 <code>GB2312</code> 编码，在日文操作系统下，<code>ANSI</code> 编码代表 <code>JIS</code> 编码。</p>
+</li>
+<li>
+<p>UNICODE
+不同 <code>ANSI</code> 编码之间互不兼容，当信息在国际间交流时，无法将属于两种语言的文字，存储在同一段 <code>ANSI</code> 编码的文本中。为了使国际间信息交流更加方便，国际组织制定了<code>UNICODE</code> 字符集，为各种语言中的每一个字符设定了统一并且唯一的<strong>数字编号</strong>，以满足跨语言、跨平台进行文本转换、处理的要求。Unicode当然是一个很大的集合，现在的规模可以容纳100多万个符号，每个符号的编码都不一样。</p>
+</li>
+</ol>
+<h3 id="编码与存储">编码与存储</h3>
+<p>说到编码，很容易混淆<code>Unicode</code>和<code>UTF-8</code>，我就很长时间没有分清楚。事实上，<code>Unicode</code>只是一个符号集，它只规定了符号的二进制编码，却没有规定这个二进制编码应该如何存储。而<code>UTF-8</code>是最常用的一种<code>Unicode</code>的存储方式，其他实现方式还包括<code>UTF-16</code>（字符用两个字节或四个字节表示）和<code>UTF-32</code>（字符用四个字节表示）。<code>UTF-8</code>编码是一种变长编码，可以使用1~4个字节表示一个符号。
+<code>UTF-8</code>编码的存储规则很简单，只有二条：</p>
+<ol>
+<li>对于单字节的符号，字节的第一位设为0，后面7位为这个符号的<code>Unicode</code>码。对于<code>ASCII</code>字符，<code>UTF-8</code>编码和<code>ASCII</code>码是相同的。</li>
+<li>对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">Unicode符号范围</th>
+<th align="center">UTF-8编码方式(十六进制)</th>
+<th align="center">（二进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0000 0000-0000</td>
+<td align="center">007F</td>
+<td align="center">0xxxxxxx</td>
+</tr>
+<tr>
+<td align="center">0000 0080-0000</td>
+<td align="center">07FF</td>
+<td align="center">110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td align="center">0000 0800-0000</td>
+<td align="center">FFFF</td>
+<td align="center">1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td align="center">0001 0000-0010</td>
+<td align="center">FFFF</td>
+<td align="center">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p><code>UTF-8</code>编码非常简单，如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
+<h3 id="文件编码">文件编码</h3>
+<p>Windows里文本保存编码一般有四个选项：ANSI，Unicode，Unicode big endian 和 UTF-8。</p>
+<ol>
+<li>ANSI是默认的编码方式。对于英文文件是ASCII编码，对于简体中文文件是gb2312编码（只针对Windows简体中文版，如果是繁体中文版会采用Big5码）。</li>
+<li>Unicode编码指的是UCS-2编码方式，即直接用两个字节存入字符的Unicode码。这个选项用的little endian格式。</li>
+<li>Unicode big endian编码与上一个选项相对应。</li>
+<li>UTF-8编码，也就是上一节谈到的编码方法。</li>
+</ol>
+<p>Unicode规范中定义，每一个文件的最前面分别加入一个表示编码顺序的字符，这个字符的名字叫做&quot;零宽度非换行空格&rdquo;（ZERO WIDTH NO-BREAK SPACE），用FEFF表示。这正好是两个字节，而且FF比FE大1。如果一个文本文件的头两个字节是FE FF，就表示该文件采用大头方式；如果头两个字节是FF FE，就表示该文件采用小头方式。</p>
+<p>跨平台工作会经常遇到文件编码转换的问题，Windows中默认的文件格式是GBK(gb2312)，而Linux一般都是UTF-8。</p>
+<ul>
+<li>查看文件编码</li>
+</ul>
+<ol>
+<li>
+<p>在Vim 中<code>:set fileencoding</code>可以直接查看文件编码。
+另外在.vimrc中加上<code>set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936</code>，可以让vim自动识别文件编码，其实就是依照fileencodings提供的编码列表尝试，如果没有找到合适的编码，就用latin-1(ASCII)编码打开。</p>
+</li>
+<li>
+<p>enca 查看文件编码</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    $ enca filename
+    filename: Universal transformation format <span class="m">8</span> bits<span class="p">;</span> UTF-8
+    CRLF line terminators
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>文件编码转换</li>
+</ul>
+<ol>
+<li>
+<p>在Vim中直接进行转换文件编码<code>:set fileencoding=utf-8</code>。</p>
+</li>
+<li>
+<p>enconv 转换文件编码，比如要将一个GBK编码的文件转换成UTF-8编码：<code>enconv -L zh_CN -x UTF-8 filename</code></p>
+</li>
+<li>
+<p>iconv 转换：<code>iconv -f encoding -t encoding inputfile</code>
+比如将一个UTF-8 编码的文件转换成GBK编码：</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">    iconv -f GBK -t UTF-8 file1 -o file2
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="cc字符串常量">C/C++字符串常量</h3>
+<p>在C++代码中，给一个string类型的变量赋值一个中文字符串常量，例如:<code>string s = &quot;中文字符串&quot;</code>。变量s中保存的字节内容是什么？如果源文件的编码格式转换了，比如从<code>GB2312</code>转换为<code>UTF-8</code>，变量<code>s</code>中的内容会发生变化吗？其结果是否与编译器有关？</p>
+<p>VC++会试图将Unicode的编码格式转换成对应地区(Locale)的缺省编码(简体中文系统下，为GB2312即代码页CP936），并按照这个编码的内容来确定常量字符串的值。G++不会试图转换常量的字符串编码，会直接使用与源文件字符编码对应的字符串常量。</p>
+<p>在VC++中，如果源程序的编码与当前默认ANSI编码不符，则需要使用<code>#pragma setlocale</code>告诉编译器源程序使用的编码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    // 如果源程序的编码与当前默认 ANSI 编码不一致，则需要此行，编译时用来指明当前源程序使用的编码
+    #pragma setlocale(&#34;.936&#34;)
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/libevent-source-1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">libevent 源码学习之一</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/about-learning/">
+            <span class="next-text nav-default">学习、学习</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

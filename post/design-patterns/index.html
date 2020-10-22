@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>设计模式 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。
+在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/design-patterns/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="设计模式" />
+<meta property="og:description" content="面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。
+在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/design-patterns/" />
+<meta property="article:published_time" content="2015-06-04T00:00:00+00:00" />
+
+<meta itemprop="name" content="设计模式">
+<meta itemprop="description" content="面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。
+在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。">
+
+<meta itemprop="wordCount" content="4630">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="设计模式"/>
+<meta name="twitter:description" content="面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。
+在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">设计模式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-06-04 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#常用模式">常用模式</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#分类">分类</a>
+          <ul>
+            <li><a href="#结构型模式">结构型模式</a></li>
+            <li><a href="#行为模式">行为模式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>面向对象编程的设计实际上追求的就是：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。</p>
+<p>在面向对象系统的设计和开发中，我们已经积累了很多的原则，比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等。设计模式其实就是这些原则和思想的体现，特别是组合(委托)和继承的差异带来系统在耦合性上的差别，更是在设计模式多次涉及到。</p>
+<h2 id="常用模式">常用模式</h2>
+<h4 id="factory">Factory</h4>
+<p>1、定义创建对象的接口，封装对象的创建
+2、将实际创建工作延迟到子类中，例如，类A中药使用类B,B是抽象父类，但是在类A中不知道具体要实例化哪一个B的子类，但是在类A的子类D中是可以知道的。在A中无法使用 new B***()方法
+3、将创建工作延迟到子类中后，核心工厂类不再负责产品的创建，这样核心类成为一个抽象工厂，只提供工厂子类必须实现的接口，这样的好处是可以不用修改已有的工厂类的情况下增加新的产品（每一种产品，都分别对应相应的工厂子类负责其创建工作）</p>
+<h4 id="abstractfactory">AbstractFactory</h4>
+<p>要创建一组相关或者相互依赖的对象</p>
+<p>作用：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</p>
+<ul>
+<li>总结
+工厂模式主要是为创建对象提供过渡接口，以便将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。
+工厂模式可以分为三类：
+1）简单工厂模式（Simple Factory）
+2）工厂方法模式（Factory Method）
+3）抽象工厂模式（Abstract Factory）
+这三种模式从上到下逐步抽象，并且更具一般性。
+GOF在《设计模式》一书中将工厂模式分为两类：工厂方法模式（Factory Method）与抽象工厂模式（Abstract Factory）。将简单工厂模式（Simple Factory）看为工厂方法模式的一种特例，两者归为一类。</li>
+</ul>
+<p>区别
+工厂方法模式：
+一个抽象产品类，可以派生出多个具体产品类。<br>
+一个抽象工厂类，可以派生出多个具体工厂类。<br>
+每个具体工厂类只能创建一个具体产品类的实例。
+抽象工厂模式：
+多个抽象产品类，每个抽象产品类可以派生出多个具体产品类。<br>
+一个抽象工厂类，可以派生出多个具体工厂类。<br>
+每个具体工厂类可以创建多个具体产品类的实例。<br>
+区别：
+工厂方法模式只有一个抽象产品类，而抽象工厂模式有多个。<br>
+工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个。
+两者皆可。</p>
+<h4 id="singleton单例模式">Singleton单例模式</h4>
+<p>Singleton 是对全局变量的取代策略
+作用：保证一个类只能有一个实例，并提供一个全局唯一的访问点。</p>
+<p>仅有一个实例：通过类的静态成员变量来体现。
+提供访问它的全局访问点：访问静态成员变量的静态成员函数来体现。</p>
+<h4 id="builder建造者模式">Builder建造者模式</h4>
+<p>作用:
+将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>Builder模式和AbstractFactory模式在功能上很相似，因为都是用来创建大的复杂的对象，它们的区别是：Builder模式强调的是一步步创建对象，并通过相同的创建过程可以获得不同的结果对象，一般来说Builder模式中对象不是直接返回的。而在AbstractFactory模式中对象是直接返回的，AbstractFactory模式强调的是为创建多个相互依赖的对象提供一个同一的接口。</p>
+<p>适用于以下情况:</p>
+<p>1)当创建复杂对象的算法应该独立于该对象的组成部分以及它们的装配方式时。</p>
+<p>2)当构造过程必须允许被构造的对象有不同的表示时。
+Builder：定义创建对象过程的抽象，提供构建不同组成部分的接口</p>
+<p>其中：BuildPartA,BuildPartB,BuildPartC是对一个对象不同部分的构建函数接口,由Builder的派生类ConcreteBuilder1、ConcreteBuilder2来具体实现.
+另外还有一个需要注意的函数,就是Director::Construct函数,这个函数里面通过调用上面的接口函数完成对象的构建&ndash;也就是说各个不同部分装配的过程都是一致的(同样的调用的Construct函数),但是不同的构建方式会有不同的表示(根据Builder的实际类型来决定如何构建,也就是多态)</p>
+<p>Builder模式是基于这样的一个情况:一个对象可能有不同的组成部分,这几个部分的不同的创建对象会有不同的表示,但是各个部分之间装配的方式是一致的.比方说一辆单车,都是由车轮车座等等的构成的(一个对象不同的组成部分),不同的品牌生产出来的也不一样(不同的构建方式).虽然不同的品牌构建出来的单车不同,但是构建的过程还是一样的</p>
+<p>也就是说,Director::Construct函数中固定了各个组成部分的装配方式,而具体是装配怎样的组成部分由Builder的派生类实现.</p>
+<p>实现:
+Builder模式的实现基于以下几个面向对象的设计原则:</p>
+<p>1)把变化的部分提取出来形成一个基类和对应的接口函数,在这里不会变化的是都会创建PartA和PartB,变化的则是不同的创建方法,于是就抽取出这里的Builder基类和BuildPartA,BuildPartB接口函数</p>
+<p>2)采用聚合的方式聚合了会发生变化的基类,就是这里Director聚合了Builder类的指针.</p>
+<p>以上，通过两个派生类ConcreteBuilder1、ConcreteBuilder2定义了两种不同的建造细节（建造步骤是一样的，由Construct函数确定），通过两个派生类所建造出来的对象，对外部所展现出来的属性或者功能是不一样的，由各自Builder派生类中的建造方法（BuildPartA、BuildPartB、BuildPartC）决定。</p>
+<ul>
+<li>总结
+建造者模式和工厂模式非常相似呀，但是记住一点你就可以游刃有余的使用了：</li>
+</ul>
+<p>建造者模式最主要功能是基本方法的调用顺序安排，也就是这些基本方法已经实现了；</p>
+<p>而工厂方法则重点是创建，你要什么对象我创造一个对象出来，组装顺序则不是他关心的。</p>
+<p>建造者模式使用的场景，一是产品类非常的复杂，或者产品类中的调用顺序不同产生了不同的效能，这个时候使用建造者模式是非常合适</p>
+<h4 id="prototype原型模式">Prototype原型模式</h4>
+<p>作用：</p>
+<p>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</p>
+<p>Prototype模式提供了一个通过已存在对象进行新对象创建的接口（Clone）， Clone()实现和具体的语言相关，在C++中通过拷贝构造函数实现。</p>
+<p>Prototype模式和Builder模式、AbstractFactory模式都是通过一个类（对象实例）来专门负责对象的创建工作（工厂对象），它们之间的区别是：Builder模式重在复杂对象的一步步创建（并不直接返回对象），AbstractFactory模式重在产生多个相互依赖类的对象，而Prototype模式重在从自身复制自己创建新类。</p>
+<p>理解:
+Bridge用于将表示和实现解耦,两者可以独立的变化.在Abstraction类中维护一个AbstractionImplement类指针,需要采用不同的实现方式的时候只需要传入不同的AbstractionImplement派生类就可以了.</p>
+<p>Bridge的实现方式其实和Builde十分的相近,可以这么说:本质上是一样的,只是封装的东西不一样罢了.两者的实现都有如下的共同点:</p>
+<p>抽象出来一个基类,这个基类里面定义了共有的一些行为,形成接口函数(对接口编程而不是对实现编程),这个接口函数在Buildier中是BuildePart函数在Bridge中是Operation函数;</p>
+<p>其次,聚合一个基类的指针,如Builder模式中Director类聚合了一个Builder基类的指针,而Brige模式中Abstraction类聚合了一个AbstractionImplement基类的指针(优先采用聚合而不是继承);</p>
+<p>而在使用的时候,都把对这个类的使用封装在一个函数中,在Bridge中是封装在Director::Construct函数中,因为装配不同部分的过程是一致的,而在Bridge模式中则是封装在Abstraction::Operation函数中,在这个函数中调用对应的AbstractionImplement::Operation函数.就两个模式而言,Builder封装了不同的生成组成部分的方式,而Bridge封装了不同的实现方式.</p>
+<p>桥接模式就将实现与抽象分离开来，使得RefinedAbstraction依赖于抽象的实现，这样实现了依赖倒转原则，而不管左边的抽象如何变化，只要实现方法不变，右边的具体实现就不需要修改，而右边的具体实现方法发生变化，只要接口不变，左边的抽象也不需要修改。</p>
+<h4 id="bridge桥接模式">Bridge桥接模式</h4>
+<p>作用：将抽象部份与它的实现部份分离，使它们都可以独立地变化。</p>
+<p>将抽象(Abstraction)与实现(Implementation)分离，使得二者可以独立地变化。</p>
+<p>桥接模式号称设计模式中最难理解的模式之一，关键就是这个抽象和实现的分离非常让人奇怪，大部分人刚看到这个定义的时候都会认为实现就是继承自抽象，那怎么可能将他们分离呢。</p>
+<p>《大话设计模式》中就Bridge模式的解释：</p>
+<p>手机品牌和软件是两个概念，不同的软件可以在不同的手机上，不同的手机可以有相同的软件，两者都具有很大的变动性。如果我们单独以手机品牌或手机软件为基类来进行继承扩展的话，无疑会使类的数目剧增并且耦合性很高，（如果更改品牌或增加软件都会增加很多的变动）两种方式的结构如下：</p>
+<p>常用的场景
+1.当一个对象有多个变化因素的时候，考虑依赖于抽象的实现，而不是具体的实现。如上面例子中手机品牌有2种变化因素，一个是品牌，一个是功能。</p>
+<p>2.当多个变化因素在多个对象间共享时，考虑将这部分变化的部分抽象出来再聚合/合成进来，如上面例子中的通讯录和游戏，其实是可以共享的。</p>
+<p>3.当我们考虑一个对象的多个变化因素可以动态变化的时候，考虑使用桥接模式，如上面例子中的手机品牌是变化的，手机的功能也是变化的，所以将他们分离出来，独立的变化。</p>
+<p>优点
+1.将实现抽离出来，再实现抽象，使得对象的具体实现依赖于抽象，满足了依赖倒转原则。</p>
+<p>2.将可以共享的变化部分，抽离出来，减少了代码的重复信息。</p>
+<p>3.对象的具体实现可以更加灵活，可以满足多个因素变化的要求。</p>
+<p>缺点
+1.客户必须知道选择哪一种类型的实现。</p>
+<p>设计中有超过一维的变化我们就可以用桥模式。如果只有一维在变化，那么我们用继承就可以圆满的解决问题。</p>
+<h4 id="adapter适配器模式">Adapter适配器模式</h4>
+<p>作用：将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p>分为类适配器模式和对象适配器模式。</p>
+<p>系统的数据和行为都正确，但接口不符时，我们应该考虑使用适配器，目的是使控制范围之外的一个原有对象与某个接口匹配。适配器模式主要应用于希望复用一些现存的类，但是接口又与复用环境要求不一致的情况。</p>
+<p>想使用一个已经存在的类，但如果它的接口，也就是它的方法和你的要求不相同时，就应该考虑用适配器模式。</p>
+<p>比如购买的第三方开发组件，该组件接口与我们自己系统的接口不相同，或者由于某种原因无法直接调用该组件，可以考虑适配器。</p>
+<h2 id="分类">分类</h2>
+<h3 id="结构型模式">结构型模式</h3>
+<h4 id="bridge桥接模式-1">Bridge（桥接）模式</h4>
+<h4 id="adapter适配模式">Adapter（适配）模式</h4>
+<h4 id="decorator装饰模式">Decorator（装饰）模式</h4>
+<h4 id="composite组合模式">Composite（组合）模式</h4>
+<h4 id="flyweight享元模式">Flyweight（享元）模式</h4>
+<h4 id="facade外观模式">Facade（外观）模式</h4>
+<h3 id="行为模式">行为模式</h3>
+<h4 id="template模式">Template模式</h4>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/about-learning/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">学习、学习</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/question-in-interview/">
+            <span class="next-text nav-default">面试问题总结</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在Redhat6.8上编译安装clang - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C&#43;&#43;11的完整支持。为了使用C&#43;&#43;11，clang是一个很好的选择。 但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。
+clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others.
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/build-clang-in-redhat/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在Redhat6.8上编译安装clang" />
+<meta property="og:description" content="公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C&#43;&#43;11的完整支持。为了使用C&#43;&#43;11，clang是一个很好的选择。
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。
+clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/build-clang-in-redhat/" />
+<meta property="article:published_time" content="2017-10-31T14:18:26+00:00" />
+<meta property="article:modified_time" content="2017-10-31T14:18:26+00:00" />
+<meta itemprop="name" content="在Redhat6.8上编译安装clang">
+<meta itemprop="description" content="公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C&#43;&#43;11的完整支持。为了使用C&#43;&#43;11，clang是一个很好的选择。
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。
+clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others.">
+<meta itemprop="datePublished" content="2017-10-31T14:18:26&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-31T14:18:26&#43;00:00" />
+<meta itemprop="wordCount" content="1020">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在Redhat6.8上编译安装clang"/>
+<meta name="twitter:description" content="公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C&#43;&#43;11的完整支持。为了使用C&#43;&#43;11，clang是一个很好的选择。
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。
+clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在Redhat6.8上编译安装clang</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-31 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-to-build">How to build</a></li>
+        <li><a href="#buid-gcc-482">Buid gcc 4.8.2</a></li>
+        <li><a href="#buid-clang">Buid clang</a></li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>公司远程工作环境是redhat 6.8，gcc版本是4.4.7，还没有对C++11的完整支持。为了使用C++11，clang是一个很好的选择。
+但开发环境虽然能够联网，但没有root权限，所以只好从源码编译安装。不得不说在Redhat上编译安装clang是个痛苦的过程=_=，我已经经历过了，所以把安装过程写了脚本，这样就可以很方便的在redhat上编译安装clang了。</p>
+<p>clang is a great compiler, with a boatload of extremely helpful tools, including static analysis, run-time memory and data race analysis, and many others.</p>
+<h2 id="how-to-build">How to build</h2>
+<p>Like almost all compilers, clang is written in a high-level language (in this case C++), so building clang requires a host compiler to do the actual compilation.  On Linux this is almost always gcc, since it is ubiquitous on Linux machines.</p>
+<p>There’s a hitch, though – as of version 3.3 some parts of clang are written in C++11, so the compiler used to compile clang needs to support the C++11 standard.</p>
+<p>This is a real problem with RedHat, since the system compiler supplied with RedHat 6 (the most recent version that is in wide use), is gcc 4.4.7.  That compiler does not support C++11, and so is not able to compile clang.  So, the first step is getting a C++11-compliant compiler so we can compile clang.  For this example, we’re going to choose gcc 4.8.2, for a variety of reasons<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.  The good news is that gcc 4.8.2 is written in C++ 98, so we can build it using the system compiler (gcc 4.4.7).</p>
+<h2 id="buid-gcc-482">Buid gcc 4.8.2</h2>
+<p>下面的脚本用于安装gcc 4.8.2。由于没有root权限，这里选择安装到用户目录<code>~/.local/share/gcc/4.8.2</code>下，这样我们需要在PATH和LD_LIBRARY_PATH中加入相对应的目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">set</span> -exv
+
+<span class="c1">## modify the following as needed for your environment</span>
+<span class="c1"># location where gcc should be installed</span>
+<span class="nv">INSTALL_PREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/gcc/4.8.2
+<span class="c1"># number of cores</span>
+<span class="nv">CPUS</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span>
+<span class="c1"># uncomment following to get verbose output from make</span>
+<span class="c1">#VERBOSE=VERBOSE=1</span>
+<span class="c1"># uncomment following if you need to sudo in order to do the install</span>
+<span class="c1">#SUDO=sudo</span>
+
+
+<span class="c1">## get everything</span>
+wget http://www.netgull.com/gcc/releases/gcc-4.8.2/gcc-4.8.2.tar.bz2
+wget http://ftp.vim.org/ftp/gnu/gmp/gmp-4.3.2.tar.bz2
+wget http://www.multiprecision.org/mpc/download/mpc-0.8.1.tar.gz
+wget http://www.mpfr.org/mpfr-2.4.2/mpfr-2.4.2.tar.bz2
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/cloog-0.18.1.tar.gz
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/isl-0.12.2.tar.bz2
+
+<span class="c1">## untar gcc</span>
+tar xf gcc-4.8.2.tar.bz2
+<span class="c1">## untar prereqs</span>
+<span class="c1"># gmp</span>
+tar xf gmp-4.3.2.tar.bz2
+mv gmp-4.3.2 gcc-4.8.2/gmp
+<span class="c1"># mpc</span>
+tar xf mpc-0.8.1.tar.gz
+mv mpc-0.8.1 gcc-4.8.2/mpc
+<span class="c1"># mpfr</span>
+tar xf mpfr-2.4.2.tar.bz2
+mv mpfr-2.4.2 gcc-4.8.2/mpfr
+<span class="c1"># cloog</span>
+tar xf cloog-0.18.1.tar.gz
+mv cloog-0.18.1 gcc-4.8.2/cloog
+<span class="c1"># isl</span>
+tar xf isl-0.12.2.tar.bz2
+mv isl-0.12.2 gcc-4.8.2/isl
+
+<span class="c1"># build gcc</span>
+rm -rf gcc
+mkdir gcc
+<span class="nb">cd</span> gcc
+../gcc-4.8.2/configure --prefix<span class="o">=</span><span class="si">${</span><span class="nv">INSTALL_PREFIX</span><span class="si">}</span> --enable-languages<span class="o">=</span>c,c++ --disable-multilib
+make -j <span class="si">${</span><span class="nv">CPUS</span><span class="si">}</span> <span class="si">${</span><span class="nv">VERBOSE</span><span class="si">}</span>
+
+<span class="c1"># install it</span>
+<span class="si">${</span><span class="nv">SUDO</span><span class="si">}</span> rm -rf <span class="si">${</span><span class="nv">INSTALL_PREFIX</span><span class="si">}</span>
+<span class="si">${</span><span class="nv">SUDO</span><span class="si">}</span> make install
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="buid-clang">Buid clang</h2>
+<p>下面的脚本利用上面安装的gcc 4.8.2编译安装clang到目录：<code>~/.local/share/clang/trunk</code>。同样也需要配置一下PATH和LD_LIBRARY_PATH环境变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">set</span> -exv
+
+<span class="c1">## modify the following as needed for your environment</span>
+<span class="c1"># location where clang should be installed</span>
+<span class="nv">INSTALL_PREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/clang/trunk
+<span class="c1"># location of gcc used to build clang</span>
+<span class="nv">HOST_GCC</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.local/share/gcc/4.8.2
+<span class="c1"># number of cores</span>
+<span class="nv">CPUS</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span>
+<span class="c1"># uncomment following to get verbose output from make</span>
+<span class="c1">#VERBOSE=VERBOSE=1</span>
+<span class="c1"># uncomment following if you need to sudo in order to do the install</span>
+<span class="c1">#SUDO=sudo</span>
+
+#
+<span class="c1"># gets clang tree from svn into ./llvm</span>
+<span class="c1"># params (e.g., -r) can be specified on command line</span>
+#
+rm -rf llvm
+<span class="c1">## get everything</span>
+<span class="c1"># llvm</span>
+svn co <span class="nv">$*</span> http://llvm.org/svn/llvm-project/llvm/trunk llvm
+<span class="c1"># clang</span>
+<span class="nb">cd</span> llvm/tools
+svn co <span class="nv">$*</span> http://llvm.org/svn/llvm-project/cfe/trunk clang
+<span class="nb">cd</span> -
+<span class="c1"># extra</span>
+<span class="nb">cd</span> llvm/tools/clang/tools
+svn co <span class="nv">$*</span> http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
+<span class="nb">cd</span> -
+<span class="c1"># compiler-rt</span>
+<span class="nb">cd</span> llvm/projects
+svn co <span class="nv">$*</span> http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+<span class="nb">cd</span> -
+
+<span class="c1">## build clang w/gcc installed in non-standard location</span>
+rm -rf clang
+mkdir -p clang
+<span class="nb">cd</span> clang
+cmake -DCMAKE_C_COMPILER<span class="o">=</span><span class="si">${</span><span class="nv">HOST_GCC</span><span class="si">}</span>/bin/gcc -DCMAKE_CXX_COMPILER<span class="o">=</span><span class="si">${</span><span class="nv">HOST_GCC</span><span class="si">}</span>/bin/g++ -DGCC_INSTALL_PREFIX<span class="o">=</span><span class="si">${</span><span class="nv">HOST_GCC</span><span class="si">}</span> -DCMAKE_CXX_LINK_FLAGS<span class="o">=</span><span class="s2">&#34;-L</span><span class="si">${</span><span class="nv">HOST_GCC</span><span class="si">}</span><span class="s2">/lib64 -Wl,-rpath,</span><span class="si">${</span><span class="nv">HOST_GCC</span><span class="si">}</span><span class="s2">/lib64&#34;</span> -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="si">${</span><span class="nv">INSTALL_PREFIX</span><span class="si">}</span> -DLLVM_ENABLE_ASSERTIONS<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span><span class="s2">&#34;Release&#34;</span> -DLLVM_TARGETS_TO_BUILD<span class="o">=</span><span class="s2">&#34;X86&#34;</span> ../llvm
+make -j <span class="si">${</span><span class="nv">CPUS</span><span class="si">}</span> <span class="si">${</span><span class="nv">VERBOSE</span><span class="si">}</span>
+
+<span class="c1"># install it</span>
+<span class="si">${</span><span class="nv">SUDO</span><span class="si">}</span> rm -rf <span class="si">${</span><span class="nv">INSTALL_PREFIX</span><span class="si">}</span>
+<span class="si">${</span><span class="nv">SUDO</span><span class="si">}</span> make install
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>One reason is that gcc 4.9.0 can’t compile libc++, the llvm version of the C++ standard library – see <a href="http://lists.llvm.org/pipermail/cfe-dev/2014-April/036650.html">http://lists.llvm.org/pipermail/cfe-dev/2014-April/036650.html</a> for more detail. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2017-10-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/threading-in-python/">
+            <span class="next-text nav-default">python 的多线程</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

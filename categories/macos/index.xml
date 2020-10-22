@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MacOS on Ovsoil&#39;s Blog - Learn，Write，Share</title>
+    <link>http://localhost:1313/categories/macos/</link>
+    <description>Recent content in MacOS on Ovsoil&#39;s Blog - Learn，Write，Share</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 10 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/macos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MacOSX 使用小贴士</title>
+      <link>http://localhost:1313/post/macosx-tips/</link>
+      <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/macosx-tips/</guid>
+      <description>&lt;p&gt;使用MacBookPro有一段时间了，有一些有用的使用技巧能够极大的提高了工作学习效率，一直很想记录并分享出来。当然里面有一些习惯带我个人的习惯，不认同的忽略就好，不过为何不尝试改变一下呢。:-)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>libevent 源码学习之一 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。 libevent 有几个显著的亮点：
+ 事件驱动（event-driven），高性能; 轻量级，专注于网络，不如ACE那么臃肿庞大； 源代码相当精炼、易读； 跨平台，支持Windows、Linux、*BSD和Mac OS； 支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等； 支持I/O，定时器和信号等事件； 注册事件优先级。  libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/libevent-source-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="libevent 源码学习之一" />
+<meta property="og:description" content="libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
+libevent 有几个显著的亮点：
+
+事件驱动（event-driven），高性能;
+轻量级，专注于网络，不如ACE那么臃肿庞大；
+源代码相当精炼、易读；
+跨平台，支持Windows、Linux、*BSD和Mac OS；
+支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等；
+支持I/O，定时器和信号等事件；
+注册事件优先级。
+
+libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/libevent-source-1/" />
+<meta property="article:published_time" content="2015-06-30T00:00:00+00:00" />
+
+<meta itemprop="name" content="libevent 源码学习之一">
+<meta itemprop="description" content="libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
+libevent 有几个显著的亮点：
+
+事件驱动（event-driven），高性能;
+轻量级，专注于网络，不如ACE那么臃肿庞大；
+源代码相当精炼、易读；
+跨平台，支持Windows、Linux、*BSD和Mac OS；
+支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等；
+支持I/O，定时器和信号等事件；
+注册事件优先级。
+
+libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。">
+
+<meta itemprop="wordCount" content="2505">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="libevent 源码学习之一"/>
+<meta name="twitter:description" content="libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
+libevent 有几个显著的亮点：
+
+事件驱动（event-driven），高性能;
+轻量级，专注于网络，不如ACE那么臃肿庞大；
+源代码相当精炼、易读；
+跨平台，支持Windows、Linux、*BSD和Mac OS；
+支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等；
+支持I/O，定时器和信号等事件；
+注册事件优先级。
+
+libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">libevent 源码学习之一</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-06-30 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#简单使用">简单使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#reactor模式">Reactor模式</a></li>
+        <li><a href="#源码结构">源码结构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>libevent是一个轻量级的开源高性能网络库，被很多项目作为底层的网络库，比如memcached、Vomit、Nylon、Netchat等等。
+libevent 有几个显著的亮点：</p>
+<ul>
+<li>事件驱动（event-driven），高性能;</li>
+<li>轻量级，专注于网络，不如ACE那么臃肿庞大；</li>
+<li>源代码相当精炼、易读；</li>
+<li>跨平台，支持Windows、Linux、*BSD和Mac OS；</li>
+<li>支持多种I/O多路复用技术， epoll、poll、dev/poll、select和kqueue等；</li>
+<li>支持I/O，定时器和信号等事件；</li>
+<li>注册事件优先级。</li>
+</ul>
+<p>libevent的源码除了涉及网络程序设计方面外，还有很多有用的设计技巧和基础数据结构，比如信息隐藏、函数指针、c语言的多态支持、链表和堆等等。</p>
+<h3 id="简单使用">简单使用</h3>
+<ol>
+<li>简单的定时</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="c1">// libevent头文件 
+</span><span class="c1"></span>    <span class="cp">#include</span> <span class="cpf">&lt;event.h&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+
+    <span class="c1">// 定时事件回调函数 
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">onTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">sock</span><span class="p">,</span> <span class="kt">short</span> <span class="n">event</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> 
+    <span class="p">{</span> 
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Time Out!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+       
+        <span class="k">struct</span> <span class="nc">timeval</span> <span class="n">tv</span><span class="p">;</span> 
+        <span class="n">tv</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+        <span class="n">tv</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+        <span class="c1">// 重新添加定时事件（定时事件触发后默认自动删除） 
+</span><span class="c1"></span>        <span class="n">event_add</span><span class="p">((</span><span class="k">struct</span> <span class="nc">event</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tv</span><span class="p">);</span> 
+    <span class="p">}</span> 
+
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+    <span class="p">{</span> 
+        <span class="c1">// 初始化 
+</span><span class="c1"></span>        <span class="n">bevent_init</span><span class="p">();</span> 
+        <span class="k">struct</span> <span class="nc">event</span> <span class="n">evTime</span><span class="p">;</span> 
+        <span class="c1">// 设置定时事件 
+</span><span class="c1"></span>        <span class="n">evtimer_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">evTime</span><span class="p">,</span> <span class="n">onTime</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">evTime</span><span class="p">);</span> 
+       
+        <span class="k">struct</span> <span class="nc">timeval</span> <span class="n">tv</span><span class="p">;</span> 
+        <span class="n">tv</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+        <span class="n">tv</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+        <span class="c1">// 添加定时事件 
+</span><span class="c1"></span>        <span class="n">event_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">evTime</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tv</span><span class="p">);</span> 
+       
+        <span class="c1">// 事件循环 
+</span><span class="c1"></span>        <span class="n">event_dispatch</span><span class="p">();</span> 
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>TCP服务器：实现监听本机8888端口并输出客户端发送过来的信息</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;string.h&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;     </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;     </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;     </span><span class="cp">
+</span><span class="cp"></span>    <span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt; </span><span class="cp">
+</span><span class="cp"></span>
+    <span class="cp">#include</span> <span class="cpf">&lt;event.h&gt; </span><span class="cp">
+</span><span class="cp"></span>    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+
+    <span class="c1">// 事件base 
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">event_base</span><span class="o">*</span> <span class="n">base</span><span class="p">;</span> 
+
+    <span class="c1">// 读事件回调函数 
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">onRead</span><span class="p">(</span><span class="kt">int</span> <span class="n">iCliFd</span><span class="p">,</span> <span class="kt">short</span> <span class="n">iEvent</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> 
+    <span class="p">{</span> 
+    <span class="kt">int</span> <span class="n">iLen</span><span class="p">;</span> 
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1500</span><span class="p">];</span> 
+
+    <span class="n">iLen</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">iCliFd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> 
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">iLen</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Client Close&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+
+    <span class="c1">// 连接结束(=0)或连接错误(&lt;0)，将事件删除并释放内存空间 
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">event</span> <span class="o">*</span><span class="n">pEvRead</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">event</span><span class="o">*</span><span class="p">)</span><span class="n">arg</span><span class="p">;</span> 
+    <span class="n">event_del</span><span class="p">(</span><span class="n">pEvRead</span><span class="p">);</span> 
+    <span class="k">delete</span> <span class="n">pEvRead</span><span class="p">;</span> 
+
+    <span class="n">close</span><span class="p">(</span><span class="n">iCliFd</span><span class="p">);</span> 
+    <span class="k">return</span><span class="p">;</span> 
+    <span class="p">}</span> 
+
+    <span class="n">buf</span><span class="p">[</span><span class="n">iLen</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Client Info:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">buf</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+    <span class="p">}</span> 
+
+    <span class="c1">// 连接请求事件回调函数 
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">onAccept</span><span class="p">(</span><span class="kt">int</span> <span class="n">iSvrFd</span><span class="p">,</span> <span class="kt">short</span> <span class="n">iEvent</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> 
+    <span class="p">{</span> 
+    <span class="kt">int</span> <span class="n">iCliFd</span><span class="p">;</span> 
+    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">sCliAddr</span><span class="p">;</span> 
+
+    <span class="n">socklen_t</span> <span class="n">iSinSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sCliAddr</span><span class="p">);</span> 
+    <span class="n">iCliFd</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">iSvrFd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sCliAddr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iSinSize</span><span class="p">);</span> 
+
+    <span class="c1">// 连接注册为新事件 (EV_PERSIST为事件触发后不默认删除) 
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">event</span> <span class="o">*</span><span class="n">pEvRead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">event</span><span class="p">;</span> 
+    <span class="n">event_set</span><span class="p">(</span><span class="n">pEvRead</span><span class="p">,</span> <span class="n">iCliFd</span><span class="p">,</span> <span class="n">EV_READ</span><span class="o">|</span><span class="n">EV_PERSIST</span><span class="p">,</span> <span class="n">onRead</span><span class="p">,</span> <span class="n">pEvRead</span><span class="p">);</span> 
+    <span class="n">event_base_set</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">pEvRead</span><span class="p">);</span> 
+    <span class="n">event_add</span><span class="p">(</span><span class="n">pEvRead</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> 
+    <span class="p">}</span> 
+
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
+    <span class="p">{</span> 
+
+    <span class="kt">int</span> <span class="n">iSvrFd</span><span class="p">;</span>   
+    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">sSvrAddr</span><span class="p">;</span> 
+
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sSvrAddr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sSvrAddr</span><span class="p">));</span>   
+    <span class="n">sSvrAddr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>   
+    <span class="n">sSvrAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="s">&#34;127.0.0.1&#34;</span><span class="p">);</span>     
+    <span class="n">sSvrAddr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">8888</span><span class="p">);</span>    
+
+    <span class="c1">// 创建tcpSocket（iSvrFd），监听本机8888端口   
+</span><span class="c1"></span>    <span class="n">iSvrFd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>   
+    <span class="n">bind</span><span class="p">(</span><span class="n">iSvrFd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sSvrAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sSvrAddr</span><span class="p">));</span>   
+    <span class="n">listen</span><span class="p">(</span><span class="n">iSvrFd</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> 
+
+    <span class="c1">// 初始化base 
+</span><span class="c1"></span>    <span class="n">base</span> <span class="o">=</span> <span class="n">event_base_new</span><span class="p">();</span> 
+
+    <span class="k">struct</span> <span class="nc">event</span> <span class="n">evListen</span><span class="p">;</span> 
+    <span class="c1">// 设置事件 
+</span><span class="c1"></span>    <span class="n">event_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">evListen</span><span class="p">,</span> <span class="n">iSvrFd</span><span class="p">,</span> <span class="n">EV_READ</span><span class="o">|</span><span class="n">EV_PERSIST</span><span class="p">,</span> <span class="n">onAccept</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> 
+    <span class="c1">// 设置为base事件 
+</span><span class="c1"></span>    <span class="n">event_base_set</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">evListen</span><span class="p">);</span> 
+    <span class="c1">// 添加事件 
+</span><span class="c1"></span>    <span class="n">event_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">evListen</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> 
+
+    <span class="c1">// 事件循环 
+</span><span class="c1"></span>    <span class="n">event_base_dispatch</span><span class="p">(</span><span class="n">base</span><span class="p">);</span> 
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reactor模式">Reactor模式</h2>
+<p>Reactor模式是编写高性能网络服务器的必备技术之一，它具有如下的优点：</p>
+<ol>
+<li>响应快，不必为单个同步时间所阻塞，虽然Reactor本身依然是同步的；</li>
+<li>编程相对简单，可以最大程度的避免复杂的多线程及同步问题，并且避免了多线程/进程的切换开销；</li>
+<li>可扩展性，可以方便的通过增加Reactor实例个数来充分利用CPU资源；</li>
+<li>可复用性，reactor框架本身与具体事件处理逻辑无关，具有很高的复用性；</li>
+</ol>
+<p>Reactor模型必备几个组件：事件源、Reactor框架、多路复用机制和事件处理程序。</p>
+<ol>
+<li>
+<p>事件源
+Linux上是文件描述符，Windows上就是Socket或者Handle了，这里统一称为“句柄集”；程序在指定的句柄上注册关心的事件，比如I/O事件。</p>
+</li>
+<li>
+<p>event demultiplexer——事件多路分发机制
+由操作系统提供的I/O多路复用机制，比如select和epoll。
+程序首先将其关心的句柄（事件源）及其事件注册到event demultiplexer上；
+当有事件到达时，event demultiplexer会发出通知“在已经注册的句柄集中，一个或多个句柄的事件已经就绪”；
+程序收到通知后，就可以在非阻塞的情况下对事件进行处理了。
+对应到libevent中，依然是select、poll、epoll等，但是libevent使用结构体eventop进行了封装，以统一的接口来支持这些I/O多路复用机制，达到了对外隐藏底层系统机制的目的。</p>
+</li>
+<li>
+<p>Reactor——反应器
+Reactor，是事件管理的接口，内部使用event demultiplexer注册、注销事件；并运行事件循环，当有事件进入“就绪”状态时，调用注册事件的回调函数处理事件。
+对应到libevent中，就是event_base结构体。</p>
+</li>
+<li>
+<p>Event Handler——事件处理程序
+事件处理程序提供了一组接口，每个接口对应了一种类型的事件，供Reactor在相应的事件发生时调用，执行相应的事件处理。通常它会绑定一个有效的句柄。
+对应到libevent中，就是event结构体。</p>
+</li>
+</ol>
+<h2 id="源码结构">源码结构</h2>
+<p>Libevent的源代码虽然都在一层文件夹下面，但是其代码分类还是相当清晰的，主要可分为头文件、内部使用的头文件、辅助功能函数、日志、libevent框架、对系统I/O多路复用机制的封装、信号管理、定时事件管理、缓冲区管理、基本数据结构和基于libevent的两个实用库等几个部分，有些部分可能就是一个源文件。
+源代码中的test部分就不在我们关注的范畴了。</p>
+<ol>
+<li>头文件
+主要就是event.h：事件宏定义、接口函数声明，主要结构体event的声明；</li>
+<li>内部头文件
+xxx-internal.h：内部数据结构和函数，对外不可见，以达到信息隐藏的目的；</li>
+<li>libevent框架
+event.c：event整体框架的代码实现；</li>
+<li>对系统I/O多路复用机制的封装
+epoll.c：对epoll的封装；
+select.c：对select的封装；
+devpoll.c：对dev/poll的封装;
+kqueue.c：对kqueue的封装；</li>
+<li>定时事件管理
+min-heap.h：其实就是一个以时间作为key的小根堆结构；</li>
+<li>信号管理
+signal.c：对信号事件的处理；</li>
+<li>辅助功能函数
+evutil.h 和evutil.c：一些辅助功能函数，包括创建socket pair和一些时间操作函数：加、减和比较等。</li>
+<li>日志
+log.h和log.c：log日志函数</li>
+<li>缓冲区管理
+evbuffer.c和buffer.c：libevent对缓冲区的封装；</li>
+<li>基本数据结构
+compat/sys下的两个源文件：queue.h是libevent基本数据结构的实现，包括链表，双向链表，队列等；_libevent_time.h：一些用于时间操作的结构体定义、函数和宏定义；</li>
+<li>实用网络库
+http和evdns：是基于libevent实现的http服务器和异步dns查询库；</li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/macosx-tips/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MacOSX 使用小贴士</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/encoding/">
+            <span class="next-text nav-default">弄清楚编码</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

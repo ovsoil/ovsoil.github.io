@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Cocos2dx 源码分析之一: 起步(Application) - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/analyse-cocos2dx-source-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Cocos2dx 源码分析之一: 起步(Application)" />
+<meta property="og:description" content="工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/analyse-cocos2dx-source-1/" />
+<meta property="article:published_time" content="2015-04-13T00:00:00+00:00" />
+
+<meta itemprop="name" content="Cocos2dx 源码分析之一: 起步(Application)">
+<meta itemprop="description" content="工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。">
+
+<meta itemprop="wordCount" content="824">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cocos2dx 源码分析之一: 起步(Application)"/>
+<meta name="twitter:description" content="工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Cocos2dx 源码分析之一: 起步(Application)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-13 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#环境搭建">环境搭建</a></li>
+            <li><a href="#helloworld">HelloWorld</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>工作需要开发一个简单的2D图形引擎，目前最火的就属cocos2d-x引擎了，开源、跨平台、社区丰富。虽然是游戏引擎，但想来应该有很多可以学习借鉴的地方。所以打算通过源码分析学习一下这个优秀的引擎架构。</p>
+<h3 id="环境搭建">环境搭建</h3>
+<h3 id="helloworld">HelloWorld</h3>
+<ul>
+<li>
+<p>main函数</p>
+<pre><code>  #include &quot;AppDelegate.h&quot;
+  #include &quot;cocos2d.h&quot;
+  USING_NS_CC;
+  int main(int argc, char *argv[])
+  {
+      AppDelegate app;
+      return Application::getInstance()-&gt;run();
+  }
+</code></pre>
+<p>main函数很简单: 1)实例化<code>AppDelegate</code>, 运行<code>Application::getInstance()-&gt;run()</code>。可以发现AppDelegate同样继承自Application，Application继承自ApplicationProtocol类，所以先研究ApplicationProtocol类。</p>
+<pre><code>  class CC_DLL ApplicationProtocol
+  {
+  public:
+
+      // Since WINDOWS and ANDROID are defined as macros, we could not just use these keywords in enumeration(Platform).
+      // Therefore, 'OS_' prefix is added to avoid conflicts with the definitions of system macros.
+      enum class Platform
+      {
+          OS_WINDOWS,
+          OS_LINUX,
+          OS_MAC,
+          OS_ANDROID,
+          OS_IPHONE,
+          OS_IPAD,
+          OS_BLACKBERRY,
+          OS_NACL,
+          OS_EMSCRIPTEN,
+          OS_TIZEN,
+          OS_WINRT,
+          OS_WP8
+      };
+
+      virtual ~ApplicationProtocol(){
+  #if CC_ENABLE_SCRIPT_BINDING
+          ScriptEngineManager::destroyInstance();
+  #endif
+          PoolManager::destroyInstance();
+      }
+
+      virtual bool applicationDidFinishLaunching() = 0;
+      virtual void applicationDidEnterBackground() = 0;
+      virtual void applicationWillEnterForeground() = 0;
+      virtual void setAnimationInterval(double interval) = 0;
+      virtual void initGLContextAttrs() {}
+      virtual LanguageType getCurrentLanguage() = 0;
+      virtual const char * getCurrentLanguageCode() = 0;
+      virtual Platform getTargetPlatform() = 0;
+      virtual bool openURL(const std::string &amp;url) = 0;
+  };
+</code></pre>
+</li>
+</ul>
+<p>可以看到，ApplicationProtocol是一个抽象类，定义了一个App基本的接口，同时有一个平台类型的枚举<code>enum class Platform</code>，然后各个平台再继承该类来实现自己平台的Application类。例如Mac平台的Application类的声明包含在<code>#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC ... #endif</code>之间。</p>
+<ul>
+<li>
+<p>Application类</p>
+<pre><code>  int Application::run()
+  {
+      initGLContextAttrs();
+      if(!applicationDidFinishLaunching())
+      {
+          return 1;
+      }
+        
+      long lastTime = 0L;
+      long curTime = 0L;
+        
+      auto director = Director::getInstance();
+      auto glview = director-&gt;getOpenGLView();
+        
+      // Retain glview to avoid glview being released in the while loop
+      glview-&gt;retain();
+        
+      while (!glview-&gt;windowShouldClose())
+      {
+          lastTime = getCurrentMillSecond();
+            
+          director-&gt;mainLoop();
+          glview-&gt;pollEvents();
+
+          curTime = getCurrentMillSecond();
+          if (curTime - lastTime &lt; _animationInterval)
+          {
+              usleep(static_cast&lt;useconds_t&gt;((_animationInterval - curTime + lastTime)*1000));
+          }
+      }
+
+      /* Only work on Desktop
+      *  Director::mainLoop is really one frame logic
+      *  when we want to close the window, we should call Director::end();
+      *  then call Director::mainLoop to do release of internal resources
+      */
+      if (glview-&gt;isOpenGLReady())
+      {
+          director-&gt;end();
+          director-&gt;mainLoop();
+      }
+        
+      glview-&gt;release();
+        
+      return 0;
+  }
+</code></pre>
+</li>
+</ul>
+<p>看看applicationDidFinishLaunching函数里</p>
+<pre><code>bool AppDelegate::applicationDidFinishLaunching() {
+    // initialize director
+    auto director = Director::getInstance();
+    auto glview = director-&gt;getOpenGLView();
+    if(!glview) {
+        glview = GLViewImpl::create(&quot;My Game&quot;);
+        director-&gt;setOpenGLView(glview);
+    }
+
+    // turn on display FPS
+    director-&gt;setDisplayStats(true);
+
+    // set FPS. the default value is 1.0/60 if you don't call this
+    director-&gt;setAnimationInterval(1.0 / 60);
+
+    // create a scene. it's an autorelease object
+    auto scene = HelloWorld::createScene();
+
+    // run
+    director-&gt;runWithScene(scene);
+
+    return true;
+}
+</code></pre>
+<p>每个项目都要有一个自己的App类继承自相应平台的Application调用Application::run方法来实现程序的启动。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/analyse-cocos2d-x-source-2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">cocos2d-x 源码分析二：Director</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/c-c-plus-plus-tips/">
+            <span class="next-text nav-default">C/C&#43;&#43;的一些备注点</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

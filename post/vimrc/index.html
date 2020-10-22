@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Powerful Vim - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="Share my vimrc. It is a powerful vim config file. The keymap similar with spacemacs Description vimrc-server: Simple vimrc for server without any plugin vimrc-dev: vimrc for develop Install | Upgrade Prerequisites vim compiled with python support. Check it with vim &amp;ndash;version | grep &#43;python Install the required dependencies: 1 2 3 4 5 6 7 8 9 # ubuntu sudo apt-get install exuberant-ctags git ack-grep sudo apt-get install silversearcher-ag" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/vimrc/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Powerful Vim" />
+<meta property="og:description" content="Share my vimrc. It is a powerful vim config file. The keymap similar with spacemacs Description vimrc-server: Simple vimrc for server without any plugin vimrc-dev: vimrc for develop Install | Upgrade Prerequisites vim compiled with python support. Check it with vim &ndash;version | grep &#43;python Install the required dependencies: 1 2 3 4 5 6 7 8 9 # ubuntu sudo apt-get install exuberant-ctags git ack-grep sudo apt-get install silversearcher-ag" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/vimrc/" />
+<meta property="article:published_time" content="2016-09-20T22:41:29+00:00" />
+<meta property="article:modified_time" content="2016-09-20T22:41:29+00:00" />
+<meta itemprop="name" content="Powerful Vim">
+<meta itemprop="description" content="Share my vimrc. It is a powerful vim config file. The keymap similar with spacemacs Description vimrc-server: Simple vimrc for server without any plugin vimrc-dev: vimrc for develop Install | Upgrade Prerequisites vim compiled with python support. Check it with vim &ndash;version | grep &#43;python Install the required dependencies: 1 2 3 4 5 6 7 8 9 # ubuntu sudo apt-get install exuberant-ctags git ack-grep sudo apt-get install silversearcher-ag">
+<meta itemprop="datePublished" content="2016-09-20T22:41:29&#43;00:00" />
+<meta itemprop="dateModified" content="2016-09-20T22:41:29&#43;00:00" />
+<meta itemprop="wordCount" content="1975">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Powerful Vim"/>
+<meta name="twitter:description" content="Share my vimrc. It is a powerful vim config file. The keymap similar with spacemacs Description vimrc-server: Simple vimrc for server without any plugin vimrc-dev: vimrc for develop Install | Upgrade Prerequisites vim compiled with python support. Check it with vim &ndash;version | grep &#43;python Install the required dependencies: 1 2 3 4 5 6 7 8 9 # ubuntu sudo apt-get install exuberant-ctags git ack-grep sudo apt-get install silversearcher-ag"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Powerful Vim</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-09-20 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#install--upgrade">Install | Upgrade</a></li>
+        <li><a href="#screenshot">screenshot:</a></li>
+        <li><a href="#features">Features</a>
+          <ul>
+            <li><a href="#1-little-but-usefull-features">1. Little but <em>usefull</em> features</a></li>
+            <li><a href="#2--hot-plugins-and-spacemacs-like-keymap">2.  Hot Plugins and spacemacs-like Keymap</a></li>
+            <li><a href="#keymap">keymap</a></li>
+          </ul>
+        </li>
+        <li><a href="#vim-简明教程">Vim 简明教程</a>
+          <ul>
+            <li><a href="#vim的模式">VIM的模式</a></li>
+            <li><a href="#基本移动">基本移动</a></li>
+            <li><a href="#基本编辑">基本编辑</a></li>
+            <li><a href="#进阶操作">进阶操作</a></li>
+            <li><a href="#other-tips">other tips</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Share my <a href="https://github.com/ovsoil/vimrc">vimrc</a>. It is a powerful vim config file. The keymap similar with spacemacs</p>
+<!-- more -->
+<h2 id="description">Description</h2>
+<ul>
+<li><code>vimrc-server</code>: Simple vimrc for server without any plugin</li>
+<li><code>vimrc-dev</code>: vimrc for develop</li>
+</ul>
+<h2 id="install--upgrade">Install | Upgrade</h2>
+<ol>
+<li>
+<p>Prerequisites</p>
+<ul>
+<li>vim compiled with python support. Check it with vim &ndash;version | grep +python</li>
+<li>Install the required dependencies:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ubuntu</span>
+sudo apt-get install exuberant-ctags git ack-grep
+sudo apt-get install silversearcher-ag
+sudo pip install pep8 flake8 pyflakes isort yapf
+
+<span class="c1"># mac</span>
+brew install ctags
+brew install the_silver_searcher
+sudo pip install pep8 flake8 pyflakes isort yapf
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>backup your old .vimrc file and .vim folder, create an empty .vim folder</li>
+</ul>
+</li>
+<li>
+<p>Clone this repo, and create a soft symbolic links <code>~/.vimrc</code> target the vimrc file which you want to use</p>
+<p>eg:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span>
+git clone https://github.com/ovsoil/vimrc.git ~/repo/vimrc
+ln -s repo/vimrc/vimrc-dev ~/.vimrc
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Open vim and it will continue the installation by itself. Wait for it to finish&hellip; and done! You now have your new shiny powerful vim :)</p>
+</li>
+</ol>
+<h2 id="screenshot">screenshot:</h2>
+<h2 id="features">Features</h2>
+<p>a powerful vim config file, some of the keymap refer to spacemacs</p>
+<h3 id="1-little-but-usefull-features">1. Little but <em>usefull</em> features</h3>
+<ul>
+<li>easy way to <em>search/replace/highlight/grep</em> current word &amp; selected text</li>
+<li>easy way to motion in file</li>
+<li>easy to toggle help(<leader>hh), quickfix(<leader>q), Locate(<leader>l) windows</li>
+<li>nerdtree keymap similar to neotree in spacemacs;</li>
+<li>return to last edit position when opening files</li>
+<li>convenient to insert date/time/calculate at insert mode</li>
+<li>automatically jump to the last position of paste text</li>
+<li>good completion</li>
+</ul>
+<h3 id="2--hot-plugins-and-spacemacs-like-keymap">2.  Hot Plugins and spacemacs-like Keymap</h3>
+<ul>
+<li><code>:PlugStatus</code> to see which plugins included</li>
+<li><code>:Maps</code> to see keymap list</li>
+<li>&hellip;</li>
+</ul>
+<h3 id="keymap">keymap</h3>
+<p><code>&lt;leader&gt;</code> is <code>&lt;Space&gt;</code>, similar to spacemacs</p>
+<pre><code># Help
+&lt;leader&gt;hh      toggle help window (or &lt;F1&gt;)
+&lt;leader&gt;hk      search keymap
+... more comming
+
+# Windows navigate
+&lt;leader&gt;wj      navigate to down window
+&lt;leader&gt;wk      navigate to up window
+&lt;leader&gt;wh      navigate to left window
+&lt;leader&gt;wl      navigate to right window
+
+# File open
+&lt;leader&gt;ff      find file at pwd dir
+&lt;leader&gt;fb      find in opened buffers
+&lt;leader&gt;fr      find in most recently files
+&lt;leader&gt;fe      find in the dir of current buffers
+&lt;leader&gt;ft      toggle neotree
+
+# Buffer navigate
+&lt;leader&gt;bb      find in opened buffers
+&lt;leader&gt;bn      next buffer
+&lt;leader&gt;bp      previous buffer
+&lt;leader&gt;bd      close the current buffer
+&lt;leader&gt;ba      close all buffers
+&lt;leader&gt;b&lt;tab&gt;  switch between most recently buffer
+&lt;leader&gt;bN      jump to buffer N, for single digit
+Ngb             jump to buffer N, 
+
+# Search and replace
+&lt;leader&gt;ss      search string in all files at pwd dir (-i for case-insensitively, -s for case-sensitively)
+&lt;leader&gt;sw      search word at cursor or selected text in all files at pwd dir
+&lt;leader&gt;sr      search and replace seleted text (need confirm)
+&lt;leader&gt;sR      search and replace seleted text (not confirm)
+&lt;leader&gt;st      search tag in current file
+&lt;leader&gt;sT      search tag in all buffer
+&lt;leader&gt;sl      search line
+&lt;leader&gt;sc      search cmd
+
+# Jump
+&lt;leader&gt;jl      jump to line
+&lt;leader&gt;jw      jump to word
+
+# yank and paste
+&lt;leader&gt;pt      toggle paste mode
+&lt;leader&gt;yy      copy to clipboard
+&lt;leader&gt;dd      delete to clipboard
+&lt;leader&gt;yy      copy current line to clipboard
+&lt;leader&gt;pp      paste from clipboard
+&lt;leader&gt;pP      paste before current cursor from clipboard
+
+# Edit
+&lt;leader&gt;=       format json file
+&lt;leader&gt;dm      delete all Windows ^M in file
+&lt;leader&gt;db      delete all lined blank space
+
+# Insert Mode
+&lt;c-d&gt;&lt;c-d&gt;      insert date
+&lt;c-t&gt;&lt;c-t&gt;      insert time
+&lt;c-c&gt;&lt;c-c&gt;      insert calculate
+</code></pre>
+<h2 id="vim-简明教程">Vim 简明教程</h2>
+<h3 id="vim的模式">VIM的模式</h3>
+<ul>
+<li>命令模式 (Command Mode)</li>
+<li>编辑模式 (Insert Mode)</li>
+<li>可视模式 (View Mode)</li>
+</ul>
+<h3 id="基本移动">基本移动</h3>
+<h4 id="以字为单位的移动">以字为单位的移动</h4>
+<ul>
+<li><code>h</code> 向左移动一个字</li>
+<li><code>j</code> 向下移动一行</li>
+<li><code>k</code> 向上</li>
+<li><code>l</code> 向右</li>
+</ul>
+<h4 id="以词为单位的移动">以词为单位的移动</h4>
+<ul>
+<li><code>w</code> 下一個word w(ord)</li>
+<li><code>W</code> 下一個word(跳过标点)</li>
+<li><code>b</code> 前一個word b(ackward)</li>
+<li><code>B</code> 前一个word(跳过标点)</li>
+<li><code>e</code> 跳到当前word的尾端 e(nd)</li>
+</ul>
+<h4 id="行移动">行移动</h4>
+<ul>
+<li><code>0</code> 跳到当前行的开头</li>
+<li><code>^</code> 跳到当前行第一个非空字符</li>
+<li><code>$</code> 跳到行尾</li>
+</ul>
+<p>助记：0(第0个字符),<code>^</code>和<code>$</code>含义同正则表达式</p>
+<h4 id="段落移动">段落移动</h4>
+<ul>
+<li><code>{</code> 上一段(以空白行分隔)</li>
+<li><code>}</code> 下一段(以空白行分隔)</li>
+<li><code>%</code> 跳到当前对应的括号上(适用各种配对符号)</li>
+</ul>
+<h4 id="跳跃移动">跳跃移动</h4>
+<ul>
+<li><code>/xxxx</code> 搜索xxxx，然后可以用<code>n</code>下一个，<code>N</code>上一个移动</li>
+<li><code>#</code> 向前搜索光标当前所在的字</li>
+<li><code>*</code> 向后搜索光标当前所在的字</li>
+<li><code>fx</code> 在当前行移动到光标之后第一个字符x的位置 f(ind)x</li>
+<li><code>gd</code> 跳到光标所在位置词(word)的定义位置 g(o)d(efine)</li>
+<li><code>gg</code> 到文档顶部</li>
+<li><code>G</code> 到文档底部</li>
+<li><code>:x</code> 跳到第x行(x是行号)</li>
+<li><code>ctrl+d</code> 向下翻页 d(down)</li>
+<li><code>ctrl+u</code> 向上翻页 u(p)</li>
+</ul>
+<h3 id="基本编辑">基本编辑</h3>
+<h4 id="修改">修改</h4>
+<ul>
+<li><code>i</code> 在光标当前位置向前插入 i(nsert)</li>
+<li><code>I</code> 在本行第一个字符前插入</li>
+<li><code>a</code> 在光标当前位置向后插入 a(fter)</li>
+<li><code>A</code> 在本行末尾插入</li>
+<li><code>o</code> 向下插入一行</li>
+<li><code>O</code> 向上插入一行</li>
+<li><code>:w</code> 保存</li>
+<li><code>:q</code> 退出</li>
+<li><code>:wq</code> 保存并退出</li>
+</ul>
+<h4 id="删除">删除</h4>
+<ul>
+<li><code>x</code> 删除当前字符</li>
+<li><code>dd</code> 删除当前行 d(elete)</li>
+<li><code>dw</code> 删除当前光标下的词 d(elete)w(ord)</li>
+</ul>
+<h4 id="复制粘贴">复制粘贴</h4>
+<ul>
+<li><code>yy</code> 复制当前行 y(ank)</li>
+<li><code>yw</code> 复制当前光标下的词 y(ank)w(ord)</li>
+<li><code>p</code> 粘贴 p(aste)</li>
+<li><code>P</code> 粘贴在当前位置之前</li>
+</ul>
+<h3 id="进阶操作">进阶操作</h3>
+<p>仅介绍部分常用操作</p>
+<h4 id="重复操作">重复操作</h4>
+<p>因为VIM所有的操作都是原子化的，所以把这些操作程序化就非常简单了：</p>
+<ul>
+<li><code>5w</code> 相当于按五次<code>w</code>键；</li>
+<li><code>6j</code> 下移6行，相当于按六次j；</li>
+<li><code>3J</code> 大写J,本来是将下一行与当前行合并，加上数量，就是重复操作3次；</li>
+<li><code>6dw</code>和<code>d6w</code> 结果是一样，就是删除6个word；</li>
+<li>类推其它</li>
+</ul>
+<h4 id="高效编辑">高效编辑</h4>
+<ul>
+<li><code>di&quot;</code> 光标在&quot;&ldquo;之间，则删除&quot;&ldquo;之间的内容</li>
+<li><code>yi(</code> 光标在()之间，则复制()之间的内容</li>
+<li><code>vi[</code> 光标在[]之间，则选中[]之间的内容</li>
+<li>以上三种可以自由组合搭配，效率奇高，i(nner)</li>
+<li><code>dtx</code> 删除字符直到遇见光标之后的第一个<code>x</code>字符</li>
+<li><code>ytx</code> 复制字符直到遇见光标之后的第一个<code>x</code>字符</li>
+</ul>
+<h4 id="标记和宏macro">标记和宏(macro)</h4>
+<ul>
+<li><code>ma</code> 将当前位置标记为a，26个字母均可做标记，<code>mb</code>、<code>mc</code>等等；</li>
+<li><code>'a</code> 跳转到a标记的位置；</li>
+<li>这是一组很好的文档内标记方法，在文档中跳跃编辑时很有用；</li>
+<li><code>qa</code> 将之后的所有键盘操作录制下来，直到再次在命令模式按下<code>q</code>，并存储在<code>a</code>中；</li>
+<li><code>@a</code> 执行刚刚记录在<code>a</code>里面的键盘操作；</li>
+<li><code>@@</code> 执行上一次的macro操作；</li>
+</ul>
+<p>例如下面一段宏可以复制当前含有数字的一行，并把数字递增。</p>
+<pre><code>qa
+Y
+p
+&lt;C-a&gt;
+q
+</code></pre>
+<h4 id="vimgrep">vimgrep</h4>
+<p>vimgrep用于匹配查找，基本的用法看下面的例子就大概明白了</p>
+<p><code>:vim /function demo/ *.c</code>          在当前目录的.c文件中，搜索function demo
+<code>:vim /function demo/ **/*.c</code>       在任意目录的.c文件中，搜索function demo
+<code>:vim /function demo/ **/*.{h,c}</code>   在任意目录的.c和.h文件中，搜索function demo
+<code>:vim /\cfunction demo/ **/*.c</code>     使用\c，不区分大小写
+<code>:vim /\Cfunction demo/ **/*.c</code>     使用\C，区分大小写
+<code>:vim /function demo/j *.c</code>         只更新quickfix，不跳转到第一个搜索结果
+<code>:vim /function demo/g *.c</code>         一行中若有多个匹配，每个都要单独显示一行</p>
+<h3 id="other-tips">other tips</h3>
+<p><code>guu</code> – 把一行的文字变成全小写。或是【vu】
+<code>gUU</code> – 把一行的文件变成全大写。或是【VU】
+<code>ga</code> –  查看光标处字符的ascii码
+<code>g8</code> – 查看光标处字符的utf-8编码
+<code>gf</code>  – 打开光标处所指的文件 （这个命令在打到#include头文件时挺好用的，当然，仅限于有路径的）
+<code>&gt;&gt;</code> 右给它进当前行 <code>&lt;&lt;</code> 向左缩进当前行
+<code>=</code>  – 缩进当前行 （和上面不一样的是，它会对齐缩进）
+<code>=%</code> – 把光标位置移到语句块的括号上，然后按=%，缩进整个语句块（%是括号匹配）
+<code>G=gg</code> 或是 <code>gg=G</code>  – 缩进整个文件（G是到文件结尾，gg是到文件开头）
+<code>Ctrl + O</code> 向后回退你的光标移动
+<code>Ctrl + I</code> 向前追赶你的光标移动
+<code>:r!date</code> 插入日期
+<code>:g/^\n*$/d</code> 删除空行, 命令意义：正则匹配(行头+多个换行符+行尾)，d删除</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-09-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/learning-erlang-01/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Erlang 学习01</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/migrating-from-vim-to-spacemacs/">
+            <span class="next-text nav-default">从Vim迁移到Spacemacs</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

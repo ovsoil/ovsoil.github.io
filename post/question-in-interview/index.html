@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>面试问题总结 - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="有一些理解不记下来，以后我这木讷的嘴怕是说不清楚 编程思想 面向对象（对象导向）编程的理解 面向对象编程的分析和设计实际上追求的就是两点：高内聚(" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/question-in-interview/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="面试问题总结" />
+<meta property="og:description" content="有一些理解不记下来，以后我这木讷的嘴怕是说不清楚 编程思想 面向对象（对象导向）编程的理解 面向对象编程的分析和设计实际上追求的就是两点：高内聚(" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/question-in-interview/" />
+<meta property="article:published_time" content="2015-06-04T00:00:00+00:00" />
+
+<meta itemprop="name" content="面试问题总结">
+<meta itemprop="description" content="有一些理解不记下来，以后我这木讷的嘴怕是说不清楚 编程思想 面向对象（对象导向）编程的理解 面向对象编程的分析和设计实际上追求的就是两点：高内聚(">
+
+<meta itemprop="wordCount" content="1967">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="面试问题总结"/>
+<meta name="twitter:description" content="有一些理解不记下来，以后我这木讷的嘴怕是说不清楚 编程思想 面向对象（对象导向）编程的理解 面向对象编程的分析和设计实际上追求的就是两点：高内聚("/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">面试问题总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-06-04 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#编程思想">编程思想</a></li>
+        <li><a href="#c">C++</a>
+          <ul>
+            <li><a href="#多态">多态</a></li>
+            <li><a href="#static">static</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>有一些理解不记下来，以后我这木讷的嘴怕是说不清楚</p>
+<h2 id="编程思想">编程思想</h2>
+<p>面向对象（对象导向）编程的理解</p>
+<p>面向对象编程的分析和设计实际上追求的就是两点：高内聚(Cohesion)和低耦合(Coupling)。其实很多编程范式都是为了达到这个目标，面向对象编程只是其中之一。
+在面向对象系统的设计和开发中,我们已经积累了很多的原则,比如面向对象中的封装、继承和多态、面向接口编程、优先使用组合而不是继承、将抽象和实现分离的思想等等,在设计模式中你总是能看到他们的影子,特别是组合(委托)和继承的差异带来系统在耦合性上的差别,更是在设计模式多次涉及到。而一些设计模式的思想在我们做系统的设计和开发中则是经常要用到的,比如说Template、Strategy模式的思想,Singleton模式的思想,Factory模式的思想等等,还有很多的模式已经在我们的开发平台中扎根了,比如说Observer(其实例为Model-Control-View模式)是MFC和Struts中的基本框架,Iterator模式则在C++的STL中有实现等。或许有的人会说,我们不需要设计模式,我们的系统很小,设计模式会束缚我们的实现。我想说的是,设计模式体现的是一种思想,而思想则是指导行为的一切,理解和掌握了设计模式,并不是说记住了23种(或更多)设计场景和解决策略(实际上这也是很重要的一笔财富),实际接受的是一种思想的熏陶和洗礼,等这种思想融入到了你的思想中后,你就会不自觉地使用这种思想去进行你的设计和开发,这一切才是最重要的。</p>
+<h2 id="c">C++</h2>
+<h3 id="多态">多态</h3>
+<p>多态（polymorphism）是面向对象编程的核心概念，简单地概括为“一个接口，多种方法”，程序在运行时才决定调用的函数。</p>
+<p>C++的多态是通过虚函数来实现的，虚函数允许子类重新定义成员函数(override)。</p>
+<p>作用：封装可以使得代码模块化，继承可以扩展已存在的代码，他们的目的都是为了代码重用。而多态的目的则是为了接口重用。不论传递过来的究竟是那个类的对象，函数都能够通过同一个接口调用到适应各自对象的实现方法。</p>
+<ul>
+<li>
+<p>多态类中的虚函数表是 Compile-Time，还是 Run-Time时建立的?
+答案：虚拟函数表是在编译期就建立了,各个虚拟函数这时被组织成了一个虚拟函数的入口地址的数组。而对象的隐藏成员&ndash;虚拟函数表指针是在运行期&ndash;也就是构造函数被调用时进行初始化的，这是实现多态的关键。</p>
+</li>
+<li>
+<p>子类重写的虚函数是否可以不加virtual？在子类的空间里，有没有父类的这个函数，或者父类的私有变量?
+答案：只要基类在定义成员函数时已经声明了 virtual关键字，在派生类实现的时候覆盖该函数时，virtual关键字可加可不加，不影响多态的实现。子类的空间里有父类的所有变量(static除外)。</p>
+</li>
+</ul>
+<h3 id="static">static</h3>
+<ul>
+<li>static关键字的作用。
+static总是使得变量或对象的存储形式变成静态存储，连接方式变成内部连接，对于局部变量（已经是内部连接了），它仅改变其存储方式；对于全局变量（已经是静态存储了），它仅改变其连接类型。</li>
+<li>static数据成员和static成员函数
+答：（1）static数据成员：
+static数据成员独立于该类的任意对象而存在；每个static数据成员是与类关联的对象，并不与该类的对象相关联。Static数据成员（const static数据成员除外）必须在类定义体的外部定义。不像普通数据成员，static成员不是通过类的构造函数进行初始化，而是应该在定义时进行初始化。
+（2）static成员函数：
+Static成员函数没有this形参，它可以直接访问所属类的static成员，不能直接使用非static成员。因为static成员不是任何对象的组成部分，所以static成员不能被声明为const。同时，static成员函数也不能被声明为虚函数。</li>
+<li>类使用static成员的优点，如何访问？
+答：优点：
+（1）static 成员的名字是在类的作用域中，因此可以避免与其他类的成员或全局对象名字冲突；
+（2）可以实施封装。static 成员可以是私有成员，而全局对象不可以；
+（3） static 成员是与特定类关联的，可清晰地显示程序员的意图。
+static 数据成员必须在类定义体的外部定义(正好一次)，static 关键字只能用于类定义体内部的声明中，定义不能标示为static. 不像普通数据成员，static成员不是通过类构造函数进行初始化，也不能在类的声明中初始化，而是应该在定义时进行初始化.保证对象正好定义一次的最好办法，就是将static 数据成员的定义放在包含类非内联成员函数定义的文件中。
+静态数据成员初始化的格式为：
+＜数据类型＞＜类名＞::＜静态数据成员名＞=＜值＞
+类的静态数据成员有两种访问形式：
+＜类对象名＞.＜静态数据成员名＞ 或 ＜类类型名＞::＜静态数据成员名＞</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/design-patterns/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">设计模式</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/unix-programing-progress/">
+            <span class="next-text nav-default">Unix编程之进程</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

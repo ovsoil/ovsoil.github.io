@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>cocos2d-x 源码分析二：Director - Ovsoil&#39;s Blog - Learn，Write，Share</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="前向声明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 /* Forward declarations. */ class LabelAtlas; //class GLView; class DirectorDelegate; class Node; class Scheduler; class ActionManager; class EventDispatcher; class EventCustom; class EventListenerCustom; class TextureCache; class Renderer; class Camera; class Console; 构造/初始化 1 2 3 4 5 6 7 8 9 /** returns a shared instance of" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/analyse-cocos2d-x-source-2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="cocos2d-x 源码分析二：Director" />
+<meta property="og:description" content="前向声明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 /* Forward declarations. */ class LabelAtlas; //class GLView; class DirectorDelegate; class Node; class Scheduler; class ActionManager; class EventDispatcher; class EventCustom; class EventListenerCustom; class TextureCache; class Renderer; class Camera; class Console; 构造/初始化 1 2 3 4 5 6 7 8 9 /** returns a shared instance of" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/analyse-cocos2d-x-source-2/" />
+<meta property="article:published_time" content="2015-04-13T00:00:00+00:00" />
+
+<meta itemprop="name" content="cocos2d-x 源码分析二：Director">
+<meta itemprop="description" content="前向声明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 /* Forward declarations. */ class LabelAtlas; //class GLView; class DirectorDelegate; class Node; class Scheduler; class ActionManager; class EventDispatcher; class EventCustom; class EventListenerCustom; class TextureCache; class Renderer; class Camera; class Console; 构造/初始化 1 2 3 4 5 6 7 8 9 /** returns a shared instance of">
+
+<meta itemprop="wordCount" content="830">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="cocos2d-x 源码分析二：Director"/>
+<meta name="twitter:description" content="前向声明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 /* Forward declarations. */ class LabelAtlas; //class GLView; class DirectorDelegate; class Node; class Scheduler; class ActionManager; class EventDispatcher; class EventCustom; class EventListenerCustom; class TextureCache; class Renderer; class Camera; class Console; 构造/初始化 1 2 3 4 5 6 7 8 9 /** returns a shared instance of"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">鱼花生</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">鱼花生</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">cocos2d-x 源码分析二：Director</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-04-13 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前向声明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="cm">/* Forward declarations. */</span>
+    <span class="k">class</span> <span class="nc">LabelAtlas</span><span class="p">;</span>
+    <span class="c1">//class GLView;
+</span><span class="c1"></span>    <span class="k">class</span> <span class="nc">DirectorDelegate</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Node</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Scheduler</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">ActionManager</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">EventDispatcher</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">EventCustom</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">EventListenerCustom</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">TextureCache</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Renderer</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Camera</span><span class="p">;</span>
+
+    <span class="k">class</span> <span class="nc">Console</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>构造/初始化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    /** returns a shared instance of the director */
+    static Director* getInstance();
+
+    /** @deprecated Use getInstance() instead */
+    CC_DEPRECATED_ATTRIBUTE static Director* sharedDirector() { return Director::getInstance(); }
+    /**
+     * @js ctor
+     */
+    Director(void);
+</code></pre></td></tr></table>
+</div>
+</div><p>全局成员</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">EVENT_PROJECTION_CHANGED</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">EVENT_AFTER_UPDATE</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">EVENT_AFTER_VISIT</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">EVENT_AFTER_DRAW</span><span class="p">;</span>
+
+    <span class="cm">/** @typedef ccDirectorProjection
+</span><span class="cm">     Possible OpenGL projections used by director
+</span><span class="cm">     */</span>
+    <span class="k">enum</span> <span class="k">class</span> <span class="nc">Projection</span>
+    <span class="p">{</span>
+        <span class="c1">/// sets a 2D projection (orthogonal projection)
+</span><span class="c1"></span>        <span class="n">_2D</span><span class="p">,</span>
+        
+        <span class="c1">/// sets a 3D projection with a fovy=60, znear=0.5f and zfar=1500.
+</span><span class="c1"></span>        <span class="n">_3D</span><span class="p">,</span>
+        
+        <span class="c1">/// it calls &#34;updateProjection&#34; on the projection delegate.
+</span><span class="c1"></span>        <span class="n">CUSTOM</span><span class="p">,</span>
+        
+        <span class="c1">/// Default projection is 3D projection
+</span><span class="c1"></span>        <span class="n">DEFAULT</span> <span class="o">=</span> <span class="n">_3D</span><span class="p">,</span>
+    <span class="p">};</span>
+    
+</code></pre></td></tr></table>
+</div>
+</div><p>。
+。
+坐标操作</p>
+<p>场景管理</p>
+<p>内存</p>
+<p>opengl</p>
+<p>mainloop</p>
+<p>other</p>
+<p>详细分析几个方法：
+<code>getInstance()</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="n">Director</span><span class="o">*</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">s_SharedDirector</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">s_SharedDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">DisplayLinkDirector</span><span class="p">();</span>
+            <span class="n">CCASSERT</span><span class="p">(</span><span class="n">s_SharedDirector</span><span class="p">,</span> <span class="s">&#34;FATAL: Not enough memory&#34;</span><span class="p">);</span>
+            <span class="n">s_SharedDirector</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">s_SharedDirector</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="kt">bool</span> <span class="n">Director</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">setDefaultValues</span><span class="p">();</span>
+
+        <span class="c1">// scenes
+</span><span class="c1"></span>        <span class="n">_runningScene</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="n">_nextScene</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+
+        <span class="n">_notificationNode</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+
+        <span class="n">_scenesStack</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+
+        <span class="c1">// FPS
+</span><span class="c1"></span>        <span class="n">_accumDt</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+        <span class="n">_frameRate</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+        <span class="n">_FPSLabel</span> <span class="o">=</span> <span class="n">_drawnBatchesLabel</span> <span class="o">=</span> <span class="n">_drawnVerticesLabel</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="n">_totalFrames</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">_lastUpdate</span> <span class="o">=</span> <span class="k">new</span> <span class="k">struct</span> <span class="nc">timeval</span><span class="p">;</span>
+        <span class="n">_secondsPerFrame</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+
+        <span class="c1">// paused ?
+</span><span class="c1"></span>        <span class="n">_paused</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+        <span class="c1">// purge ?
+</span><span class="c1"></span>        <span class="n">_purgeDirectorInNextLoop</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        
+        <span class="c1">// restart ?
+</span><span class="c1"></span>        <span class="n">_restartDirectorInNextLoop</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+        <span class="n">_winSizeInPoints</span> <span class="o">=</span> <span class="n">Size</span><span class="o">::</span><span class="n">ZERO</span><span class="p">;</span>
+
+        <span class="n">_openGLView</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+
+        <span class="n">_contentScaleFactor</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span>
+
+        <span class="c1">// scheduler
+</span><span class="c1"></span>        <span class="n">_scheduler</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">Scheduler</span><span class="p">();</span>
+        <span class="c1">// action manager
+</span><span class="c1"></span>        <span class="n">_actionManager</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">ActionManager</span><span class="p">();</span>
+        <span class="n">_scheduler</span><span class="o">-&gt;</span><span class="n">scheduleUpdate</span><span class="p">(</span><span class="n">_actionManager</span><span class="p">,</span> <span class="n">Scheduler</span><span class="o">::</span><span class="n">PRIORITY_SYSTEM</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+        <span class="n">_eventDispatcher</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">EventDispatcher</span><span class="p">();</span>
+        <span class="n">_eventAfterDraw</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">EventCustom</span><span class="p">(</span><span class="n">EVENT_AFTER_DRAW</span><span class="p">);</span>
+        <span class="n">_eventAfterDraw</span><span class="o">-&gt;</span><span class="n">setUserData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">_eventAfterVisit</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">EventCustom</span><span class="p">(</span><span class="n">EVENT_AFTER_VISIT</span><span class="p">);</span>
+        <span class="n">_eventAfterVisit</span><span class="o">-&gt;</span><span class="n">setUserData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">_eventAfterUpdate</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">EventCustom</span><span class="p">(</span><span class="n">EVENT_AFTER_UPDATE</span><span class="p">);</span>
+        <span class="n">_eventAfterUpdate</span><span class="o">-&gt;</span><span class="n">setUserData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">_eventProjectionChanged</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">EventCustom</span><span class="p">(</span><span class="n">EVENT_PROJECTION_CHANGED</span><span class="p">);</span>
+        <span class="n">_eventProjectionChanged</span><span class="o">-&gt;</span><span class="n">setUserData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+
+        <span class="c1">//init TextureCache
+</span><span class="c1"></span>        <span class="n">initTextureCache</span><span class="p">();</span>
+        <span class="n">initMatrixStack</span><span class="p">();</span>
+
+        <span class="n">_renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">Renderer</span><span class="p">;</span>
+
+        <span class="n">_console</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nothrow</span><span class="p">)</span> <span class="n">Console</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="cm">/** 
+</span><span class="cm">     @brief DisplayLinkDirector is a Director that synchronizes timers with the refresh rate of the display.
+</span><span class="cm">     
+</span><span class="cm">     Features and Limitations:
+</span><span class="cm">      - Scheduled timers &amp; drawing are synchronizes with the refresh rate of the display
+</span><span class="cm">      - Only supports animation intervals of 1/60 1/30 &amp; 1/15
+</span><span class="cm">     
+</span><span class="cm">     @since v0.8.2
+</span><span class="cm">     */</span>
+    <span class="k">class</span> <span class="nc">DisplayLinkDirector</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Director</span>
+    <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">DisplayLinkDirector</span><span class="p">()</span> 
+            <span class="o">:</span> <span class="n">_invalid</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
+        <span class="p">{}</span>
+        <span class="k">virtual</span> <span class="o">~</span><span class="n">DisplayLinkDirector</span><span class="p">(){}</span>
+
+        <span class="c1">//
+</span><span class="c1"></span>        <span class="c1">// Overrides
+</span><span class="c1"></span>        <span class="c1">//
+</span><span class="c1"></span>        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">mainLoop</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">setAnimationInterval</span><span class="p">(</span><span class="kt">double</span> <span class="n">value</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">startAnimation</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">stopAnimation</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="k">protected</span><span class="o">:</span>
+        <span class="kt">bool</span> <span class="n">_invalid</span><span class="p">;</span>
+    <span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">DisplayLinkDirector</span><span class="o">::</span><span class="n">mainLoop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_purgeDirectorInNextLoop</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_purgeDirectorInNextLoop</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">purgeDirector</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">_restartDirectorInNextLoop</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_restartDirectorInNextLoop</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">restartDirector</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">_invalid</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">drawScene</span><span class="p">();</span>
+     
+        <span class="c1">// release the objects
+</span><span class="c1"></span>        <span class="n">PoolManager</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getCurrentPool</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">    <span class="c1">// Draw the Scene
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="n">Director</span><span class="o">::</span><span class="n">drawScene</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// calculate &#34;global&#34; dt
+</span><span class="c1"></span>        <span class="n">calculateDeltaTime</span><span class="p">();</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">_openGLView</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_openGLView</span><span class="o">-&gt;</span><span class="n">pollEvents</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="c1">//tick before glClear: issue #533
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">_paused</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_scheduler</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="n">_deltaTime</span><span class="p">);</span>
+            <span class="n">_eventDispatcher</span><span class="o">-&gt;</span><span class="n">dispatchEvent</span><span class="p">(</span><span class="n">_eventAfterUpdate</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">_renderer</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+
+        <span class="cm">/* to avoid flickr, nextScene MUST be here: after tick and before draw.
+</span><span class="cm">         * FIXME: Which bug is this one. It seems that it can&#39;t be reproduced with v0.9
+</span><span class="cm">         */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_nextScene</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">setNextScene</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">pushMatrix</span><span class="p">(</span><span class="n">MATRIX_STACK_TYPE</span><span class="o">::</span><span class="n">MATRIX_STACK_MODELVIEW</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">_runningScene</span><span class="p">)</span>
+        <span class="p">{</span>
+<span class="cp">#if CC_USE_PHYSICS
+</span><span class="cp"></span>            <span class="k">auto</span> <span class="n">physicsWorld</span> <span class="o">=</span> <span class="n">_runningScene</span><span class="o">-&gt;</span><span class="n">getPhysicsWorld</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">physicsWorld</span> <span class="o">&amp;&amp;</span> <span class="n">physicsWorld</span><span class="o">-&gt;</span><span class="n">isAutoStep</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">physicsWorld</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="n">_deltaTime</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+            <span class="p">}</span>
+<span class="cp">#endif
+</span><span class="cp"></span>            <span class="c1">//clear draw stats
+</span><span class="c1"></span>            <span class="n">_renderer</span><span class="o">-&gt;</span><span class="n">clearDrawStats</span><span class="p">();</span>
+            
+            <span class="c1">//render the scene
+</span><span class="c1"></span>            <span class="n">_runningScene</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">(</span><span class="n">_renderer</span><span class="p">);</span>
+            
+            <span class="n">_eventDispatcher</span><span class="o">-&gt;</span><span class="n">dispatchEvent</span><span class="p">(</span><span class="n">_eventAfterVisit</span><span class="p">);</span>
+<span class="cp">#if CC_USE_PHYSICS
+</span><span class="cp"></span>            <span class="k">if</span><span class="p">(</span><span class="n">physicsWorld</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">physicsWorld</span><span class="o">-&gt;</span><span class="n">_updateBodyTransform</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="p">}</span>
+<span class="cp">#endif
+</span><span class="cp"></span>        <span class="p">}</span>
+
+        <span class="c1">// draw the notifications node
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">_notificationNode</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_notificationNode</span><span class="o">-&gt;</span><span class="n">visit</span><span class="p">(</span><span class="n">_renderer</span><span class="p">,</span> <span class="n">Mat4</span><span class="o">::</span><span class="n">IDENTITY</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">_displayStats</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">showStats</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">_renderer</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">();</span>
+
+        <span class="n">_eventDispatcher</span><span class="o">-&gt;</span><span class="n">dispatchEvent</span><span class="p">(</span><span class="n">_eventAfterDraw</span><span class="p">);</span>
+
+        <span class="n">popMatrix</span><span class="p">(</span><span class="n">MATRIX_STACK_TYPE</span><span class="o">::</span><span class="n">MATRIX_STACK_MODELVIEW</span><span class="p">);</span>
+
+        <span class="n">_totalFrames</span><span class="o">++</span><span class="p">;</span>
+
+        <span class="c1">// swap buffers
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">_openGLView</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_openGLView</span><span class="o">-&gt;</span><span class="n">swapBuffers</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">_displayStats</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">calculateMPF</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">olOwOlo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/analyse-cocos2d-x-source-3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">cocos2d-x 源码分析三：内存管理</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/analyse-cocos2dx-source-1/">
+            <span class="next-text nav-default">Cocos2dx 源码分析之一: 起步(Application)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

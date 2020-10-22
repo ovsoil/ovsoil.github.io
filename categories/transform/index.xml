@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>transform on Ovsoil&#39;s Blog - Learn，Write，Share</title>
+    <link>http://localhost:1313/categories/transform/</link>
+    <description>Recent content in transform on Ovsoil&#39;s Blog - Learn，Write，Share</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/transform/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markdown 语法说明（转）</title>
+      <link>http://localhost:1313/post/markdown-syntax/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/markdown-syntax/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to &lt;a href=&#34;http://daringfireball.net/projects/markdown/syntax&#34;&gt;Markdown: Syntax&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;声明：&lt;/strong&gt; 这份文档派生(fork)于&lt;a href=&#34;http://markdown.tw/&#34;&gt;繁体中文版&lt;/a&gt;，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里&lt;a href=&#34;http://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md&#34;&gt;查看它的源文件&lt;/a&gt;。「繁体中文版的原始文件可以&lt;a href=&#34;https://github.com/othree/markdown-syntax-zhtw/blob/master/syntax.md&#34;&gt;查看这里&lt;/a&gt; 。」&amp;ndash;By @&lt;a href=&#34;http://twitter.com/riku&#34;&gt;riku&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
